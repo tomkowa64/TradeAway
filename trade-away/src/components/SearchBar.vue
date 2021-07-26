@@ -15,8 +15,8 @@ export default ({
 $(function() {
     $(".search-bar-span").css({"position": "absolute"})
     
-    $(".search-bar-span:first").css({"color": "#333333" })
-    $(".search-bar-span").eq("1").css({"color": "#d9d8e3", "left": "2em" })
+    $(".search-bar-span:first").css({"color": "#333333", "font-weight": "600" })
+    $(".search-bar-span").eq("1").css({"color": "#d0cee0", "left": "2.2em" })
 
     $("input").on("focus", function(){
         

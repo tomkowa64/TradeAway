@@ -1,8 +1,12 @@
 /*Google Fonts imports*/
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
-
+a{
+    text-decoration: none;
+}
 .home{
     height: 80em;
+    display: flex;
+    flex-direction: column;
 }
 .search-bar{
     margin-top: 5em;
@@ -22,6 +26,7 @@ input{
     border: 0;
     border-bottom: 2px solid #d9d8e3;
     font-size: 2.5em;
+    background: transparent;
 }
 input:focus, textarea:focus, select:focus{
     outline: none;
@@ -29,4 +34,20 @@ input:focus, textarea:focus, select:focus{
 .search-bar-span{
     font-size: 4em;
     font-family: 'Roboto', sans-serif;
+    z-index: -1;
+}
+.product-section-tag{
+    width: 80%;
+    height: 10em;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.tag-show-all a{
+    color: #bdbccc !important;
 }
