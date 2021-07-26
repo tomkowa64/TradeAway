@@ -1,17 +1,20 @@
 <template>
   <section class="home">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <SearchBar />
   </section>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import SearchBar from '../components/SearchBar.vue'
 
 export default {
   name: 'Home',
-  components: {
-    HelloWorld
+    components: {
+    SearchBar
   }
 }
 </script>
+<style scoped>
+@import url('../styles/Home.scss');
+</style>
