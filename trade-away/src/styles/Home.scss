@@ -38,7 +38,7 @@ input:focus, textarea:focus, select:focus{
 }
 .product-section-tag{
     width: 80%;
-    height: 10em;
+    height: 5em;
     margin-left: auto;
     margin-right: auto;
     display: flex;
@@ -63,6 +63,7 @@ input:focus, textarea:focus, select:focus{
     overflow: auto;
 }
 .product-list-item{
+    cursor: pointer;
     padding: 30px 5px 30px 5px;
     width: 20em;
     height: 30em;
@@ -91,9 +92,9 @@ input:focus, textarea:focus, select:focus{
     color: #FFF;
 }
 .product-list-item-price{
-    padding: 10px 0px 10px 0px;
+    padding: 50px 0px 10px 0px;
     width: 80%;
-    height: 10%;
+    height: 20%;
     font-size: 1.5em;
     font-weight: bold;
     color: #FFF;

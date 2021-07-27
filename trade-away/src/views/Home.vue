@@ -55,6 +55,61 @@
         </div>
       </div>
     </div>
+
+        <div class="product-section-tag">
+      <div>
+        On Sale | <span class="tag-show-all"><a href="">Show All <i class="fas fa-arrow-down"></i></a></span>
+      </div>
+    </div>
+    <div class="product-list">
+      <div class="product-list-item" style="background: #e3c281">
+        <img src="../assets/backpack.png" alt="">
+        <div class="product-list-item-name">Product Name</div>
+        <div class="product-list-item-desc">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+          sed do eiusmod tempor incididunt ut labore et dolore.
+        </div>
+        <div class="product-list-item-price">
+          <s>69.99$</s> 30.99$
+        </div>
+      </div>
+
+      <div class="product-list-item" style="background: #e8467e">
+        <img src="../assets/blender.png" alt="">
+        <div class="product-list-item-name">Product Name</div>
+        <div class="product-list-item-desc">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+          sed do eiusmod tempor incididunt ut labore et dolore.
+        </div>
+        <div class="product-list-item-price">
+          <s>29.99$</s> 10.0$
+        </div>
+      </div>
+
+      <div class="product-list-item" style="background: #98a1f5">
+        <img src="../assets/shoe.png" alt="">
+        <div class="product-list-item-name">Product Name</div>
+        <div class="product-list-item-desc">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+          sed do eiusmod tempor incididunt ut labore et dolore.
+        </div>
+        <div class="product-list-item-price">
+          <s>30.99$</s> 21.37$
+        </div>
+      </div>
+
+      <div class="product-list-item" style="background: #90d1b7">
+        <img src="../assets/dress.png" alt="">
+        <div class="product-list-item-name">Product Name</div>
+        <div class="product-list-item-desc">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+          sed do eiusmod tempor incididunt ut labore et dolore.
+        </div>
+        <div class="product-list-item-price">
+          <s>119.99$</s> 80$
+        </div>
+      </div>
+    </div>
   </section>
 </template>
 
