@@ -4,7 +4,7 @@ a{
     text-decoration: none;
 }
 .home{
-    height: 150em;
+    height: 250em;
     display: flex;
     flex-direction: column;
 }
@@ -90,6 +90,7 @@ input:focus, textarea:focus, select:focus{
     height: 25%;
     font-size: 1.2em;
     color: #FFF;
+    border-bottom: 1px solid #FFF;
 }
 .product-list-item-price{
     padding: 50px 0px 10px 0px;

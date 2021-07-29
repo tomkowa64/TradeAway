@@ -43,7 +43,7 @@
         </div>
       </div>
 
-      <div class="product-list-item" style="background: #15a123">
+      <div class="product-list-item" style="background: #71bf93">
         <img src="../assets/dress.png" alt="">
         <div class="product-list-item-name">Product Name</div>
         <div class="product-list-item-desc">
@@ -55,7 +55,7 @@
         </div>
       </div>
     </div>
-
+    <!-- -->
         <div class="product-section-tag">
       <div>
         On Sale | <span class="tag-show-all"><a href="">Show All <i class="fas fa-arrow-down"></i></a></span>
@@ -107,6 +107,61 @@
         </div>
         <div class="product-list-item-price">
           <s>119.99$</s> 80$
+        </div>
+      </div>
+    </div>
+    <!-- -->
+    <div class="product-section-tag">
+      <div>
+        Your picks | <span class="tag-show-all"><a href="">Show All <i class="fas fa-arrow-down"></i></a></span>
+      </div>
+    </div>
+    <div class="product-list">
+      <div class="product-list-item" style="background: #ac82bf">
+        <img src="../assets/backpack.png" alt="">
+        <div class="product-list-item-name">Product Name</div>
+        <div class="product-list-item-desc">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+          sed do eiusmod tempor incididunt ut labore et dolore.
+        </div>
+        <div class="product-list-item-price">
+          69.99$
+        </div>
+      </div>
+
+      <div class="product-list-item" style="background: #00bec4">
+        <img src="../assets/blender.png" alt="">
+        <div class="product-list-item-name">Product Name</div>
+        <div class="product-list-item-desc">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+          sed do eiusmod tempor incididunt ut labore et dolore.
+        </div>
+        <div class="product-list-item-price">
+          29.99$
+        </div>
+      </div>
+
+      <div class="product-list-item" style="background: #c879d1">
+        <img src="../assets/shoe.png" alt="">
+        <div class="product-list-item-name">Product Name</div>
+        <div class="product-list-item-desc">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+          sed do eiusmod tempor incididunt ut labore et dolore.
+        </div>
+        <div class="product-list-item-price">
+          30.99$
+        </div>
+      </div>
+
+      <div class="product-list-item" style="background: #e37d6d">
+        <img src="../assets/dress.png" alt="">
+        <div class="product-list-item-name">Product Name</div>
+        <div class="product-list-item-desc">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+          sed do eiusmod tempor incididunt ut labore et dolore.
+        </div>
+        <div class="product-list-item-price">
+          119.99$
         </div>
       </div>
     </div>
