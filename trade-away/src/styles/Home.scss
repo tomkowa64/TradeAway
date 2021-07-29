@@ -101,3 +101,25 @@ input:focus, textarea:focus, select:focus{
     color: #FFF;
     text-align: right;
 }
+@media screen and (max-width: 768px){
+    .home{
+        height: 550em;
+        display: flex;
+        flex-direction: column;
+    }
+    .product-list{
+        width: 100%;
+        height: 130em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2em 0em 2em 0em;
+        overflow: auto;
+    }
+    .search-bar{
+        margin-top: 30em;
+    }
+    .search-bar span{
+        font-size: 2.4em;
+    }
+}
