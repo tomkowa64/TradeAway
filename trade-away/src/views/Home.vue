@@ -179,6 +179,6 @@ export default {
   }
 }
 </script>
-<style  lang="scss">
-@import url('../styles/Home.scss');
+<style lang="scss">
+  @import url('../styles/Home.scss');
 </style>

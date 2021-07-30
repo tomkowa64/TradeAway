@@ -117,7 +117,10 @@ input:focus, textarea:focus, select:focus{
         overflow: auto;
     }
     .search-bar{
-        margin-top: 30em;
+        margin-top: 0;
+    }
+    .search-bar-margin{
+        margin-top: 18em;
     }
     .search-bar span{
         font-size: 2.4em;

@@ -60,6 +60,23 @@ html,body{
         align-items: flex-end;
         font-size: 2em;
         height: 5em;
+        .cart-icon{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            i{
+                padding: 0 !important;
+            }
+            .cart-product-count{
+                color: #FFF;
+                border-radius: 15px;
+                width: 30%;
+                display: flex;
+                justify-content: center;
+                margin-left: 10px;
+                background-color: #e6325f;
+            }
+        }
         .menu-item{
             width: 4em;
             padding-bottom: 1em;
@@ -105,6 +122,13 @@ html,body{
 }
 
 @media screen and (max-width: 768px){
+    .logo{
+        display: flex;
+        width: 100%;
+        img{
+            display: none;
+        }
+    }
     .navbar{
         position: absolute;
         top: 0;
@@ -116,17 +140,26 @@ html,body{
         display: flex;
         flex-direction: column;
         align-items: center;
+        .cart-icon{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
         .company-name{
             width: 100%;
-            font-size: 4em;
+            font-size: 3.4em;
         }
         .menu-toggle{
-            font-size: 3em;
+            height: 100%;
+            font-size: 0.7em;
             width: 100%;
             display: flex;
-            justify-content: center;
-            margin-top: 10px;
+            align-items: center;
             visibility: visible;
+            i{
+                margin-left: -20px;
+            }
         }
         .menu{
             width: 100%;
@@ -138,7 +171,12 @@ html,body{
             height: 15em;
             padding: 30px 0px 0px 0px;
         }
+        .menu-display{
+            display: none;
+        }
         .menu-item{
+            margin-left: auto;
+            margin-right: auto;
             width: 100%;
             display: flex;
             justify-content: center;
