@@ -109,12 +109,34 @@ input:focus, textarea:focus, select:focus{
     }
     .product-list{
         width: 100%;
-        height: 130em;
+        height: 25em;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
-        padding: 2em 0em 2em 0em;
-        overflow: auto;
+        padding: 0;
+        overflow: scroll;
+        -ms-overflow-style: none;
+        scrollbar-width: none; /* Firefox */
+    }
+    .product-list::-webkit-scrollbar{
+        display: none;
+    }
+    .product-list-item{
+        min-width: 10em;
+        height: 20em;
+        margin-left: 2em;
+    }
+    .product-list-item-name{
+        font-size: 1.1em;
+    }
+    .product-list-item-desc{
+        font-size: 0.7em;
+        height: 35%;
+    }
+    .product-list-item-price{
+        height: 5%;
+        font-size: 1em;
+        padding: 0;
     }
     .search-bar{
         margin-top: 0;
