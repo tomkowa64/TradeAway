@@ -1,6 +1,8 @@
 <template>
   <section class="home">
     <SearchBar />
+
+
     <div class="product-section-tag">
       <div>
         Trending | <span class="tag-show-all"><a href="">Show All <i class="fas fa-arrow-down"></i></a></span>
@@ -165,17 +167,21 @@
         </div>
       </div>
     </div>
+
+  <Banner />
   </section>
 </template>
 
 <script>
 // @ is an alias to /src
 import SearchBar from '../components/SearchBar.vue'
+import Banner from '../components/Banner.vue'
 
 export default {
   name: 'Home',
     components: {
-    SearchBar
+    SearchBar,
+    Banner
   }
 }
 </script>

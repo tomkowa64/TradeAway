@@ -90,6 +90,7 @@ input:focus, textarea:focus, select:focus{
     height: 25%;
     font-size: 1.2em;
     color: #FFF;
+    opacity: 0.7;
     border-bottom: 1px solid #FFF;
 }
 .product-list-item-price{
@@ -101,7 +102,21 @@ input:focus, textarea:focus, select:focus{
     color: #FFF;
     text-align: right;
 }
+.banner{
+    width: 100%;
+    height: 50em;
+    background: url(../assets/banner.png);
+    background-size: cover;
+    cursor: pointer;
+}
 @media screen and (max-width: 768px){
+    .banner{
+        width: 100%;
+        height: 40em;
+        background: url(../assets/banner-responsive.png);
+        background-size: cover;
+        cursor: pointer;
+    }
     .home{
         height: 550em;
         display: flex;
@@ -124,7 +139,8 @@ input:focus, textarea:focus, select:focus{
     .product-list-item{
         min-width: 10em;
         height: 20em;
-        margin-left: 2em;
+        margin-left: 1em;
+        margin-right: 1em;
     }
     .product-list-item-name{
         font-size: 1.1em;
