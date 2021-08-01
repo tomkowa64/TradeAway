@@ -170,6 +170,7 @@
 
   <Banner />
   <Partners />
+  <PartnersJoin />
   </section>
 </template>
 
@@ -178,6 +179,7 @@
 import SearchBar from '../components/SearchBar.vue'
 import Banner from '../components/Banner.vue'
 import Partners from '../components/Partners.vue'
+import PartnersJoin from '../components/PartnerJoin.vue'
 
 
 export default {
@@ -185,7 +187,8 @@ export default {
     components: {
     SearchBar,
     Banner,
-    Partners
+    Partners,
+    PartnersJoin
   }
 }
 </script>

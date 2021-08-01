@@ -1,6 +1,6 @@
 <template>
     <section class="partners">
-        <div class="partners-logo"><img src="../assets/logo_transparent2.png" alt=""></div>
+        <div class="partners-logo"><img src="../assets/maersk.png" alt=""></div>
         <div class="partners-logo"><img src="../assets/ali.png" alt=""></div>
         <div class="partners-logo"><img src="../assets/allegro.png" alt=""></div>
         <div class="partners-logo"><img src="../assets/amazon.png" alt=""></div>
