@@ -169,6 +169,7 @@
     </div>
 
   <Banner />
+  <Partners />
   </section>
 </template>
 
@@ -176,12 +177,15 @@
 // @ is an alias to /src
 import SearchBar from '../components/SearchBar.vue'
 import Banner from '../components/Banner.vue'
+import Partners from '../components/Partners.vue'
+
 
 export default {
   name: 'Home',
     components: {
     SearchBar,
-    Banner
+    Banner,
+    Partners
   }
 }
 </script>
