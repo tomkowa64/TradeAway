@@ -4,7 +4,7 @@ a{
     text-decoration: none;
 }
 .home{
-    height: 265em;
+    height: 215em;
     display: flex;
     flex-direction: column;
 }
@@ -105,7 +105,7 @@ input:focus, textarea:focus, select:focus{
 .banner{
     width: 100%;
     height: 50em;
-    background: url(../assets/banner.png);
+    background: url(../assets/banner2.png);
     background-size: cover;
     cursor: pointer;
 }
@@ -136,7 +136,7 @@ input:focus, textarea:focus, select:focus{
 }
 .partners-join{
     width: 100%;
-    background: #3267ba;
+    background: #303744;
     color: #FFF;;
     height: 12em;
     display: flex;
@@ -157,6 +157,7 @@ input:focus, textarea:focus, select:focus{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    
 }
 .partners-join .desc .header{
     font-size: 1.5em;
@@ -164,13 +165,13 @@ input:focus, textarea:focus, select:focus{
 }
 .partners-join .desc .body{
     font-size: 1.9em;
-    color: #FFF;
+    color: #eaebec;
 }
 .partners-join .join-button{
     width: 10%;
     background: #FFF;
     border-radius: 15px;
-    color: #3267ba;
+    color: #303744;;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -182,7 +183,7 @@ input:focus, textarea:focus, select:focus{
 }
 .partners-join .join-button:hover{
     cursor: pointer;
-    background: #3267ba;
+    background: #303744;
     color: #FFF;
     transition: background 0.3s ease-in, color 0.3s ease-in;
 }
@@ -231,7 +232,7 @@ input:focus, textarea:focus, select:focus{
         cursor: pointer;
     }
     .home{
-        height: 320em;
+        height: 280em;
         display: flex;
         flex-direction: column;
     }

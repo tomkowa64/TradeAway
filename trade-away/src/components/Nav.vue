@@ -5,7 +5,7 @@
                 <i class="fas fa-bars toggler"></i>
             </div>
             <a href="/">
-                <span class="logo-font" style="color: #3267ba; opacity: 0.8">Trade</span><span class="logo-font" style="color: #cf4e6c; opacity: 0.8">Away</span>
+                <span class="logo-font" style="color: #303744">Trade</span><span class="logo-font" style="color: #cf4e6c; opacity: 0.8">Away</span>
             </a>  
         </div>
         <div class="menu menu-display">
@@ -18,7 +18,7 @@
             </div>
             <div class="menu-item"><a href="#/about">About</a></div>
             <div class="menu-item"><a href="#/contact">Contact</a></div>
-            <div class="menu-item"><a href="#/Account">Account</a></div>
+            <div class="menu-item"><a href="#/Auth">Account</a></div>
         </div>
     </section>
 </template>
