@@ -16,7 +16,7 @@ $(function() {
     //Script for menu toggle
     $(".toggler").on("click",function(){
         $(".menu").toggle();
-        $(".search-bar").toggleClass("search-bar-margin");
+        $(".banner").toggleClass("search-bar-margin");
     })
 
     //Script for disappearing search box placeholder

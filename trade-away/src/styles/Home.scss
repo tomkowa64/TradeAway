@@ -259,7 +259,43 @@ input:focus, textarea:focus, select:focus{
     color: #FFF;
     transition: background 0.3s ease-in, color 0.3s ease-in;
 }
+.banner-desc-responsive-font{
+    font-size: 4em;
+}
+@media screen and (max-width: 1650px){
+    .banner{
+        height: 100em;
+    }
+    .product-col{
+        height: 17em;
+    }
+    .sample-product{
+        width: 15em;
+        height: 15em;
+    }
+}
 @media screen and (max-width: 768px){
+    .banner{
+        flex-direction: column;
+    }
+    .banner-desc{
+        padding: 2em 1em 2em 1em;
+        width: 100%;
+        height: 33em;
+    }
+    .banner-desc-responsive-font{
+        font-size: 3em;
+    }
+    .banner-start-button{
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .banner-add-product{
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0 4em 0 4em;
+    }
     .partners-join{
         height: 60em;
         flex-direction: column;
@@ -297,7 +333,7 @@ input:focus, textarea:focus, select:focus{
         filter: grayscale(0%);
     }
     .home{
-        height: 280em;
+        height: 320em;
         display: flex;
         flex-direction: column;
     }

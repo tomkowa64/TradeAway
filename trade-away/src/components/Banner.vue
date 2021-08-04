@@ -1,7 +1,7 @@
 <template>
     <section class="banner">
         <div class="banner-desc">
-            <h1 style="font-size: 4em">The easiest way to
+            <h1 class="banner-desc-responsive-font">The easiest way to
                 sell unused things away
             </h1>
             <h5 style="font-size: 1.1em;margin-top: 2em;">
