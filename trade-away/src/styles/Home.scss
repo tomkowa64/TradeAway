@@ -1,10 +1,11 @@
 /*Google Fonts imports*/
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
 a{
     text-decoration: none;
 }
 .home{
-    height: 215em;
+    height: 255em;
     display: flex;
     flex-direction: column;
 }
@@ -104,10 +105,81 @@ input:focus, textarea:focus, select:focus{
 }
 .banner{
     width: 100%;
-    height: 50em;
-    background: url(../assets/banner2.png);
-    background-size: cover;
+    height: 40em;
+    display: flex;
+}
+
+.banner-desc{
+    width: 50%;
+    height: 40em;
+    color: #303744;
+    display: flex;
+    flex-direction: column;
+    padding: 4em 12em 4em 8em;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+.banner-start-button{
+    margin-top: 5em;
+    padding: 2em 3em 2em 3em;
+    background: #cf4e6c;
+    border: 1px solid #cf4e6c;
+    width: 15em;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    color: #FFF;
     cursor: pointer;
+    transition: background 0.3s ease-in, color 0.3s ease-in;
+}
+.banner-start-button:hover{
+    background: #FFF;
+    color: #cf4e6c;
+    transition: background 0.3s ease-in, color 0.3s ease-in;
+}
+.banner-add-product{
+    width: 50%;
+    height: 40em;
+    padding: 4em 2em 4em 2em;
+    display: flex;
+}
+.product-col{
+    width: 50%;
+    height: 27em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.sample-product{
+    width: 25em;
+    height: 25em;
+    background: #FFF;
+    border-radius: 20px;
+    background: url('../assets/sample-product.jpg');
+    background-size: cover;
+}
+.add-product-col{
+    width: 50%;
+    height: 17em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.add-sample-product{
+    cursor: pointer;
+    width: 15em;
+    height: 15em;
+    background: #FFF;
+    border-radius: 20px;
+    border: 3px dashed #9e9e9e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3em 4em 3em 4em;
+}
+.add-sample-product-font{
+    width: 100%;
 }
 .partners{
     width: 100%;
@@ -136,7 +208,7 @@ input:focus, textarea:focus, select:focus{
 }
 .partners-join{
     width: 100%;
-    background: #303744;
+    background: #495263;
     color: #FFF;;
     height: 12em;
     display: flex;
@@ -171,7 +243,7 @@ input:focus, textarea:focus, select:focus{
     width: 10%;
     background: #FFF;
     border-radius: 15px;
-    color: #303744;;
+    color: #495263;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -223,13 +295,6 @@ input:focus, textarea:focus, select:focus{
         width: 100%;
         height: 40em;
         filter: grayscale(0%);
-    }
-    .banner{
-        width: 100%;
-        height: 40em;
-        background: url(../assets/banner-responsive.png);
-        background-size: cover;
-        cursor: pointer;
     }
     .home{
         height: 280em;

@@ -1,5 +1,6 @@
 <template>
   <section class="home">
+    <Banner />
     <SearchBar />
 
 
@@ -178,14 +179,15 @@
 import SearchBar from '../components/SearchBar.vue'
 import Partners from '../components/Partners.vue'
 import PartnersJoin from '../components/PartnerJoin.vue'
-
+import Banner from '../components/Banner.vue'
 
 export default {
   name: 'Home',
     components: {
     SearchBar,
     Partners,
-    PartnersJoin
+    PartnersJoin,
+    Banner
   }
 }
 </script>
