@@ -1,7 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
 .auth{
     background-size: cover;
     background-position: top;
     width: 100%;
     height: 70em;
-    background: url('../assets/login-bg.png');
+    background: url('../assets/abstract-bg.jpg');
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+.login-form{
+    border-radius: 10px;
+    width: 30%;
+    height: 65%;
+    background: #FFF;
+    -webkit-box-shadow: 0px 2px 27px 1px rgba(0,0,0,0.36); 
+    box-shadow: 0px 2px 27px 1px rgba(0,0,0,0.36);
+}
+form{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+a{
+    color: #303744;
+}
+a:visited{
+    color: #303744;
+}
+.form-header{
+    width: 100%;
+    height: 5em;
+    border-bottom: 1px solid #303744;
+    color: #303744;
+    display: flex;
+}
+.form-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.form-header-item{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+.form-header-active{
+    border-bottom: 2px solid #303744;
+    font-weight: 700;
+}
+.form-remember{
+    height: 2em;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+    margin-top: 1em;
+}
+.form-label{
+    font-size: 1.2em;
+    color: #71848d;
+    width: 100%;
+    height: 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+input{
+    margin-top: 0.5em;
+    width: 80%;
+    padding: 14px 16px;
+    border-radius: 4px;
+    background: #f2f4f5;
+    border: 0;
+    color: #406367;
+    font-size: 1.3em;
+}
+input[type='checkbox']{
+    width: 10%;
+    height: 1em;
+}
+input:focus{
+    border-bottom: 1px solid #303744;
+}
+.pwd-recovery{
+    margin-top: 2em;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    padding: 0 0 0 4em;
+}
+.form-button{
+    margin-top: 10em;
+    padding: 2em 3em 2em 3em;
+    background: #cf4e6c;
+    border: 1px solid #cf4e6c;
+    width: 15em;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    color: #FFF;
+    cursor: pointer;
+    transition: background 0.3s ease-in, color 0.3s ease-in;
+}
+.form-button:hover{
+    background: #FFF;
+    color: #cf4e6c;
+    transition: background 0.3s ease-in, color 0.3s ease-in;
+}
+$text-color: #303744;
+$main-color: #cf4e6c;
