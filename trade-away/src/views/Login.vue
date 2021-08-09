@@ -4,7 +4,7 @@
         <form action="">
           <div class="form-header">
             <div class="form-header-item form-header-active">Log In</div>
-            <div class="form-header-item">Register</div>
+            <div class="form-header-item"><a href="#/register">Register</a></div>
           </div>
           <div class="form-body">
             <div class="form-label">

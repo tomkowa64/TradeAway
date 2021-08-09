@@ -18,11 +18,23 @@
             </div>
             <div class="menu-item"><a href="#/about">About</a></div>
             <div class="menu-item"><a href="#/contact">Contact</a></div>
-            <div class="menu-item"><a href="#/Auth">Account</a></div>
+            <div class="menu-item"><a href="#/login">Account</a></div>
         </div>
     </section>
 </template>
 <script>
-    
+export default ({
+  name: 'Nav'
+})
+
+import $ from 'jquery';
+
+$(function(){
+    //Script for menu toggle
+    $(".toggler").on("click",function(){
+        $(".navbar").toggleClass("nav-tab");
+        $(".menu").toggle();
+    })
+});
 
 </script>

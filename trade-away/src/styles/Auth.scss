@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
 .auth{
+    position: relative;
     background-size: cover;
     background-position: top;
     width: 100%;
@@ -18,6 +19,14 @@
     -webkit-box-shadow: 0px 2px 27px 1px rgba(0,0,0,0.36); 
     box-shadow: 0px 2px 27px 1px rgba(0,0,0,0.36);
 }
+.register-form{
+    border-radius: 10px;
+    width: 30%;
+    height: 80%;
+    background: #FFF;
+    -webkit-box-shadow: 0px 2px 27px 1px rgba(0,0,0,0.36); 
+    box-shadow: 0px 2px 27px 1px rgba(0,0,0,0.36);
+}
 form{
     width: 100%;
     height: 100%;
@@ -27,6 +36,7 @@ form{
 }
 a{
     color: #303744;
+
 }
 a:visited{
     color: #303744;
@@ -37,6 +47,15 @@ a:visited{
     border-bottom: 1px solid #303744;
     color: #303744;
     display: flex;
+    transition: border 0.7s ease-in;
+}
+.form-header a{
+    display: block;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    align-items: center;
 }
 .form-body{
     display: flex;
@@ -118,5 +137,14 @@ input:focus{
     color: #cf4e6c;
     transition: background 0.3s ease-in, color 0.3s ease-in;
 }
-$text-color: #303744;
-$main-color: #cf4e6c;
+@media screen and (max-width: 768px){
+    .login-form{
+        width: 90%;
+    }
+    .register-form{
+        width: 90%;
+    }
+    .pwd-recovery{
+        padding-left: 2em;
+    }
+}

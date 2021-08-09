@@ -13,11 +13,6 @@ export default ({
 })
 
 $(function() {
-    //Script for menu toggle
-    $(".toggler").on("click",function(){
-        $(".menu").toggle();
-        $(".banner").toggleClass("search-bar-margin");
-    })
 
     //Script for disappearing search box placeholder
     $(".search-bar-span").css({"position": "absolute"})

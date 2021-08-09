@@ -22,11 +22,13 @@ html,body{
     height: 100%;
 }
 .content{
-    padding-top: 10em;
     height: 100%;
 }
+.nav-tab{
+    height: 30em !important;
+}
 .navbar{
-    position: absolute;
+    position: relative;
     top: 0;
     right: 0;
     left: 0;
@@ -133,11 +135,11 @@ html,body{
         }
     }
     .navbar{
-        position: absolute;
+        position: relative;
         top: 0;
         right: 0;
         left: 0;
-        height: 30em;
+        height: 5em;
         background: transparent;
         padding: 0px 40px 20px 40px;
         display: flex;
