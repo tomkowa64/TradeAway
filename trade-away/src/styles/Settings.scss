@@ -1,7 +1,6 @@
 .account-info{
     width: 100%;
     height: 50em;
-    background: #CCC;
     display: flex;
 }
 .account-info .user-details{
@@ -32,4 +31,49 @@
     border: 0;
     text-align: center;
     width: 65%;
+}
+.account-info .person-details{
+    width: 50%;
+    height: 90%;
+    border-left: 1px solid #CCC;
+    padding: 4em 8em 4em 8em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.person-info-box{
+    height: 48%;
+    width: 90%;
+    background-color: #cf4e6c;
+    color: #FFF;
+    padding: 2em;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+}
+.person-info-box .content{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.person-info-box .edit{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 6em;
+}
+.person-info-box .edit:hover{
+    cursor: pointer;
+}
+.icon-label{
+    font-size: 3em;
+}
+.info-text{
+    width: 80%;
+    height: 1.5em;
+    font-size: 1.5em;
+    display: flex;
+    align-items: center;
 }
