@@ -50,9 +50,8 @@ html,body{
     background-color: #cf4e6c;
     color: #FFF;
     padding: 2em;
-    border-radius: 20px;
     display: flex;
-    flex-direction: row;
+    border-radius: 20px;
 }
 .person-info-box .content{
     width: 60%;
@@ -80,9 +79,56 @@ html,body{
     display: flex;
     align-items: center;
 }
+.account-history{
+    height: 50em;
+    display: flex;
+    flex-direction: column;
+}
+.section-label{
+    width: 90%;
+    height: 5em;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.tags{
+    height: 30em;
+    display: flex;
+    flex-direction: column;
+}
+.tags .tags-list{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2em 0 2em 0;
+}
+.tags .tags-list .item{
+    width: 8em;
+    height: 3em;
+    background: #cf4e6c;
+    border-radius: 5px;
+    padding: 10px 15px 10px 15px;
+    font-weight: bold;
+    color: #FFF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 1em;
+}
+.tags .tags-list .item i:hover{
+    cursor: pointer;
+}
 @media screen and (max-width: 768px){
     .account{
-        height: 120em;
+        height: 180em;
     }
     .account-info{
         flex-direction: column;
@@ -126,5 +172,8 @@ html,body{
         width: 100%;
         display: flex;
         justify-content: center;
+    }
+    .account-history{
+
     }
 }
