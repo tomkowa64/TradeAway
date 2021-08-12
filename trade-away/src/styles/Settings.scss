@@ -191,6 +191,18 @@ html,body{
         justify-content: center;
     }
     .account-history{
-
+        height: 35em;
+    }
+    .tags{
+        height: 40em;
+    }
+    .tags .tags-list{
+        height: 80%;
+    }
+    .tags .section-label .add-tag{
+        width: 100%;
+    }
+    .tags .section-label .add-tag input{
+        width: 50%;
     }
 }
