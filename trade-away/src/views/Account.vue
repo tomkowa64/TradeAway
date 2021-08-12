@@ -124,8 +124,10 @@
         <!-- Tags -->
         <div class="tags">
             <div class="section-label">
-                <div>
-                    Tags <!-- input tag TODO -->
+                <div class="add-tag">
+                    Tags |
+                    <input type="text" />
+                    <i style="margin-left: 0.5em; color: #b33a56; cursor: pointer;" class="fas fa-plus-circle"></i>
                 </div>
             </div>
             <div class="tags-list">

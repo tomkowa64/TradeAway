@@ -101,6 +101,23 @@ html,body{
     display: flex;
     flex-direction: column;
 }
+.tags .section-label .add-tag{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 30%;
+}
+.tags .section-label .add-tag input{
+    background: #eff0f0;
+    border: 0;
+    width: 30%;
+    height: 70%;
+    font-size: 0.9em;
+    margin-left: 0.4em;
+    font-weight: bold;
+    text-align: right;
+    border-radius: 5px;
+}
 .tags .tags-list{
     display: flex;
     flex-direction: row;
