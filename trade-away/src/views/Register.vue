@@ -20,7 +20,7 @@
             </div>
             <input type="password" id="pass-repeat" name="password-repeat" placeholder="Repeat Password">
             <div class="form-remember">
-              <input id="form-check" type="checkbox"> I have read and accepted terms
+              <input id="form-check" type="checkbox"> I have read and accepted &nbsp;<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">terms</a>
             </div>
             <div id="register-button" class="form-button">Register</div>
           </div>
