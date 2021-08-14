@@ -8,30 +8,79 @@
           </div>
           <div class="form-body">
             <div class="form-label">
-              Username
+              E-mail
             </div>
-            <input type="text" name="username" placeholder="Username">
+            <input type="text" id="email" name="email" placeholder="Email">
             <div class="form-label">
               Password
             </div>
-            <input type="password" name="password" placeholder="Password">
+            <input type="password" id="pass" name="password" placeholder="Password">
             <div class="form-label">
               Repeat Password
             </div>
-            <input type="password" name="password" placeholder="Repeat Password">
-            <div class="form-label">
-              E-mail
-            </div>
-            <input type="text" name="username" placeholder="Email">
+            <input type="password" id="pass-repeat" name="password-repeat" placeholder="Repeat Password">
             <div class="form-remember">
-              <input type="checkbox"> I have read and accepted terms
+              <input id="form-check" type="checkbox"> I have read and accepted terms
             </div>
-            <div class="form-button">Register</div>
+            <div id="register-button" class="form-button">Register</div>
           </div>
         </form>
       </div>
     </section>
 </template>
+
+<script>
+import firebase from 'firebase/app'
+import 'firebase/auth'
+import $ from 'jquery'
+import {firebaseConfig} from '../main'
+
+function createUser(email, password)
+{
+  firebase.auth().createUserWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      var user = userCredential.user;
+      console.log(user);
+    })
+    .catch((error) => {
+      var errorMessage = error.message;
+      console.log(errorMessage);
+    });
+}
+
+$(document).ready(function(){
+  firebase.initializeApp(firebaseConfig);
+  $("#register-button").on('click', () => {
+    var email = $("input#email:first").val();
+    var pass = $("input#pass:first").val();
+    var passRepeat = $("input#pass-repeat:first").val();
+    var check = $("#form-check:first").prop('checked');
+
+    if(pass === passRepeat && email !== '' && pass !== '' && check)
+    {
+      createUser(email, pass);
+    }
+    else if(pass !== passRepeat)
+    {
+      console.log('Values of Password and Repeat Password fields must be the same.');
+    }
+    else if(email === '' || pass === '')
+    {
+      console.log('All fields have to be filled.');
+    }
+    else if(!check)
+    {
+      console.log('You have to read and accept terms.');
+    }
+    else
+    {
+      console.log('tak');
+    }
+  })
+})
+
+export default {}
+</script>
 <style lang="scss">
   @import url('../styles/Auth.scss');
 </style>

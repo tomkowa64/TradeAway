@@ -8,9 +8,9 @@
           </div>
           <div class="form-body">
             <div class="form-label">
-              Username
+              E-mail
             </div>
-            <input type="text" name="username" placeholder="Username">
+            <input type="text" name="email" placeholder="Email">
             <div class="form-label">
               Password
             </div>
