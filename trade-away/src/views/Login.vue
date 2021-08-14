@@ -10,21 +10,69 @@
             <div class="form-label">
               E-mail
             </div>
-            <input type="text" name="email" placeholder="Email">
+            <input type="text" id="email" name="email" placeholder="Email">
             <div class="form-label">
               Password
             </div>
-            <input type="password" name="password" placeholder="Password">
+            <input type="password" id="pass" name="password" placeholder="Password">
             <div class="form-remember">
               <input type="checkbox"> Remember me
             </div>
             <a href="" class="pwd-recovery">Password recovery</a>
-            <div class="form-button">Log In</div>
+            <div id="login-button" class="form-button">Log In</div>
           </div>
         </form>
       </div>
     </section>
 </template>
+
+<script>
+import firebase from 'firebase/app'
+import 'firebase/auth'
+import $ from 'jquery'
+import {firebaseConfig} from '../main'
+import router from '../router'
+
+function login(email, password)
+{
+  firebase.auth().signInWithEmailAndPassword(email, password)
+    .then((/*userCredential*/) => {
+      // var user = userCredential.user;
+      // console.log(user);
+      router.push("/");
+    })
+    .catch((error) => {
+      var errorMessage = error.message;
+      console.log(errorMessage);
+    });
+}
+
+$(document).ready(function(){
+  if(firebase.apps.length === 0) firebase.initializeApp(firebaseConfig);
+  $("#login-button").on('click', () => {
+    var email = $("input#email:first").val();
+    var pass = $("input#pass:first").val();
+
+    login(email, pass);
+  })
+  
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      var uid = user.uid;
+      console.log(uid);
+      // ...
+    } else {
+      // User is signed out
+      // ...
+    }
+  });
+})
+
+export default {}
+</script>
+
 <style lang="scss">
   @import url('../styles/Auth.scss');
 </style>

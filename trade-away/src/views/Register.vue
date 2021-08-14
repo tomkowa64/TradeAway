@@ -34,13 +34,15 @@ import firebase from 'firebase/app'
 import 'firebase/auth'
 import $ from 'jquery'
 import {firebaseConfig} from '../main'
+import router from '../router'
 
 function createUser(email, password)
 {
   firebase.auth().createUserWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      var user = userCredential.user;
-      console.log(user);
+    .then((/*userCredential*/) => {
+      // var user = userCredential.user;
+      // console.log(user);
+      router.push("Login");
     })
     .catch((error) => {
       var errorMessage = error.message;
@@ -49,7 +51,7 @@ function createUser(email, password)
 }
 
 $(document).ready(function(){
-  firebase.initializeApp(firebaseConfig);
+  if(firebase.apps.length === 0) firebase.initializeApp(firebaseConfig);
   $("#register-button").on('click', () => {
     var email = $("input#email:first").val();
     var pass = $("input#pass:first").val();
@@ -81,6 +83,7 @@ $(document).ready(function(){
 
 export default {}
 </script>
+
 <style lang="scss">
   @import url('../styles/Auth.scss');
 </style>
