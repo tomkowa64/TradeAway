@@ -162,6 +162,12 @@ input:focus{
     align-items: center;
 }
 @media screen and (max-width: 768px){
+    #info-label{
+        width: 70%
+    }
+    #error-label{
+        width: 70%
+    }
     .login-form{
         width: 90%;
     }

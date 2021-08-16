@@ -5,7 +5,6 @@
 }
 .general-info{
     height: 50em;
-    background: #CCC;
     padding: 2em 5em 2em 5em;
     display: flex;
     justify-content: space-between;
@@ -13,14 +12,75 @@
 .general-info .product-image{
     width: 40%;
     height: 100%;
-    background: rgb(161, 161, 161);
+}
+.general-info .product-image img{
+    width: 100%;
+    height: 100%;
 }
 .general-info .product-general-information{
-    width: 50%;
-    background: rgb(161, 161, 161);
+    width: 40%;
     height: 100%;
     display: flex;
     flex-direction: column;
+    padding: 4em 2em 0 2em;
+}
+.general-info .product-general-information .product-name{
+    width: 100%;
+    font-size: 2.3em;
+}
+.general-info .product-general-information .product-price{
+    font-size: 3em;
+    width: 70%;
+    font-weight: 600;
+    color: #bb2b4f;
+}
+.general-info .product-general-information .sold-stock{
+    width: 70%;
+    padding: 1em 0 1em 0;
+    color: #767676;
+}
+.general-info .product-general-information .icons-group{
+    height: 20em;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+}
+.general-info .product-general-information .icons-group .item{
+    display: flex;
+    align-items: center;
+    height: 5em;
+    width: 100%;
+}
+.general-info .product-general-information .icons-group .item .icon{
+    width: 2em;
+    height: 5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.general-info .product-general-information .icons-group .item .icon i{
+    font-size: 1.8em;
+    color: #767676;
+}
+.general-info .product-general-information .icons-group .item .description{
+    width: 50%;
+    padding: 0em 1em 0 1em;
+    color: #222;
+}
+.general-info .product-general-information .icons-group .more-about{
+    width: 30%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 1.5em;
+    color: #bb2b4f;
+    font-weight: 800;
+    cursor: pointer;
+}
+.general-info .product-general-information .icons-group .more-about i{
+    margin-left: 0.3em;
 }
 .details{
     min-height: 20em;
@@ -31,6 +91,59 @@
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 2em 5em 2em 5em;
+}
+.general-info .product-general-information .quantity-input{
+    width: 40%;
+    height: 4em;
+    border: rgb(161, 161, 161) 1px solid;
+    margin-top: 1em;
+    display: flex;
+}
+.general-info .product-general-information .quantity-input .plus{
+    width: 20%;
+    height: 100%;
+    border-right:rgb(161, 161, 161) 1px solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    cursor: pointer;
+}
+.general-info .product-general-information .quantity-input .quantity{
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    height: 100%;
+}
+.general-info .product-general-information .quantity-input .minus{
+    width: 20%;
+    height: 100%;
+    border-left:rgb(161, 161, 161) 1px solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    cursor: pointer;
+}
+.off{
+    color:rgb(201, 201, 201)
+}
+.general-info .product-general-information .buy-product-button{
+    width: 70%;
+    margin-top: 2em;
+    height: 3em;
+    background: #bb2b4f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFF;
+    font-weight: bold;
+    font-size: 1.8em;
+}
+.general-info .product-general-information .buy-product-button:hover{
+    cursor: pointer;
 }
 .details .detail{
     height: 5em;
