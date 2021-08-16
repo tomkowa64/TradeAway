@@ -9,12 +9,12 @@
   },
   "dependencies": {
     "@firebase/app": "^0.6.29",
-    "core-js": "^3.6.5",
+    "core-js": "^3.16.1",
     "firebase": "^8.9.1",
     "firebase-admin": "^9.11.0",
     "jquery": "^3.6.0",
-    "vue": "^3.0.0",
-    "vue-router": "^4.0.0-0",
+    "vue": "^3.2.2",
+    "vue-router": "^4.0.11",
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {
@@ -24,10 +24,10 @@
     "@vue/cli-plugin-router": "~4.5.0",
     "@vue/cli-plugin-vuex": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
-    "@vue/compiler-sfc": "^3.0.0",
+    "@vue/compiler-sfc": "^3.2.2",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^7.0.0",
+    "eslint-plugin-vue": "^7.16.0",
     "node-sass": "^4.0.0",
     "sass-loader": "^8.0.2"
   },

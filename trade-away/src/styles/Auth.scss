@@ -118,7 +118,7 @@ input:focus{
     padding: 0 0 0 4em;
 }
 .form-button{
-    margin-top: 10em;
+    margin-top: 11em;
     padding: 2em 3em 2em 3em;
     background: #cf4e6c;
     border: 1px solid #cf4e6c;
@@ -136,6 +136,30 @@ input:focus{
     background: #FFF;
     color: #cf4e6c;
     transition: background 0.3s ease-in, color 0.3s ease-in;
+}
+#info-label{
+    margin-top: 2em;
+    width: 50%;
+    height: 4em;
+    border: 1px solid #d6e9c6;
+    color: #468847;
+    background: #dff0d8;
+    border-radius: 30px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+#error-label{
+    margin-top: 2em;
+    width: 50%;
+    height: 4em;
+    border: 1px solid #cf4e6c;
+    color: #cf4e6c;
+    background: #f2dede;
+    border-radius: 30px;
+    display: none;
+    justify-content: center;
+    align-items: center;
 }
 @media screen and (max-width: 768px){
     .login-form{

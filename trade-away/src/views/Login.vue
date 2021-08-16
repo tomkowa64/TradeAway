@@ -19,6 +19,12 @@
               <input type="checkbox"> Remember me
             </div>
             <a href="" class="pwd-recovery">Password recovery</a>
+            <div id="info-label">
+              Succesfully logged in!
+            </div>
+            <div id="error-label">
+              Wrong email or password
+            </div>
             <div id="login-button" class="form-button">Log In</div>
           </div>
         </form>
@@ -43,6 +49,8 @@ function login(email, password)
     })
     .catch((error) => {
       var errorMessage = error.message;
+      $('.form-button').css('margin-top','5em');
+      $('#error-label').css('display','flex');
       console.log(errorMessage);
     });
 }
@@ -61,6 +69,8 @@ $(document).ready(function(){
       // User is signed in, see docs for a list of available properties
       // https://firebase.google.com/docs/reference/js/firebase.User
       var uid = user.uid;
+      $('.form-button').css('margin-top','5em');
+      $('#info-label').css('display','flex');
       console.log(uid);
       // ...
     } else {

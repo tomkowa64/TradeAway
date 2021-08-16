@@ -22,6 +22,12 @@
             <div class="form-remember">
               <input id="form-check" type="checkbox"> I have read and accepted &nbsp;<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">terms</a>
             </div>
+            <div id="info-label">
+              Succesfully registered!
+            </div>
+            <div id="error-label">
+              Please fill up all boxes properly
+            </div>
             <div id="register-button" class="form-button">Register</div>
           </div>
         </form>
@@ -46,6 +52,8 @@ function createUser(email, password)
     })
     .catch((error) => {
       var errorMessage = error.message;
+      $('.form-button').css('margin-top','5em');
+      $('#error-label').css('display','flex');
       console.log(errorMessage);
     });
 }
@@ -64,19 +72,23 @@ $(document).ready(function(){
     }
     else if(pass !== passRepeat)
     {
-      console.log('Values of Password and Repeat Password fields must be the same.');
+      $('.form-button').css('margin-top','5em');
+      $('#error-label').css('display','flex');
     }
     else if(email === '' || pass === '')
     {
-      console.log('All fields have to be filled.');
+      $('.form-button').css('margin-top','5em');
+      $('#error-label').css('display','flex');
     }
     else if(!check)
     {
-      console.log('You have to read and accept terms.');
+      $('.form-button').css('margin-top','5em');
+      $('#error-label').css('display','flex');
     }
     else
     {
-      console.log('tak');
+      $('.form-button').css('margin-top','5em');
+      $('#error-label').css('display','flex');
     }
   })
 })
