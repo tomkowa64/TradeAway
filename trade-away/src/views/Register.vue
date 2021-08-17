@@ -48,52 +48,64 @@ function createUser(email, password)
     .then((/*userCredential*/) => {
       // var user = userCredential.user;
       // console.log(user);
-      router.push("Login");
+      $('.form-button').css('margin-top','5em');
+      $('#info-label').css('display','flex');
+      $('#error-label').css('display','none');
+      window.setTimeout(function() {
+        router.push("Login");
+      }, 2000);
     })
     .catch((error) => {
       var errorMessage = error.message;
       $('.form-button').css('margin-top','5em');
       $('#error-label').css('display','flex');
+      $('#error-label').text(errorMessage);
       console.log(errorMessage);
     });
 }
 
-$(document).ready(function(){
-  if(firebase.apps.length === 0) firebase.initializeApp(firebaseConfig);
-  $("#register-button").on('click', () => {
-    var email = $("input#email:first").val();
-    var pass = $("input#pass:first").val();
-    var passRepeat = $("input#pass-repeat:first").val();
-    var check = $("#form-check:first").prop('checked');
+export default {
+  mounted() {
+    if(firebase.apps.length === 0) firebase.initializeApp(firebaseConfig);
+    $("#register-button").on('click', () => {
+      var email = $("input#email:first").val();
+      var pass = $("input#pass:first").val();
+      var passRepeat = $("input#pass-repeat:first").val();
+      var check = $("#form-check:first").prop('checked');
 
-    if(pass === passRepeat && email !== '' && pass !== '' && check)
-    {
-      createUser(email, pass);
-    }
-    else if(pass !== passRepeat)
-    {
-      $('.form-button').css('margin-top','5em');
-      $('#error-label').css('display','flex');
-    }
-    else if(email === '' || pass === '')
-    {
-      $('.form-button').css('margin-top','5em');
-      $('#error-label').css('display','flex');
-    }
-    else if(!check)
-    {
-      $('.form-button').css('margin-top','5em');
-      $('#error-label').css('display','flex');
-    }
-    else
-    {
-      $('.form-button').css('margin-top','5em');
-      $('#error-label').css('display','flex');
-    }
-  })
-})
-
-export default {}
+      if(pass === passRepeat && email !== '' && pass !== '' && check)
+      {
+        createUser(email, pass);
+      }
+      else if(pass !== passRepeat)
+      {
+        console.log('Password and Repeat Password must be the same.');
+        $('#error-label').text('Password and Repeat Password must be the same.');
+        $('.form-button').css('margin-top','5em');
+        $('#error-label').css('display','flex');
+      }
+      else if(email === '' || pass === '')
+      {
+        console.log('All fields have to be filled.');
+        $('#error-label').text('All fields have to be filled.');
+        $('.form-button').css('margin-top','5em');
+        $('#error-label').css('display','flex');
+      }
+      else if(!check)
+      {
+        console.log('You have to read and accept terms.');
+        $('#error-label').text('You have to read and accept terms.');
+        $('.form-button').css('margin-top','5em');
+        $('#error-label').css('display','flex');
+      }
+      else
+      {
+        $('.form-button').css('margin-top','5em');
+        $('#error-label').css('display','flex');
+      }
+    })
+  }
+}
 </script>
 
 <style lang="scss">
