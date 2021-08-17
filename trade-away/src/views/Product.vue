@@ -7,7 +7,7 @@
             <div class="product-general-information">
                 <div class="product-name">Dress Flowers Edition 2137</div>
                 <div class="product-price">49.99$</div>
-                <div class="sold-stock">200 people bought 400 items</div>
+                <div class="sold-stock">200 people bought 400 items | <b>1000 left</b></div>
                 <div class="icons-group">
                     <div class="item">
                         <div class="icon"><i class="far fa-smile"></i></div>
@@ -49,7 +49,7 @@
                 <div class="quantity-input">
                     <div class="plus"><i class="fas fa-plus"></i></div>
                     <div class="quantity">0</div>
-                    <div class="minus off"><i class="fas fa-minus"></i></div>
+                    <div class="minus"><i class="fas fa-minus"></i></div>
                 </div>
                 <div class="buy-product-button">
                     Buy
@@ -91,8 +91,17 @@ import $ from 'jquery';
 
 export default {}
 
-$('.plus').on('click', () => {
-
+$(function(){
+    $('.plus').on('click', () => {
+        var quantityValue = parseInt($('.quantity').text());
+        $('.quantity').text(quantityValue + 1);
+    })
+    $('.minus').on('click', () => {
+        var quantityValue = parseInt($('.quantity').text());
+        if(quantityValue > 0){
+            $('.quantity').text(quantityValue - 1);
+        }
+    })
 })
 </script>
 
