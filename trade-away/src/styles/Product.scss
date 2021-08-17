@@ -1,3 +1,12 @@
+.img-magnifier-glass {
+    position: absolute;
+    border: 1px solid #000;
+    border-radius: 50%;
+    cursor: none;
+    width: 100px;
+    height: 100px;
+  }
+
 .product{
     height: auto;
     display: flex;
@@ -12,6 +21,7 @@
 .general-info .product-image{
     width: 40%;
     height: 100%;
+    position: relative;
 }
 .general-info .product-image img{
     width: 100%;
@@ -82,16 +92,6 @@
 .general-info .product-general-information .icons-group .more-about i{
     margin-left: 0.3em;
 }
-.details{
-    min-height: 20em;
-    height: auto;
-    background: rgb(161, 161, 161);
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 2em 5em 2em 5em;
-}
 .general-info .product-general-information .quantity-input{
     width: 40%;
     height: 4em;
@@ -145,8 +145,59 @@
 .general-info .product-general-information .buy-product-button:hover{
     cursor: pointer;
 }
+.details{
+    min-height: 40em;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 2em 5em 2em 5em;
+}
+.details .product-detailed-description{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 50%;
+    padding: 2em 2em 2em 2em;
+}
+.details .product-detailed-description .image-group{
+    position: relative;
+    height: 20em;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.details .product-detailed-description .image-group img{
+    width: 14em;
+    height: 14em;
+}
+.details .product-detailed-description b{
+    font-size: 1.3em;
+    border-bottom: solid 1px #222;
+}
+.details .product-detailed-description p{
+    padding: 1em;
+}
+.details .product-details-group{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    height: 100%;
+    padding: 2em 2em 2em 2em;
+}
+.details .product-details-group p{
+    margin-top: 0.5em;
+    border-top: 1px solid #222;
+    border-bottom: 1px solid #222;
+    padding: 0.3em 0 0.3em 0;
+}
+.details .product-details-group .detail-title{
+    font-size: 1.3em;
+    border-bottom: solid 1px #222;
+}
 .details .detail{
-    height: 5em;
+    height: 2em;
     width: 30em;
     background: #CCC;
     display: flex;
