@@ -52,7 +52,7 @@
                     <div class="minus"><i class="fas fa-minus"></i></div>
                 </div>
                 <div class="buy-product-button">
-                    Buy
+                    Add to Cart
                 </div>
             </div>
         </div>
@@ -84,6 +84,21 @@
                 <p><b>Size: </b>Large</p>
                 <p><b>Accessories included: </b>Nope</p>
                 <p><b>Suggested ironing temperature: </b>69 &deg; C</p>
+                <div class="localization">
+                    <div class="title">
+                    <span style="color: #bb2b4f;">Seller</span>    
+                    Localization</div>
+                    <div class="information">
+                        <div class="location-name">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span style="padding-left: 20px;">Ul. Hetmańska 130 Rzeszów <b>Podkarpackie</b>
+                            </span>
+                        </div>
+                        <div class="graphic">
+                            <img src="../assets/map-graphic.png" alt="">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="seller">

@@ -183,7 +183,7 @@
     display: flex;
     flex-direction: column;
     width: 40%;
-    height: 100%;
+    height: 70%;
     padding: 2em 2em 2em 2em;
 }
 .details .product-details-group p{
@@ -195,6 +195,50 @@
 .details .product-details-group .detail-title{
     font-size: 1.3em;
     border-bottom: solid 1px #222;
+}
+.details .product-details-group .localization{
+    width: 100%;
+    height: 10em;
+    display: flex;
+    flex-direction: column;
+    padding: 2em 0em 1em 0em;
+}
+.details .product-details-group .localization .title{
+    font-weight: bold;
+    height: 20%;
+    width: 100%;
+    font-size: 1.3em;
+    border-bottom: 1px solid #222;
+}
+.details .product-details-group .localization .information{
+    height: 80%;
+    width: 100%;
+    display: flex;
+    padding-top: 1em;
+}
+.details .product-details-group .localization .information .location-name{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: 1.1em;
+}
+.details .product-details-group .localization .information .location-name i{
+    font-size: 1.5em;
+}
+.details .product-details-group .localization .information .graphic{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+}
+.details .product-details-group .localization .information .graphic img{
+    width: 80%;
+    height: 10em;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 0px 24px 7px rgba(0,0,0,0.23); 
+    box-shadow: 0px 0px 24px 7px rgba(0,0,0,0.23);
 }
 .details .detail{
     height: 2em;
