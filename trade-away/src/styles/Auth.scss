@@ -148,6 +148,7 @@ input:focus{
     display: none;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 #error-label{
     margin-top: 2em;
@@ -160,6 +161,7 @@ input:focus{
     display: none;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 @media screen and (max-width: 768px){
     #info-label{

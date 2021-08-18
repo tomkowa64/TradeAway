@@ -39,48 +39,47 @@ import $ from 'jquery'
 import {firebaseConfig} from '../main'
 import router from '../router'
 
-function login(email, password)
+function login()
 {
-  firebase.auth().signInWithEmailAndPassword(email, password)
+  var email = $("input#email:first").val();
+  var pass = $("input#pass:first").val();
+
+  firebase.auth().signInWithEmailAndPassword(email, pass)
     .then((/*userCredential*/) => {
       // var user = userCredential.user;
       // console.log(user);
-      router.push("/");
+      $('.form-button').css('margin-top','5em');
+      $('#info-label').css('display','flex');
+      window.setTimeout(function() {
+        router.push("/");
+      }, 2000);
     })
     .catch((error) => {
       var errorMessage = error.message;
       $('.form-button').css('margin-top','5em');
       $('#error-label').css('display','flex');
+      $('#error-label').text(errorMessage);
       console.log(errorMessage);
     });
 }
 
-$(document).ready(function(){
-  if(firebase.apps.length === 0) firebase.initializeApp(firebaseConfig);
-  $("#login-button").on('click', () => {
-    var email = $("input#email:first").val();
-    var pass = $("input#pass:first").val();
+/*firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    var uid = user.uid;
+    $('.form-button').css('margin-top','5em');
+    $('#info-label').css('display','flex');
+    console.log(uid);
+  } else {
+    // User is signed out
+  }
+});*/
 
-    login(email, pass);
-  })
-  
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/firebase.User
-      var uid = user.uid;
-      $('.form-button').css('margin-top','5em');
-      $('#info-label').css('display','flex');
-      console.log(uid);
-      // ...
-    } else {
-      // User is signed out
-      // ...
-    }
-  });
-})
-
-export default {}
+export default {
+  mounted() { 
+    if(firebase.apps.length === 0) firebase.initializeApp(firebaseConfig);
+    $("#login-button").on('click', login);
+  }
+}
 </script>
 
 <style lang="scss">
