@@ -58,7 +58,7 @@
         </div>
         <div class="details">
             <div class="product-detailed-description">
-                <b><span style="color: #bb2b4f;">Product</span> Description</b>
+                <b><span style="color: #cf4e6c;">Product</span> Description</b>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
                     sed do eiusmod tempor incididunt ut labore et dolore magna 
@@ -70,13 +70,44 @@
                     officia deserunt mollit anim id est laborum.
                 </p>
                 <div class="image-group">
-                    <img src="../assets/dress1.jpg" alt="">
-                    <img src="../assets/dress2.jpg" alt="">
-                    <img src="../assets/dress3.jpg" alt="">
+                    <!-- Slideshow container -->
+                    <div class="slideshow-container fade">
+
+                    <!-- Full images with numbers and message Info -->
+                    <div class="Containers">
+                        <div class="MessageInfo">1 / 3</div>
+                        <img src="../assets/dress1.jpg" style="width:100%">
+                        <div class="Info">First caption</div>
+                    </div>
+
+                    <div class="Containers">
+                        <div class="MessageInfo">2 / 3</div>
+                        <img src="../assets/dress2.jpg" style="width:100%">
+                        <div class="Info">Second Caption</div>
+                    </div>
+
+                    <div class="Containers">
+                        <div class="MessageInfo">3 / 3</div>
+                        <img src="../assets/dress3.jpg" style="width:100%">
+                        <div class="Info">Third Caption</div>
+                    </div>
+
+                    <!-- Back and forward buttons -->
+                    <a class="Back" @click="plusSlides(-1)">&#10094;</a>
+                    <a class="forward" @click="plusSlides(1)">&#10095;</a>
+                    </div>
+                    <br>
+
+                    <!-- The circles/dots -->
+                    <div style="text-align:center">
+                    <span class="dots" @click="currentSlide(1)"></span>
+                    <span class="dots" @click="currentSlide(2)"></span>
+                    <span class="dots" @click="currentSlide(3)"></span>
+                    </div> 
                 </div>
             </div>
             <div class="product-details-group">
-                <b class="detail-title"><span style="color: #bb2b4f;">Product</span> Parameters</b>
+                <b class="detail-title"><span style="color: #cf4e6c;">Product</span> Parameters</b>
                 <p><b>Condition: </b>New</p>
                 <p><b>Date of Production: </b>1999</p>
                 <p><b>Color: </b>Red, White, Black</p>
@@ -86,7 +117,7 @@
                 <p><b>Suggested ironing temperature: </b>69 &deg; C</p>
                 <div class="localization">
                     <div class="title">
-                    <span style="color: #bb2b4f;">Seller</span>    
+                    <span style="color: #cf4e6c;">Seller</span>    
                     Localization</div>
                     <div class="information">
                         <div class="location-name">
@@ -102,11 +133,37 @@
             </div>
         </div>
         <div class="seller">
-            <div class="seller-avatar">
-
-            </div>
             <div class="seller-info">
-
+                <div class="seller-avatar">
+                    <img src="../assets/user-icon.png" alt="">
+                </div>
+                <div class="seller-icons-group">
+                   <p>Sample Username</p>
+                    <div class="item">
+                        <span>
+                            <i class="fas fa-phone-alt"></i>
+                        </span>
+                        +48 123 456 789
+                    </div>
+                    <div class="item">
+                        <span>
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                        sample@sample.com
+                    </div>
+                    <div class="item">
+                        <span>
+                            <i class="fas fa-map-marker-alt"></i>
+                        </span>
+                        Podkarpackie
+                    </div>
+                </div>
+                <div class="msg-input">
+                    <textarea name="" id="" cols="30" rows="10" placeholder="Write a message..."></textarea>
+                </div>
+                <div class="msg-button">
+                    <i class="fas fa-location-arrow"></i>
+                </div>
             </div>
         </div>
     </section>
@@ -116,7 +173,40 @@ import $ from 'jquery';
 
 export default {}
 
-$(function(){
+    $(function(){
+    //CAROUSEL
+    var slidePosition = 1;
+    SlideShow(slidePosition);
+
+    // forward/Back controls
+    function plusSlides(n) {
+    SlideShow(slidePosition += n);
+    }
+
+    //  images controls
+    function currentSlide(n) {
+    SlideShow(slidePosition = n);
+    }
+
+    function SlideShow(n) {
+    var i;
+    var slides = document.getElementsByClassName("Containers");
+    var circles = document.getElementsByClassName("dots");
+    if (n > slides.length) {slidePosition = 1}
+    if (n < 1) {slidePosition = slides.length}
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    for (i = 0; i < circles.length; i++) {
+        circles[i].className = circles[i].className.replace(" enable", "");
+    }
+    slides[slidePosition-1].style.display = "block";
+    circles[slidePosition-1].className += " enable";
+    } 
+
+
+
+    //MAGNIFY EFFECT
     $('.plus').on('click', () => {
         var quantityValue = parseInt($('.quantity').text());
         $('.quantity').text(quantityValue + 1);

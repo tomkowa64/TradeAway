@@ -9,11 +9,11 @@
   },
   "dependencies": {
     "@firebase/app": "^0.6.29",
-    "core-js": "^3.16.1",
+    "core-js": "^3.16.2",
     "firebase": "^8.9.1",
     "firebase-admin": "^9.11.0",
     "jquery": "^3.6.0",
-    "vue": "^3.2.2",
+    "vue": "^3.2.4",
     "vue-router": "^4.0.11",
     "vuex": "^4.0.0-0"
   },
@@ -24,7 +24,7 @@
     "@vue/cli-plugin-router": "~4.5.0",
     "@vue/cli-plugin-vuex": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
-    "@vue/compiler-sfc": "^3.2.2",
+    "@vue/compiler-sfc": "^3.2.4",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^7.16.0",
@@ -43,7 +43,9 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {}
+    "rules": {
+      "no-unused-vars": "off"
+    }
   },
   "browserslist": [
     "> 1%",
