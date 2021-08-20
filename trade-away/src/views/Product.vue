@@ -77,37 +77,37 @@
                     <div class="Containers">
                         <div class="MessageInfo">1 / 3</div>
                         <img src="../assets/dress1.jpg" style="width:100%">
-                        <div class="Info">First caption</div>
+                        <div class="Info">Dress</div>
                     </div>
 
                     <div class="Containers">
                         <div class="MessageInfo">2 / 3</div>
                         <img src="../assets/dress2.jpg" style="width:100%">
-                        <div class="Info">Second Caption</div>
+                        <div class="Info">Version</div>
                     </div>
 
                     <div class="Containers">
                         <div class="MessageInfo">3 / 3</div>
                         <img src="../assets/dress3.jpg" style="width:100%">
-                        <div class="Info">Third Caption</div>
+                        <div class="Info">2137</div>
                     </div>
 
                     <!-- Back and forward buttons -->
-                    <a class="Back" @click="plusSlides(-1)">&#10094;</a>
-                    <a class="forward" @click="plusSlides(1)">&#10095;</a>
+                    <a class="Back">&#10094;</a>
+                    <a class="forward">&#10095;</a>
                     </div>
                     <br>
 
                     <!-- The circles/dots -->
                     <div style="text-align:center">
-                    <span class="dots" @click="currentSlide(1)"></span>
-                    <span class="dots" @click="currentSlide(2)"></span>
-                    <span class="dots" @click="currentSlide(3)"></span>
+                    <span class="dots"></span>
+                    <span class="dots"></span>
+                    <span class="dots"></span>
                     </div> 
                 </div>
             </div>
             <div class="product-details-group">
-                <b class="detail-title"><span style="color: #cf4e6c;">Product</span> Parameters</b>
+                <b class="detail-title"><span style="color: #cf4e6c;">Product</span> Details</b>
                 <p><b>Condition: </b>New</p>
                 <p><b>Date of Production: </b>1999</p>
                 <p><b>Color: </b>Red, White, Black</p>
@@ -174,37 +174,21 @@ import $ from 'jquery';
 export default {}
 
     $(function(){
-    //CAROUSEL
-    var slidePosition = 1;
-    SlideShow(slidePosition);
 
-    // forward/Back controls
-    function plusSlides(n) {
-    SlideShow(slidePosition += n);
-    }
+    var slidePosition = 0;
+    SlideShow();
 
-    //  images controls
-    function currentSlide(n) {
-    SlideShow(slidePosition = n);
-    }
-
-    function SlideShow(n) {
+    function SlideShow() {
     var i;
     var slides = document.getElementsByClassName("Containers");
-    var circles = document.getElementsByClassName("dots");
-    if (n > slides.length) {slidePosition = 1}
-    if (n < 1) {slidePosition = slides.length}
     for (i = 0; i < slides.length; i++) {
         slides[i].style.display = "none";
     }
-    for (i = 0; i < circles.length; i++) {
-        circles[i].className = circles[i].className.replace(" enable", "");
-    }
+    slidePosition++;
+    if (slidePosition > slides.length) {slidePosition = 1}
     slides[slidePosition-1].style.display = "block";
-    circles[slidePosition-1].className += " enable";
+    setTimeout(SlideShow, 5000); // Change image every 2 seconds
     } 
-
-
 
     //MAGNIFY EFFECT
     $('.plus').on('click', () => {

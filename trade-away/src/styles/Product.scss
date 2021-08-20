@@ -108,7 +108,7 @@
     flex-direction: column;
 }
 .general-info{
-    height: 50em;
+    height: 55em;
     padding: 2em 5em 2em 5em;
     display: flex;
     justify-content: space-between;
@@ -257,12 +257,11 @@
 }
 .details .product-detailed-description .image-group{
     position: relative;
-    height: 20em;
-    width: 80%;
+    height: 30em;
+    width: 100%;
 }
 .details .product-detailed-description .image-group img{
-    width: 14em;
-    height: 14em;
+    height: 27em;
 }
 .details .product-detailed-description b{
     font-size: 1.3em;
@@ -421,7 +420,11 @@
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     background: #cf4e6c;
+    border: 1px #cf4e6c solid;
+    transition: background 0.5s linear, color 0.5s linear;
 }
 .seller-info .msg-button:hover{
     cursor: pointer;
+    color: #cf4e6c;
+    background-color: #FFF;
 }
