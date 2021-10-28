@@ -39,9 +39,7 @@
           </div>
           <div class="item">
             <div class="icon"><i class="fas fa-wallet"></i></div>
-            <div class="description">
-              Convenient payments
-            </div>
+            <div class="description">Convenient payments</div>
             <div class="more-about">
               Payments
               <i class="fas fa-arrow-circle-right"></i>
@@ -53,14 +51,12 @@
           <div class="quantity" contentEditable="true">0</div>
           <div class="minus"><i class="fas fa-minus"></i></div>
         </div>
-        <div class="buy-product-button">
-          Add to Cart
-        </div>
+        <div class="buy-product-button">Add to Cart</div>
       </div>
     </div>
     <div class="details">
       <div class="product-detailed-description">
-        <b><span style="color: #cf4e6c;">Product</span> Description</b>
+        <b><span style="color: #cf4e6c">Product</span> Description</b>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -76,19 +72,19 @@
             <!-- Full images with numbers and message Info -->
             <div class="Containers">
               <div class="MessageInfo">1 / 3</div>
-              <img src="../assets/dress1.jpg" style="width:100%" />
+              <img src="../assets/dress1.jpg" style="width: 100%" />
               <div class="Info">Dress</div>
             </div>
 
             <div class="Containers">
               <div class="MessageInfo">2 / 3</div>
-              <img src="../assets/dress2.jpg" style="width:100%" />
+              <img src="../assets/dress2.jpg" style="width: 100%" />
               <div class="Info">Version</div>
             </div>
 
             <div class="Containers">
               <div class="MessageInfo">3 / 3</div>
-              <img src="../assets/dress3.jpg" style="width:100%" />
+              <img src="../assets/dress3.jpg" style="width: 100%" />
               <div class="Info">2137</div>
             </div>
 
@@ -99,7 +95,7 @@
           <br />
 
           <!-- The circles/dots -->
-          <div style="text-align:center">
+          <div style="text-align: center">
             <span class="dots"></span>
             <span class="dots"></span>
             <span class="dots"></span>
@@ -108,7 +104,7 @@
       </div>
       <div class="product-details-group">
         <b class="detail-title"
-          ><span style="color: #cf4e6c;">Product</span> Details</b
+          ><span style="color: #cf4e6c">Product</span> Details</b
         >
         <p><b>Condition: </b>New</p>
         <p><b>Date of Production: </b>1999</p>
@@ -119,13 +115,13 @@
         <p><b>Suggested ironing temperature: </b>69 &deg; C</p>
         <div class="localization">
           <div class="title">
-            <span style="color: #cf4e6c;">Seller</span>
+            <span style="color: #cf4e6c">Seller</span>
             Localization
           </div>
           <div class="information">
             <div class="location-name">
               <i class="fas fa-map-marker-alt"></i>
-              <span style="padding-left: 20px;"
+              <span style="padding-left: 20px"
                 >Ul. Hetmańska 130 Rzeszów <b>Podkarpackie</b>
               </span>
             </div>
@@ -183,7 +179,7 @@ import $ from "jquery";
 
 export default {};
 
-$(function() {
+$(function () {
   var slidePosition = 0;
   SlideShow();
 
