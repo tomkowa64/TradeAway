@@ -1,203 +1,215 @@
 //Google Fonts imports
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Uchen&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Uchen&display=swap");
 
 //Main theme colors
 $primary: #84d6e3;
 $secondary: #d9d8e3;
 $additional: #333333;
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
-html,body{
-    padding: 0;
+html,
+body {
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+#app {
+  width: 100%;
+  height: 100%;
+}
+.content {
+  height: 100%;
+}
+.title {
+  font-size: 2.5em;
+  font-weight: bold;
+  color: #cf4e6c;
+}
+.nav-tab {
+  height: 30em !important;
+}
+.navbar {
+  position: relative;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 10em;
+  background: transparent;
+  padding: 0px 40px 20px 40px;
+  display: flex;
+  align-items: center;
+  .logo-font {
+    letter-spacing: 0.1em;
+  }
+  .logo {
+    img {
+      width: 10em;
+      height: 10em;
+    }
+  }
+  .company-name {
+    font-family: "Lobster", cursive;
+    font-size: 6em;
+    width: 7em;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .menu-toggle {
+    visibility: hidden;
+  }
+  .menu {
+    width: 35em;
+    display: flex;
+    font-family: "Uchen", serif;
+    justify-content: flex-end;
+    align-items: flex-end;
+    font-size: 2em;
+    height: 5em;
+    .icon-group {
+      display: flex;
+      margin-left: auto;
+      margin-right: auto;
+      .icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        i {
+          padding: 0 !important;
+          font-size: 1.5em;
+        }
+        .count {
+          color: #fff;
+          border-radius: 15px;
+          width: 30%;
+          display: flex;
+          justify-content: center;
+          margin-left: 10px;
+          background-color: #e6325f;
+        }
+      }
+    }
+    .menu-item {
+      width: 4em;
+      padding-bottom: 1em;
+      color: $additional;
+      a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        color: $additional;
+      }
+      i {
+        padding-left: 2em;
+      }
+    }
+  }
+}
+.footer {
+  width: 100%;
+  height: 20em;
+  padding: 40px 0px 40px 0px;
+  background: #cf4e6c;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  .footer-title {
+    font-family: "Lobster", cursive;
+    font-size: 3em;
+  }
+  .footer-desc {
+    padding: 0px 20% 0px 20%;
+    font-family: "Uchen", serif;
+  }
+  .footer-icons-group {
+    width: 20%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 3em;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .logo {
+    display: flex;
     width: 100%;
-    height: 100%;
-    margin: 0;
-}
-#app{
-    width: 100%;
-    height: 100%;
-}
-.content{
-    height: 100%;
-}
-.nav-tab{
-    height: 30em !important;
-}
-.navbar{
+    img {
+      display: none;
+    }
+  }
+  .navbar {
     position: relative;
     top: 0;
     right: 0;
     left: 0;
-    height: 10em;
+    height: 5em;
     background: transparent;
     padding: 0px 40px 20px 40px;
     display: flex;
-    align-items: center;
-    .logo-font{
-        letter-spacing: 0.1em;
-    }
-    .logo{
-        img{
-            width: 10em;
-            height: 10em;
-        }
-    }
-    .company-name{
-        font-family: 'Lobster', cursive;
-        font-size: 6em;
-        width: 7em;
-        display: flex;
-        justify-content: flex-start;
-        align-items: flex-start;
-    }
-    .menu-toggle{
-        visibility: hidden;
-    }
-    .menu{
-        width: 35em;
-        display: flex;
-        font-family: 'Uchen', serif;
-        justify-content: flex-end;
-        align-items: flex-end;
-        font-size: 2em;
-        height: 5em;
-        .cart-icon{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            i{
-                padding: 0 !important;
-            }
-            .cart-product-count{
-                color: #FFF;
-                border-radius: 15px;
-                width: 30%;
-                display: flex;
-                justify-content: center;
-                margin-left: 10px;
-                background-color: #e6325f;
-            }
-        }
-        .menu-item{
-            width: 4em;
-            padding-bottom: 1em;
-            color: $additional;
-            a{
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                text-decoration: none;
-                color: $additional;
-            }
-            i{
-                padding-left: 2em;
-            }
-        }
-    }
-}
-.footer{
-    width: 100%;
-    height: 20em;
-    padding: 40px 0px 40px 0px;
-    background: #cf4e6c;
-    position: absolute;
-    display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
-    color: #FFF;
-    .footer-title{
-        font-family: 'Lobster', cursive;
-        font-size: 3em;
+    .logo-font {
+      letter-spacing: 0px;
     }
-    .footer-desc{
-        padding: 0px 20% 0px 20%;
-        font-family: 'Uchen', serif;
+    .cart-icon {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
     }
-    .footer-icons-group{
-        width: 20%;
-        display: flex;
-        justify-content: space-between;
-        font-size: 3em;
+    .company-name {
+      width: 100%;
+      font-size: 3.4em;
     }
-}
-
-@media screen and (max-width: 768px){
-    .logo{
-        display: flex;
-        width: 100%;
-        img{
-            display: none;
-        }
+    .menu-toggle {
+      height: 100%;
+      font-size: 0.7em;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      visibility: visible;
+      i {
+        margin-left: -20px;
+      }
     }
-    .navbar{
-        position: relative;
-        top: 0;
-        right: 0;
-        left: 0;
-        height: 5em;
-        background: transparent;
-        padding: 0px 40px 20px 40px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        .logo-font{
-            letter-spacing: 0px;
-        }
-        .cart-icon{
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-        }
-        .company-name{
-            width: 100%;
-            font-size: 3.4em;
-        }
-        .menu-toggle{
-            height: 100%;
-            font-size: 0.7em;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            visibility: visible;
-            i{
-                margin-left: -20px;
-            }
-        }
-        .menu{
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            font-family: 'Uchen', serif;
-            align-items: center;
-            font-size: 2em;
-            height: 15em;
-            padding: 30px 0px 0px 0px;
-        }
-        .menu-display{
-            display: none;
-        }
-        .menu-item{
-            margin-left: auto;
-            margin-right: auto;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            color: $additional;
-            i{
-                padding: 0 !important;
-            }
-        }
+    .menu {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      font-family: "Uchen", serif;
+      align-items: center;
+      font-size: 2em;
+      height: 15em;
+      padding: 30px 0px 0px 0px;
     }
-    .footer{
-        height: 50em;
-        .footer-icons-group{
-            width: 60%;
-        }
+    .menu-display {
+      display: none;
     }
+    .menu-item {
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      color: $additional;
+      i {
+        padding: 0 !important;
+      }
+    }
+  }
+  .footer {
+    height: 50em;
+    .footer-icons-group {
+      width: 60%;
+    }
+  }
 }
