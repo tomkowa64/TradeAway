@@ -85,12 +85,16 @@ body {
         }
         .count {
           color: #fff;
-          border-radius: 15px;
-          width: 30%;
+          border-radius: 1vw;
+          width: 2.5vw;
+          padding: 10px;
+          height: 3.2vw;
           display: flex;
           justify-content: center;
+          align-items: center;
           margin-left: 10px;
           background-color: #e6325f;
+          font-size: 2vw;
         }
       }
     }
