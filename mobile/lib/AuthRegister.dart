@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
+import './AuthLogin.dart';
+import 'package:adobe_xd/page_link.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class AuthRegister extends StatelessWidget {
   AuthRegister({
-    Key key,
+    Key? key,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -13,31 +15,41 @@ class AuthRegister extends StatelessWidget {
       body: Stack(
         children: <Widget>[
           Pinned.fromPins(
-            Pin(size: 142.0, start: 36.0),
-            Pin(size: 57.0, start: 60.0),
-            child: Text(
-              'Trade',
-              style: TextStyle(
-                fontFamily: 'Lucida Calligraphy',
-                fontSize: 45,
-                color: const Color(0xff303744),
-                fontStyle: FontStyle.italic,
-              ),
-              textAlign: TextAlign.left,
-            ),
-          ),
-          Pinned.fromPins(
-            Pin(size: 148.0, end: 41.0),
-            Pin(size: 57.0, start: 60.0),
-            child: Text(
-              'Away',
-              style: TextStyle(
-                fontFamily: 'Lucida Calligraphy',
-                fontSize: 45,
-                color: const Color(0xffcf4e6c),
-                fontStyle: FontStyle.italic,
-              ),
-              textAlign: TextAlign.left,
+            Pin(start: 20.0, end: 22.0),
+            Pin(size: 62.0, start: 60.0),
+            child:
+                // Adobe XD layer: 'Logo' (group)
+                Stack(
+              children: <Widget>[
+                Pinned.fromPins(
+                  Pin(size: 165.0, start: 0.0),
+                  Pin(start: 0.0, end: 0.0),
+                  child: Text(
+                    'Trade',
+                    style: TextStyle(
+                      fontFamily: 'Lucida Calligraphy',
+                      fontSize: 40,
+                      color: const Color(0xff303744),
+                      fontStyle: FontStyle.italic,
+                    ),
+                    textAlign: TextAlign.left,
+                  ),
+                ),
+                Pinned.fromPins(
+                  Pin(size: 165.0, end: 0.0),
+                  Pin(start: 0.0, end: 0.0),
+                  child: Text(
+                    'Away',
+                    style: TextStyle(
+                      fontFamily: 'Lucida Calligraphy',
+                      fontSize: 40,
+                      color: const Color(0xffcf4e6c),
+                      fontStyle: FontStyle.italic,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ],
             ),
           ),
           Pinned.fromPins(
@@ -65,143 +77,198 @@ class AuthRegister extends StatelessWidget {
             ),
           ),
           Pinned.fromPins(
-            Pin(size: 83.0, middle: 0.5),
-            Pin(size: 27.0, middle: 0.1984),
-            child: Text(
+            Pin(size: 102.0, middle: 0.4984),
+            Pin(size: 60.0, middle: 0.2353),
+            child:
+                // Adobe XD layer: 'Register label' (text)
+                Text(
               'Register',
               style: TextStyle(
                 fontFamily: 'Times New Roman',
-                fontSize: 25,
+                fontSize: 26,
                 color: const Color(0xff303744),
               ),
-              textAlign: TextAlign.left,
+              textAlign: TextAlign.center,
             ),
           ),
           Pinned.fromPins(
             Pin(start: 36.0, end: 37.0),
             Pin(size: 43.0, middle: 0.3061),
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(6.0),
-                color: const Color(0xffffffff),
-                border: Border.all(width: 1.0, color: const Color(0xffe8e8e8)),
-              ),
-            ),
-          ),
-          Pinned.fromPins(
-            Pin(size: 22.6, start: 45.2),
-            Pin(size: 22.0, middle: 0.312),
             child:
-                // Adobe XD layer: 'Icon material-accou…' (shape)
-                SvgPicture.string(
-              _svg_mgue5m,
-              allowDrawingOutsideViewBox: true,
-              fit: BoxFit.fill,
-            ),
-          ),
-          Pinned.fromPins(
-            Pin(size: 110.0, middle: 0.3509),
-            Pin(size: 17.0, middle: 0.3138),
-            child: Text(
-              'Enter your Email',
-              style: TextStyle(
-                fontFamily: 'Times New Roman',
-                fontSize: 16,
-                color: const Color(0xff9e9e9e),
-              ),
-              textAlign: TextAlign.left,
+                // Adobe XD layer: 'Email input' (group)
+                Stack(
+              children: <Widget>[
+                Pinned.fromPins(
+                  Pin(start: 0.0, end: 0.0),
+                  Pin(start: 0.0, end: 0.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6.0),
+                      color: const Color(0xffffffff),
+                      border: Border.all(
+                          width: 1.0, color: const Color(0xffe8e8e8)),
+                    ),
+                  ),
+                ),
+                Pinned.fromPins(
+                  Pin(size: 22.6, start: 9.2),
+                  Pin(start: 10.2, end: 10.8),
+                  child:
+                      // Adobe XD layer: 'Icon material-accou…' (shape)
+                      SvgPicture.string(
+                    _svg_mgue5m,
+                    allowDrawingOutsideViewBox: true,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+                Pinned.fromPins(
+                  Pin(size: 150.0, middle: 0.3969),
+                  Pin(size: 17.0, middle: 0.5),
+                  child: Text(
+                    'Enter your Email',
+                    style: TextStyle(
+                      fontFamily: 'Times New Roman',
+                      fontSize: 16,
+                      color: const Color(0xff9e9e9e),
+                    ),
+                    textAlign: TextAlign.left,
+                  ),
+                ),
+              ],
             ),
           ),
           Pinned.fromPins(
             Pin(start: 36.0, end: 37.0),
             Pin(size: 43.0, middle: 0.4119),
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(6.0),
-                color: const Color(0xffffffff),
-                border: Border.all(width: 1.0, color: const Color(0xffe8e8e8)),
-              ),
-            ),
-          ),
-          Pinned.fromPins(
-            Pin(size: 133.0, middle: 0.3843),
-            Pin(size: 17.0, middle: 0.4154),
-            child: Text(
-              'Enter your Password',
-              style: TextStyle(
-                fontFamily: 'Times New Roman',
-                fontSize: 16,
-                color: const Color(0xff9e9e9e),
-              ),
-              textAlign: TextAlign.left,
-            ),
-          ),
-          Pinned.fromPins(
-            Pin(size: 18.3, start: 47.7),
-            Pin(size: 22.0, middle: 0.4124),
             child:
-                // Adobe XD layer: 'Icon awesome-lock' (shape)
-                SvgPicture.string(
-              _svg_nyhkip,
-              allowDrawingOutsideViewBox: true,
-              fit: BoxFit.fill,
+                // Adobe XD layer: 'Password input' (group)
+                Stack(
+              children: <Widget>[
+                Pinned.fromPins(
+                  Pin(start: 0.0, end: 0.0),
+                  Pin(start: 0.0, end: 0.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6.0),
+                      color: const Color(0xffffffff),
+                      border: Border.all(
+                          width: 1.0, color: const Color(0xffe8e8e8)),
+                    ),
+                  ),
+                ),
+                Pinned.fromPins(
+                  Pin(size: 160.0, middle: 0.4373),
+                  Pin(size: 17.0, middle: 0.5),
+                  child: Text(
+                    'Enter your Password',
+                    style: TextStyle(
+                      fontFamily: 'Times New Roman',
+                      fontSize: 16,
+                      color: const Color(0xff9e9e9e),
+                    ),
+                    textAlign: TextAlign.left,
+                  ),
+                ),
+                Pinned.fromPins(
+                  Pin(size: 18.3, start: 11.7),
+                  Pin(size: 22.0, middle: 0.4286),
+                  child:
+                      // Adobe XD layer: 'Icon awesome-lock' (shape)
+                      SvgPicture.string(
+                    _svg_nyhkip,
+                    allowDrawingOutsideViewBox: true,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ],
             ),
           ),
           Pinned.fromPins(
             Pin(size: 228.0, middle: 0.483),
             Pin(size: 50.0, middle: 0.6775),
-            child: Container(
-              decoration: BoxDecoration(
-                color: const Color(0xffcf4e6c),
+            child:
+                // Adobe XD layer: 'Register btn' (group)
+                PageLink(
+              links: [
+                PageLinkInfo(
+                  transition: LinkTransition.Fade,
+                  ease: Curves.linear,
+                  duration: 0.3,
+                  pageBuilder: () => AuthLogin(),
+                ),
+              ],
+              child: Stack(
+                children: <Widget>[
+                  Pinned.fromPins(
+                    Pin(start: 0.0, end: 0.0),
+                    Pin(start: 0.0, end: 0.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: const Color(0xffcf4e6c),
+                      ),
+                    ),
+                  ),
+                  Pinned.fromPins(
+                    Pin(size: 82.0, middle: 0.5205),
+                    Pin(size: 31.0, middle: 0.5263),
+                    child: Text(
+                      'Register',
+                      style: TextStyle(
+                        fontFamily: 'Calibri',
+                        fontSize: 25,
+                        color: const Color(0xffffffff),
+                      ),
+                      textAlign: TextAlign.left,
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ),
-          Pinned.fromPins(
-            Pin(size: 82.0, middle: 0.5017),
-            Pin(size: 31.0, middle: 0.673),
-            child: Text(
-              'Register',
-              style: TextStyle(
-                fontFamily: 'Calibri',
-                fontSize: 25,
-                color: const Color(0xffffffff),
-              ),
-              textAlign: TextAlign.left,
             ),
           ),
           Pinned.fromPins(
             Pin(start: 36.0, end: 37.0),
             Pin(size: 43.0, middle: 0.5176),
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(6.0),
-                color: const Color(0xffffffff),
-                border: Border.all(width: 1.0, color: const Color(0xffe8e8e8)),
-              ),
-            ),
-          ),
-          Pinned.fromPins(
-            Pin(size: 110.0, middle: 0.3509),
-            Pin(size: 17.0, middle: 0.5169),
-            child: Text(
-              'Repeat Password',
-              style: TextStyle(
-                fontFamily: 'Times New Roman',
-                fontSize: 16,
-                color: const Color(0xff9e9e9e),
-              ),
-              textAlign: TextAlign.left,
-            ),
-          ),
-          Pinned.fromPins(
-            Pin(size: 18.3, start: 47.7),
-            Pin(size: 22.0, middle: 0.5147),
             child:
-                // Adobe XD layer: 'Icon awesome-lock' (shape)
-                SvgPicture.string(
-              _svg_xkclk1,
-              allowDrawingOutsideViewBox: true,
-              fit: BoxFit.fill,
+                // Adobe XD layer: 'Repeat password inp…' (group)
+                Stack(
+              children: <Widget>[
+                Pinned.fromPins(
+                  Pin(start: 0.0, end: 0.0),
+                  Pin(start: 0.0, end: 0.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6.0),
+                      color: const Color(0xffffffff),
+                      border: Border.all(
+                          width: 1.0, color: const Color(0xffe8e8e8)),
+                    ),
+                  ),
+                ),
+                Pinned.fromPins(
+                  Pin(size: 150.0, middle: 0.3969),
+                  Pin(size: 17.0, middle: 0.5),
+                  child: Text(
+                    'Repeat Password',
+                    style: TextStyle(
+                      fontFamily: 'Times New Roman',
+                      fontSize: 16,
+                      color: const Color(0xff9e9e9e),
+                    ),
+                    textAlign: TextAlign.left,
+                  ),
+                ),
+                Pinned.fromPins(
+                  Pin(size: 18.3, start: 11.7),
+                  Pin(size: 22.0, middle: 0.4286),
+                  child:
+                      // Adobe XD layer: 'Icon awesome-lock' (shape)
+                      SvgPicture.string(
+                    _svg_xkclk1,
+                    allowDrawingOutsideViewBox: true,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ],
             ),
           ),
         ],
