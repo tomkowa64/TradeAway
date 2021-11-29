@@ -11,9 +11,9 @@
         <p>OFFER ENDS IN</p>
         <div class="time">02 : 15 : 02 : 23</div>
         <p class="time-value">Days Hours Minutes Seconds</p>
-        <div class="details-btn">
-          Check details<i class="fas fa-arrow-right"></i>
-        </div>
+      </div>
+      <div class="details-btn">
+        Check details<i class="fas fa-arrow-right"></i>
       </div>
     </div>
   </div>

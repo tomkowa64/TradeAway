@@ -12,6 +12,8 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffffffff),
+      extendBody: true,
+      extendBodyBehindAppBar: true,
       body: Stack(
         children: <Widget>[
           Pinned.fromPins(

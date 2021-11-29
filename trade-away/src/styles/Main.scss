@@ -3,8 +3,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Uchen&display=swap");
 
 //Main theme colors
-$primary: #84d6e3;
-$secondary: #d9d8e3;
 $additional: #333333;
 * {
   padding: 0;
@@ -31,7 +29,7 @@ body {
   color: #cf4e6c;
 }
 .nav-tab {
-  height: 30em !important;
+  height: 15em !important;
 }
 .navbar {
   position: relative;
@@ -40,9 +38,12 @@ body {
   left: 0;
   height: 10em;
   background: transparent;
-  padding: 0px 40px 20px 40px;
+  padding: 0px 53px 20px 53px;
   display: flex;
   align-items: center;
+  .mobile-menu {
+    display: none;
+  }
   .logo-font {
     letter-spacing: 0.1em;
   }
@@ -61,7 +62,7 @@ body {
     align-items: flex-start;
   }
   .menu-toggle {
-    visibility: hidden;
+    display: none;
   }
   .menu {
     width: 35em;
@@ -71,6 +72,10 @@ body {
     align-items: flex-end;
     font-size: 2em;
     height: 5em;
+    height: 100%;
+    .nav-items {
+      display: flex;
+    }
     .icon-group {
       display: flex;
       margin-left: auto;
@@ -133,6 +138,7 @@ body {
   .footer-desc {
     padding: 0px 20% 0px 20%;
     font-family: "Uchen", serif;
+    text-align: center;
   }
   .footer-icons-group {
     width: 20%;
@@ -141,7 +147,47 @@ body {
     font-size: 3em;
   }
 }
-
+@media screen and (max-width: 1250px) {
+  .navbar {
+    height: 15em;
+    align-items: flex-start;
+    padding: 0px 50px 0px 50px;
+    .company-name {
+      width: 40%;
+      font-size: 4.5em;
+    }
+    .menu {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 30px 0 30px 0;
+      .icon-group {
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+        .menu-item {
+          .count {
+            width: 3vw;
+            height: 4vw;
+          }
+        }
+      }
+      .nav-items {
+        display: flex;
+        flex-direction: row;
+      }
+    }
+  }
+  .footer {
+    height: 30em;
+    .footer-desc {
+      padding: 0px 50px 0px 50px;
+    }
+    .footer-icons-group {
+      width: 30%;
+    }
+  }
+}
 @media screen and (max-width: 768px) {
   .logo {
     display: flex;
@@ -161,6 +207,85 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    .mobile-menu {
+      height: 100%;
+      width: 100%;
+      margin-top: 20px;
+      .mobile {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        padding-bottom: 5px;
+        .menu-item {
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          .menu-column {
+            width: 98%;
+            height: 100%;
+            .notifications {
+              font-size: 8vw;
+              width: 90%;
+              height: 100%;
+              margin-left: auto;
+              background: #cf4e6c;
+              color: #fff;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              -webkit-box-shadow: 0px 0px 12px -7px rgba(66, 68, 90, 1);
+              -moz-box-shadow: 0px 0px 12px -7px rgba(66, 68, 90, 1);
+              box-shadow: 0px 0px 12px -7px rgba(66, 68, 90, 1);
+              border-radius: 10px;
+            }
+            .notifications h1,
+            .notifications h5 {
+              text-align: center;
+            }
+          }
+          .menu-row {
+            height: 48%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            .cart {
+              width: 100%;
+              height: 100%;
+              -webkit-box-shadow: 0px 0px 12px -7px rgba(66, 68, 90, 1);
+              -moz-box-shadow: 0px 0px 12px -7px rgba(66, 68, 90, 1);
+              box-shadow: 0px 0px 12px -7px rgba(66, 68, 90, 1);
+              color: #303744;
+              font-size: 6vw;
+              border-radius: 10px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              i {
+                width: 30px;
+              }
+            }
+            .tile {
+              color: #303744;
+              -webkit-box-shadow: 0px 0px 12px -7px rgba(66, 68, 90, 1);
+              -moz-box-shadow: 0px 0px 12px -7px rgba(66, 68, 90, 1);
+              box-shadow: 0px 0px 12px -7px rgba(66, 68, 90, 1);
+              width: 30%;
+              height: 98%;
+              border-radius: 10px;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              i {
+                font-size: 6vw;
+              }
+            }
+          }
+        }
+      }
+    }
     .logo-font {
       letter-spacing: 0px;
     }
@@ -181,9 +306,6 @@ body {
       display: flex;
       align-items: center;
       visibility: visible;
-      i {
-        margin-left: -20px;
-      }
     }
     .menu {
       width: 100%;
@@ -194,6 +316,39 @@ body {
       font-size: 2em;
       height: 15em;
       padding: 30px 0px 0px 0px;
+      .icon-group {
+        justify-content: space-between;
+        .menu-item {
+          height: 50px;
+          width: 45%;
+          margin-left: 0;
+          margin-right: 0;
+          .count {
+            background: #cf4e6c;
+            font-size: 8vw;
+          }
+        }
+      }
+      .nav-items {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+      .menu-item {
+        padding: 0;
+        background: #cf4e6c;
+        margin-left: 0;
+        margin-right: 0;
+        color: #fff;
+        border-radius: 5px;
+        margin-top: 20px;
+        font-size: 6vw;
+        -webkit-box-shadow: 0px 0px 12px -3px rgba(66, 68, 90, 1);
+        -moz-box-shadow: 0px 0px 12px -3px rgba(66, 68, 90, 1);
+        box-shadow: 0px 0px 12px -3px rgba(66, 68, 90, 1);
+        width: 75px;
+        height: 75px;
+      }
     }
     .menu-display {
       display: none;
@@ -214,6 +369,24 @@ body {
     height: 50em;
     .footer-icons-group {
       width: 60%;
+    }
+  }
+}
+@media screen and (max-width: 480px) {
+  .navbar {
+    padding: 0 30px 0 30px;
+    .company-name {
+      justify-content: center;
+      font-size: 2.9em;
+      a {
+        margin-right: auto;
+      }
+      .menu-toggle {
+        display: flex;
+        justify-content: flex-end;
+        width: 30px;
+        margin-left: 20px;
+      }
     }
   }
 }
