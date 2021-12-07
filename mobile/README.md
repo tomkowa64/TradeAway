@@ -1,6 +1,6 @@
 # mobile
 
-TradeAway mobile application
+A new Flutter project.
 
 ## Getting Started
 
