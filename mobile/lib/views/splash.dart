@@ -1,9 +1,14 @@
 import 'dart:ui';
 
+import './login.dart';
+import './register.dart';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Splash extends StatelessWidget{
+  const Splash({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -65,7 +70,12 @@ class Splash extends StatelessWidget{
                               backgroundColor: MaterialStateProperty.all<Color>(const Color(0xffcf4e6c)),
                               minimumSize: MaterialStateProperty.all<Size>(const Size(200,50))
                             ),
-                            onPressed: () { },
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const Login()),
+                              );
+                            },
                             child: Text(
                                 'Log In',
                                 style: TextStyle(color: const Color(0xffffffff),fontSize: 20),
@@ -88,7 +98,12 @@ class Splash extends StatelessWidget{
                                 backgroundColor: MaterialStateProperty.all<Color>(const Color(0xff9e9e9e)),
                                 minimumSize: MaterialStateProperty.all<Size>(const Size(200,50))
                             ),
-                            onPressed: () { },
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const Register()),
+                              );
+                            },
                             child: Text(
                               'Create Account',
                               style: TextStyle(color: const Color(0xffffffff),fontSize: 20),
