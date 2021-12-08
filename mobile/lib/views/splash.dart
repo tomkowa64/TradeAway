@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+//Views for Navigator
 import './login.dart';
 import './register.dart';
 

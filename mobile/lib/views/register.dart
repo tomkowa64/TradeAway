@@ -1,5 +1,8 @@
 import 'dart:ui';
 
+//Views for Navigator
+import './login.dart';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -135,7 +138,12 @@ class Register extends StatelessWidget{
                                       backgroundColor: MaterialStateProperty.all<Color>(const Color(0xffcf4e6c)),
                                       minimumSize: MaterialStateProperty.all<Size>(const Size(200,50))
                                   ),
-                                  onPressed: () { },
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => const Login()),
+                                    );
+                                  },
                                   child: Text(
                                     'Register',
                                     style: TextStyle(color: const Color(0xffffffff),fontSize: 20),
