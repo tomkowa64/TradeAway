@@ -8,20 +8,43 @@ class BottomMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: BottomAppBar(
-        child: Row(
-          children: [
-            IconButton(icon: Icon(Icons.menu), onPressed: () {}),
-            Spacer(),
-            IconButton(icon: Icon(Icons.search), onPressed: () {}),
-            IconButton(icon: Icon(Icons.more_vert), onPressed: () {}),
-          ],
-        ),
+    return BottomAppBar(
+      color: const Color(0xff303744),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          IconButton(
+              icon: FaIcon(
+                FontAwesomeIcons.home,
+                color: Colors.white,
+              ),
+              onPressed: () {}),
+          IconButton(
+              icon: FaIcon(
+                FontAwesomeIcons.search,
+                color: Colors.white,
+              ),
+              onPressed: () {}),
+          IconButton(
+              icon: FaIcon(
+                FontAwesomeIcons.heart,
+                color: Colors.white,
+              ),
+              onPressed: () {}),
+          IconButton(
+              icon: FaIcon(
+                FontAwesomeIcons.shoppingCart,
+                color: Colors.white,
+              ),
+              onPressed: () {}),
+          IconButton(
+              icon: FaIcon(
+                FontAwesomeIcons.userCircle,
+                color: Colors.white,
+              ),
+              onPressed: () {}),
+        ],
       ),
-      floatingActionButton:
-          FloatingActionButton(child: Icon(Icons.add), onPressed: () {}),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }
