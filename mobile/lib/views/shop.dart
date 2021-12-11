@@ -5,10 +5,6 @@ import 'package:mobile/components/homeCategoryTile.dart';
 import 'package:mobile/components/homeProductItem.dart';
 import 'package:mobile/inc/navigationDrawer.dart';
 
-//Views for Navigator
-import './login.dart';
-import './register.dart';
-
 //Included widgets
 import '../inc/nav.dart';
 import '../inc/bottomMenu.dart';
@@ -17,8 +13,8 @@ import '../inc/navigationDrawer.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
+class Shop extends StatelessWidget {
+  const Shop({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
