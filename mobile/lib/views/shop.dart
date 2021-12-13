@@ -3,11 +3,11 @@ import 'dart:ui';
 //Components
 import 'package:mobile/components/homeCategoryTile.dart';
 import 'package:mobile/components/homeProductItem.dart';
+import 'package:mobile/components/shopProductItem.dart';
 import 'package:mobile/inc/navigationDrawer.dart';
 
 //Included widgets
 import '../inc/nav.dart';
-import '../inc/bottomMenu.dart';
 import '../inc/navigationDrawer.dart';
 
 import 'package:flutter/material.dart';
@@ -34,149 +34,93 @@ class Shop extends StatelessWidget {
                       child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      //Tile Category List
                       Container(
-                        padding: EdgeInsets.only(top: 20, bottom: 20, left: 10),
-                        height: 140.0,
-                        child: new ListView(children: [
-                          //Redirect to shop with this category applied as filter - RTV/AGD
-                          HomeCategoryTile(
-                              FaIcon(
-                                FontAwesomeIcons.plug,
-                                color: const Color(0xffcfcfcf),
-                              ),
-                              'RTV/AGD'),
-                          HomeCategoryTile(
-                              FaIcon(
-                                FontAwesomeIcons.tshirt,
-                                color: const Color(0xffcfcfcf),
-                              ),
-                              'Clothing'),
-                          HomeCategoryTile(
-                              FaIcon(
-                                FontAwesomeIcons.couch,
-                                color: const Color(0xffcfcfcf),
-                              ),
-                              'Furniture'),
-                          HomeCategoryTile(
-                              FaIcon(
-                                FontAwesomeIcons.paperclip,
-                                color: const Color(0xffcfcfcf),
-                              ),
-                              'Office'),
-                          HomeCategoryTile(
-                              FaIcon(
-                                FontAwesomeIcons.basketballBall,
-                                color: const Color(0xffcfcfcf),
-                              ),
-                              'Sport'),
-                        ], scrollDirection: Axis.horizontal),
-                      ),
-                      //Section Title
-                      Container(
-                        color: Colors.white,
-                        padding: EdgeInsets.only(left: 10, top: 10, bottom: 10),
+                        margin: EdgeInsets.only(top: 15),
+                        padding: EdgeInsets.only(left: 10, right: 10),
                         child: Row(
                           children: [
-                            Text(
-                              "Sale",
-                              style: TextStyle(
-                                  color: const Color(0xff304744),
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600),
-                            )
-                          ],
-                        ),
-                      ),
-                      //Sale product list
-                      Container(
-                        child: Container(
-                          padding:
-                              EdgeInsets.only(top: 10, bottom: 10, left: 10),
-                          color: const Color(0xffffffff),
-                          height: 300.0,
-                          child: new ListView(
-                              shrinkWrap: true,
+                            //Search Input
+                            Expanded(
+                                child: Column(
                               children: [
-                                HomeProductItem('assets/images/backpack.png',
-                                    'Backpack Adidas Premium', 69.99, 49.99),
-                                HomeProductItem('assets/images/blender.png',
-                                    'Blender', 69.99, 49.99),
-                                HomeProductItem(
-                                    'assets/images/sample-product.jpg',
-                                    'Backpack Adidas Premium',
-                                    69.99,
-                                    49.99),
+                                Container(
+                                  padding: EdgeInsets.only(
+                                      top: 20, right: 5, bottom: 20),
+                                  child: TextFormField(
+                                    textAlignVertical: TextAlignVertical.center,
+                                    decoration: InputDecoration(
+                                      hintText: 'Find Something',
+                                      hintStyle: TextStyle(
+                                          fontStyle: FontStyle.italic),
+                                      filled: true,
+                                      fillColor: Colors.white,
+                                      border: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(20.0),
+                                        borderSide: BorderSide(
+                                          width: 0,
+                                          style: BorderStyle.none,
+                                        ),
+                                      ),
+                                      prefixIcon: Icon(FontAwesomeIcons.search,
+                                          size: 25,
+                                          color: const Color(0xff303744)),
+                                    ),
+                                  ),
+                                )
                               ],
-                              scrollDirection: Axis.horizontal),
-                        ),
-                      ),
-                      //Section Title
-                      Container(
-                        color: Colors.white,
-                        margin: EdgeInsets.only(top: 30),
-                        padding: EdgeInsets.only(left: 10, top: 10, bottom: 10),
-                        child: Row(
-                          children: [
-                            Text(
-                              "Trending",
-                              style: TextStyle(
-                                  color: const Color(0xff304744),
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600),
+                            )),
+                            //Filter Button
+                            Column(
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.only(
+                                      left: 5, right: 5, top: 5, bottom: 5),
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius:
+                                          BorderRadius.circular(20.0)),
+                                  child: IconButton(
+                                    onPressed: () {},
+                                    icon: Icon(FontAwesomeIcons.cogs),
+                                    iconSize: 25,
+                                  ),
+                                )
+                              ],
                             )
                           ],
                         ),
                       ),
-                      //Trending Section
-                      Container(
-                        child: Container(
-                          padding:
-                              EdgeInsets.only(top: 10, bottom: 10, left: 10),
-                          color: const Color(0xffffffff),
-                          height: 300.0,
-                          child: new ListView(children: [
-                            HomeProductItem('assets/images/backpack.png',
-                                'Backpack Adidas Premium', 69.99),
-                            HomeProductItem('assets/images/blender.png',
-                                'Blender', 69.99, 49.99),
-                            HomeProductItem('assets/images/sample-product.jpg',
-                                'Backpack Adidas Premium', 69.99, 49.99),
-                          ], scrollDirection: Axis.horizontal),
-                        ),
-                      ),
-                      Container(
-                        color: Colors.white,
-                        margin: EdgeInsets.only(top: 30),
-                        padding: EdgeInsets.only(left: 10, top: 10, bottom: 10),
-                        child: Row(
-                          children: [
-                            Text(
-                              "Your Picks",
-                              style: TextStyle(
-                                  color: const Color(0xff304744),
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600),
-                            )
-                          ],
-                        ),
-                      ),
-                      //Your Picks Section
-                      Container(
-                        child: Container(
-                          padding:
-                              EdgeInsets.only(top: 10, bottom: 10, left: 10),
-                          color: const Color(0xffffffff),
-                          height: 300.0,
-                          child: new ListView(children: [
-                            HomeProductItem('assets/images/backpack.png',
-                                'Backpack Adidas Premium', 69.99, 49.99),
-                            HomeProductItem('assets/images/blender.png',
-                                'Blender', 69.99, 49.99),
-                            HomeProductItem('assets/images/sample-product.jpg',
-                                'Backpack Adidas Premium', 69.99, 49.99),
-                          ], scrollDirection: Axis.horizontal),
-                        ),
+                      //Shop items grid
+
+                      SizedBox(
+                        height: 1000,
+                        child: GridView.count(
+                            // Create a grid with 2 columns. If you change the scrollDirection to
+                            // horizontal, this produces 2 rows.
+                            crossAxisSpacing: 10,
+                            crossAxisCount: 2,
+                            mainAxisSpacing: 20,
+                            childAspectRatio: 100 / 190,
+                            shrinkWrap: true,
+                            padding:
+                                EdgeInsets.only(left: 10, right: 10, top: 10),
+                            // Generate 100 widgets that display their index in the List.
+                            children: List.generate(100, (index) {
+                              return ShopProductItem(
+                                  'assets/images/backpack.png',
+                                  'Backpack Adidas',
+                                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit,'
+                                      ' sed do eiusmod tempor incididunt ut labore et dolore'
+                                      ' magna aliqua. Ut enim ad minim veniam, quis nostrud '
+                                      'exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+                                      ' Duis aute irure dolor in reprehenderit in voluptate velit esse'
+                                      ' cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat '
+                                      'cupidatat non proident, sunt in culpa qui officia '
+                                      'deserunt mollit anim id est laborum.',
+                                  69.99,
+                                  true);
+                            })),
                       )
                     ],
                   ))
