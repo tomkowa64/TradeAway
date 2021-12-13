@@ -1,13 +1,26 @@
 import 'dart:ui';
 
 //Views for Navigator
+import 'package:mobile/services/auth.dart';
+
 import './login.dart';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class Register extends StatelessWidget {
+class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
+
+  @override
+  _RegisterState createState() => _RegisterState();
+}
+
+class _RegisterState extends State<Register> {
+  final AuthService _auth = AuthService();
+
+  String email = '';
+  String password = '';
+  String repeatPassword = '';
 
   @override
   Widget build(BuildContext context) {
@@ -75,9 +88,14 @@ class Register extends StatelessWidget {
                         child: Column(
                           children: [
                             TextFormField(
+                              onChanged: (val) {
+                                setState(() {
+                                  email = val;
+                                });
+                              },
                               decoration: const InputDecoration(
                                 border: UnderlineInputBorder(),
-                                labelText: 'Enter your username',
+                                labelText: 'Enter your email',
                                 prefixIcon: FaIcon(
                                   FontAwesomeIcons.solidUserCircle,
                                   size: 35,
@@ -98,6 +116,11 @@ class Register extends StatelessWidget {
                         child: Column(
                           children: [
                             TextFormField(
+                              onChanged: (val) {
+                                setState(() {
+                                  password = val;
+                                });
+                              },
                               obscureText: true,
                               decoration: const InputDecoration(
                                 border: UnderlineInputBorder(),
@@ -122,6 +145,11 @@ class Register extends StatelessWidget {
                         child: Column(
                           children: [
                             TextFormField(
+                              onChanged: (val) {
+                                setState(() {
+                                  repeatPassword = val;
+                                });
+                              },
                               obscureText: true,
                               decoration: const InputDecoration(
                                 border: UnderlineInputBorder(),
@@ -146,18 +174,31 @@ class Register extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            new TextButton(
+                            TextButton(
                               style: ButtonStyle(
                                   backgroundColor:
                                       MaterialStateProperty.all<Color>(
                                           const Color(0xffcf4e6c)),
                                   minimumSize: MaterialStateProperty.all<Size>(
                                       const Size(200, 50))),
-                              onPressed: () {
-                                Navigator.pushReplacementNamed(
-                                    context, 'Login');
+                              onPressed: () async {
+                                print(email);
+                                print(password);
+                                print(repeatPassword);
+                                if(password == repeatPassword) {
+                                  dynamic result = await _auth.registerInWithEmail(email, password);
+                                  if(result == null) {
+                                    print('error signing in');
+                                  } else {
+                                    print('sign in');
+                                    print(result);
+                                    Navigator.pushReplacementNamed(context, 'Login');
+                                  }
+                                } else {
+                                  print('Passwords must match.');
+                                }
                               },
-                              child: Text(
+                              child: const Text(
                                 'Register',
                                 style: TextStyle(
                                     color: const Color(0xffffffff),

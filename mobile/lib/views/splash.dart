@@ -70,7 +70,7 @@ class Splash extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            new TextButton(
+                            TextButton(
                               style: ButtonStyle(
                                   backgroundColor:
                                       MaterialStateProperty.all<Color>(
@@ -81,10 +81,10 @@ class Splash extends StatelessWidget {
                                 Navigator.pushReplacementNamed(
                                     context, 'Login');
                               },
-                              child: Text(
+                              child: const Text(
                                 'Log In',
                                 style: TextStyle(
-                                    color: const Color(0xffffffff),
+                                    color: Color(0xffffffff),
                                     fontSize: 20),
                               ),
                             )
