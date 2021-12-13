@@ -6,6 +6,7 @@ import 'package:mobile/views/shop.dart';
 import 'views/splash.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
