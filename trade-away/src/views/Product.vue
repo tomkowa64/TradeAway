@@ -2,61 +2,49 @@
   <section class="product">
     <div class="general-info">
       <div class="product-image">
-        <img src="../assets/dress.png" alt="" id="magnify" />
+        <img src="../assets/sample-product.jpg" alt="" />
       </div>
       <div class="product-general-information">
-        <div class="product-name">Dress Flowers Edition 2137</div>
+        <div class="product-name">
+          T-Shirt Full Sleeve
+          <div class="product-state">NEW</div>
+        </div>
         <div class="product-price">49.99$</div>
         <div class="sold-stock">
           200 people bought 400 items | <b>1000 left</b>
         </div>
         <div class="icons-group">
+          <!-- POSSIBLE DEBUG TO DO -->
           <div class="item">
             <div class="icon"><i class="far fa-smile"></i></div>
             <div class="description">
-              A lot of happy customers who bought this product
+              <span style="color: #cf4e6c">TA</span> level of seller
             </div>
           </div>
           <div class="item">
             <div class="icon"><i class="fas fa-shipping-fast"></i></div>
             <div class="description">
-              Fast shipment, order now and get your product in 1 day
-            </div>
-            <div class="more-about">
-              Shippings
-              <i class="fas fa-arrow-circle-right"></i>
+              <span style="color: #cf4e6c">Shipping</span> possible
             </div>
           </div>
           <div class="item">
-            <div class="icon"><i class="fas fa-undo-alt"></i></div>
+            <div class="icon"><i class="fas fa-hand-holding"></i></div>
             <div class="description">
-              You can get your money back if you are unsatisfied within 1 week
-            </div>
-            <div class="more-about">
-              Returns
-              <i class="fas fa-arrow-circle-right"></i>
-            </div>
-          </div>
-          <div class="item">
-            <div class="icon"><i class="fas fa-wallet"></i></div>
-            <div class="description">Convenient payments</div>
-            <div class="more-about">
-              Payments
-              <i class="fas fa-arrow-circle-right"></i>
+              <span style="color: #cf4e6c">Personal</span> pickup possible
             </div>
           </div>
         </div>
         <div class="quantity-input">
-          <div class="plus"><i class="fas fa-plus"></i></div>
-          <div class="quantity" contentEditable="true">0</div>
           <div class="minus"><i class="fas fa-minus"></i></div>
+          <div class="quantity" contentEditable="true">0</div>
+          <div class="plus"><i class="fas fa-plus"></i></div>
         </div>
         <div class="buy-product-button">Add to Cart</div>
       </div>
     </div>
     <div class="details">
       <div class="product-detailed-description">
-        <b><span style="color: #cf4e6c">Product</span> Description</b>
+        <b><span style="color: #cf4e6c">Description</span></b>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -64,48 +52,24 @@
           aliquip ex ea commodo consequat. Duis aute irure dolor in
           reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
+          culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum
+          dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+          commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+          velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+          occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+          mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur
+          adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+          irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+          fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+          sunt in culpa qui officia deserunt mollit anim id est laborum.
         </p>
-        <div class="image-group">
-          <!-- Slideshow container -->
-          <div class="slideshow-container fade">
-            <!-- Full images with numbers and message Info -->
-            <div class="Containers">
-              <div class="MessageInfo">1 / 3</div>
-              <img src="../assets/dress1.jpg" style="width: 100%" />
-              <div class="Info">Dress</div>
-            </div>
-
-            <div class="Containers">
-              <div class="MessageInfo">2 / 3</div>
-              <img src="../assets/dress2.jpg" style="width: 100%" />
-              <div class="Info">Version</div>
-            </div>
-
-            <div class="Containers">
-              <div class="MessageInfo">3 / 3</div>
-              <img src="../assets/dress3.jpg" style="width: 100%" />
-              <div class="Info">2137</div>
-            </div>
-
-            <!-- Back and forward buttons -->
-            <a class="Back">&#10094;</a>
-            <a class="forward">&#10095;</a>
-          </div>
-          <br />
-
-          <!-- The circles/dots -->
-          <div style="text-align: center">
-            <span class="dots"></span>
-            <span class="dots"></span>
-            <span class="dots"></span>
-          </div>
-        </div>
       </div>
       <div class="product-details-group">
-        <b class="detail-title"
-          ><span style="color: #cf4e6c">Product</span> Details</b
-        >
+        <b class="detail-title"><span style="color: #cf4e6c">Details</span></b>
         <p><b>Condition: </b>New</p>
         <p><b>Date of Production: </b>1999</p>
         <p><b>Color: </b>Red, White, Black</p>
@@ -113,63 +77,112 @@
         <p><b>Size: </b>Large</p>
         <p><b>Accessories included: </b>Nope</p>
         <p><b>Suggested ironing temperature: </b>69 &deg; C</p>
-        <div class="localization">
+        <div class="tags">
           <div class="title">
-            <span style="color: #cf4e6c">Seller</span>
-            Localization
+            <span style="color: #cf4e6c">Tags</span>
           </div>
-          <div class="information">
-            <div class="location-name">
-              <i class="fas fa-map-marker-alt"></i>
-              <span style="padding-left: 20px"
-                >Ul. Hetmańska 130 Rzeszów <b>Podkarpackie</b>
-              </span>
-            </div>
-            <div class="graphic">
-              <img src="../assets/map-graphic.png" alt="" />
-            </div>
+          <div class="tags-group">
+            <div class="tag">Clothes</div>
           </div>
         </div>
       </div>
     </div>
     <div class="seller">
-      <div class="seller-info">
-        <div class="seller-avatar">
-          <img src="../assets/user-icon.png" alt="" />
-        </div>
-        <div class="seller-icons-group">
-          <p>Sample Username</p>
-          <div class="item">
+      <div class="avatar">
+        <img src="../assets/user-profile.jpeg" />
+      </div>
+      <div class="seller-name">Wonderhefty</div>
+      <div class="seller-information">
+        <div class="account-information">
+          <p class="name">Anna James</p>
+          <p class="gray-color">Rzeszów, Podkarpackie</p>
+          <p class="account-activity">
+            <b class="activity-icon">
+              <i class="fas fa-hands-helping"></i>
+            </b>
             <span>
-              <i class="fas fa-phone-alt"></i>
+              <b class="main-color">10</b>
+              items bought
             </span>
-            +48 123 456 789
-          </div>
-          <div class="item">
+          </p>
+          <p class="account-activity">
+            <b class="activity-icon">
+              <i class="fas fa-dollar-sign"></i>
+            </b>
             <span>
-              <i class="fas fa-envelope"></i>
+              <b class="main-color">2</b>
+              items sold
             </span>
-            sample@sample.com
+          </p>
+        </div>
+        <div class="personal-information">
+          <div class="personal">
+            <p class="data">
+              <b class="key">Name:</b>
+              <span class="value gray-color">Anna</span>
+            </p>
+            <p class="data">
+              <b class="key">Surname:</b>
+              <span class="value gray-color">James</span>
+            </p>
+            <p class="data">
+              <b class="key">Location:</b>
+              <span class="value gray-color">Rzeszów, 35-103, Poland</span>
+            </p>
           </div>
-          <div class="item">
-            <span>
-              <i class="fas fa-map-marker-alt"></i>
-            </span>
-            Podkarpackie
+          <div class="contact">
+            <p class="data">
+              <b class="key">Phone:</b>
+              <span class="value gray-color">+48 123 456 789</span>
+            </p>
+            <p class="data">
+              <b class="key">Email:</b>
+              <span class="value gray-color">anaj@ex.com</span>
+            </p>
+            <div class="contact-btn">Contact</div>
           </div>
         </div>
-        <div class="msg-input">
-          <textarea
-            name=""
-            id=""
-            cols="30"
-            rows="10"
-            placeholder="Write a message..."
-          ></textarea>
+      </div>
+    </div>
+    <div class="common">
+      <div class="title">Common products</div>
+      <div class="item-group">
+        <div class="item">
+          <img src="../assets/blender.png" />
+          <p class="name">Blender</p>
+          <p class="used">Used</p>
+          <p class="main-color price"><b>24.90$</b></p>
+          <i class="fas fa-arrow-alt-circle-right"></i>
         </div>
-        <div class="msg-button">
-          <i class="fas fa-location-arrow"></i>
+        <div class="item">
+          <img src="../assets/blender.png" />
+          <p class="name">Blender</p>
+          <p class="used">Used</p>
+          <p class="main-color price"><b>24.90$</b></p>
+          <i class="fas fa-arrow-alt-circle-right"></i>
         </div>
+        <div class="item">
+          <img src="../assets/blender.png" />
+          <p class="name">Blender</p>
+          <p class="used">Used</p>
+          <p class="main-color price"><b>24.90$</b></p>
+          <i class="fas fa-arrow-alt-circle-right"></i>
+        </div>
+        <div class="item">
+          <img src="../assets/blender.png" />
+          <p class="name">Blender</p>
+          <p class="used">Used</p>
+          <p class="main-color price"><b>24.90$</b></p>
+          <i class="fas fa-arrow-alt-circle-right"></i>
+        </div>
+        <div class="item">
+          <img src="../assets/blender.png" />
+          <p class="name">Blender</p>
+          <p class="used">Used</p>
+          <p class="main-color price"><b>24.90$</b></p>
+          <i class="fas fa-arrow-alt-circle-right"></i>
+        </div>
+        <i class="fas fa-arrow-circle-right"></i>
       </div>
     </div>
   </section>

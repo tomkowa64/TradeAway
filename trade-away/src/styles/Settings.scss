@@ -1,208 +1,501 @@
-html,body{
-    max-width: 100%;
+html,
+body {
+  max-width: 100%;
 }
-.account-info{
-    width: 100%;
-    height: 50em;
-    display: flex;
+.account {
+  height: auto;
+  padding: 0 53px 0 53px;
 }
-.account-info .user-details{
-    width: 50%;
-    background: #FFF;
-    padding: 5em 8em 5em 8em;
-    display: flex;
+.ta-level {
+  position: absolute;
+  top: 700px;
+  right: 53px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.ta-level .sign {
+  border: 7px solid #cf4e6c;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 6vw;
+  color: #cf4e6c;
+}
+.ta-level .experience {
+  font-size: 2.3vw;
+}
+.ta-level .level {
+  font-size: 1.5vw;
+  font-family: Lobster;
+}
+.account-bg {
+  height: 25em;
+  background: url("../assets/account-bg.png");
+}
+.profile {
+  margin-top: -250px;
+  height: auto;
+  min-height: 45em;
+  padding: 30px 0 30px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.4vw;
+}
+.profile .avatar {
+  width: 400px;
+  height: 400px;
+}
+.profile .avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  box-shadow: 1px -1px 9px -3px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 1px -1px 9px -3px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 1px -1px 9px -3px rgba(0, 0, 0, 0.75);
+}
+.profile .profile-name {
+  height: 100px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3.6vw;
+  color: #cf4e6c;
+}
+.profile .profile-information {
+  width: 100%;
+  height: 260px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 50px;
+}
+.profile .profile-information .account-information {
+  width: 30%;
+  height: 200px;
+  border-right: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.account-btn {
+  width: 200px;
+  height: 50px;
+  margin-top: 10px;
+  min-height: 50px;
+  padding: 5px 20px 5px 20px;
+  color: #fff;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #cf4e6c;
+  cursor: pointer;
+  font-size: 1.1vw;
+}
+.contact-btn {
+  width: 200px;
+  height: 50px;
+  padding: 5px 20px 5px 20px;
+  color: #fff;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #cf4e6c;
+  cursor: pointer;
+  font-size: 1.1vw;
+  margin-top: auto;
+}
+.profile .profile-information .account-information i {
+  font-size: 1.3vw;
+  color: #303744;
+}
+.account-activity {
+  display: flex;
+}
+.account-activity .activity-icon {
+  display: flex;
+  width: 50px;
+}
+.account-activity span > * {
+  margin-left: 10px;
+}
+.main-color {
+  color: #cf4e6c;
+}
+.gray-color {
+  color: #71848d;
+}
+.profile .profile-information .account-information .name {
+  font-weight: bold;
+  color: #cf4e6c;
+  font-size: 2vw;
+}
+.profile .profile-information .personal-information {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  border-right: 1px solid #ccc;
+}
+.profile .profile-information .personal-information > div {
+  margin-left: 100px;
+}
+.profile .profile-information .personal-information .personal {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.profile .profile-information .personal-information .personal .data {
+  width: 500px;
+  height: 40px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.profile .profile-information .personal-information .personal .data .key {
+  width: 30%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.profile .profile-information .personal-information .personal .data .value {
+  width: 70%;
+  justify-content: flex-start;
+  align-items: center;
+}
+.profile .profile-information .personal-information .contact {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.profile .profile-information .personal-information .contact .data {
+  width: 300px;
+  height: 40px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.profile .profile-information .personal-information .contact .data .key {
+  width: 30%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.profile .profile-information .personal-information .contact .data .value {
+  width: 70%;
+  justify-content: flex-start;
+  align-items: center;
+}
+.history {
+  height: auto;
+  min-height: 34em;
+}
+.history .title {
+  width: 100%;
+  display: flex;
+  font-size: 2vw;
+  color: #cf4e6c;
+  font-weight: bold;
+}
+.history .item-group {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  height: auto;
+  justify-content: space-around;
+  align-items: center;
+  padding: 30px 0 30px 0;
+}
+.history .item-group i {
+  font-size: 4vw;
+  color: #9e9e9e;
+}
+.history .item-group .item {
+  width: 230px;
+  height: 420px;
+  box-shadow: -1px -1px 22px -10px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: -1px -1px 22px -10px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -1px -1px 22px -10px rgba(0, 0, 0, 0.75);
+  border-radius: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+.history .item-group .finished {
+  box-shadow: -1px -1px 22px -10px rgba(31, 148, 2, 0.959);
+  -webkit-box-shadow: -1px -1px 22px -10px rgba(31, 148, 2, 0.959);
+  -moz-box-shadow: -1px -1px 22px -10px rgba(31, 148, 2, 0.959);
+}
+.history .item-group .pending {
+  box-shadow: -1px -1px 22px -10px rgb(138, 151, 15);
+  -webkit-box-shadow: -1px -1px 22px -10px rgb(138, 151, 15);
+  -moz-box-shadow: -1px -1px 22px -10px rgb(138, 151, 15);
+}
+.history .item-group .item .name {
+  font-size: 2vw;
+}
+.history .item-group .item img {
+  max-width: 230px;
+  max-height: 230px;
+}
+.history .item-group .item .used {
+  color: #d6dc1d;
+  font-weight: bold;
+  font-size: 1.4vw;
+}
+.history .item-group .item .price {
+  font-size: 2vw;
+}
+.history .item-group .item i {
+  font-size: 2.3vw;
+  cursor: pointer;
+  color: #cf4e6c;
+}
+
+@media screen and (max-width: 1250px) {
+  .profile .profile-information {
+    padding: 0;
+    font-size: 1.4vw;
+  }
+  .history .item-group .item {
+    width: 160px;
+    height: 300px;
+  }
+  .history .item-group .item img {
+    max-width: 130px;
+    max-height: 130px;
+  }
+  .history .item-group .item:nth-last-child(2) {
+    display: none;
+  }
+  .account-activity {
+    font-size: 2vw;
+  }
+  .history .item-group .item {
+    width: 200px;
+    height: 330px;
+  }
+  .history .item-group .item .name {
+    font-size: 1.9vw;
+  }
+  .history .item-group .item .used {
+    font-size: 1.4vw;
+  }
+  .history .item-group .item .price {
+    font-size: 2.3vw;
+  }
+  .profile .profile-information .personal-information .personal {
+    margin-left: 50px;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .profile .profile-information {
+    font-size: 1.8vw;
+  }
+  .profile .profile-information .account-information {
+    font-size: 2.1vw;
+  }
+  .profile .profile-information .personal-information {
+  }
+  .profile .profile-information .personal-information .contact .contact-btn {
+    width: 110px;
+  }
+  .profile .profile-information .personal-information .personal .data {
+    width: 250px;
+  }
+  .profile .profile-information .personal-information .contact .data {
+    width: 200px;
+  }
+  .history .item-group .item:nth-last-child(3) {
+    display: none;
+  }
+  .history .item-group .item .name {
+    font-size: 2.8vw;
+  }
+  .history .item-group .item .used {
+    font-size: 2.3vw;
+  }
+  .history .item-group .item .price {
+    font-size: 3vw;
+  }
+  .history .item-group .item i {
+    font-size: 3.5vw;
+  }
+  .ta-level .sign {
+    width: 150px;
+    height: 150px;
+  }
+  .ta-level .experience {
+    font-size: 3.4vw;
+  }
+  .ta-level .level {
+    font-size: 3vw;
+  }
+  .account-btn {
+    width: 120px;
+    margin-top: 10px;
+    font-size: 1.7vw;
+  }
+  .profile .profile-information .account-information .name {
+    font-size: 3vw;
+  }
+  .account-activity .activity-icon {
+    width: 20px;
+  }
+  .profile .profile-information .account-information i {
+    font-size: 2vw;
+  }
+  .profile .profile-information .personal-information .personal {
+    margin-left: 20px;
+  }
+  .profile .profile-information .personal-information > div {
+    margin-left: 20px;
+  }
+  .profile .profile-information .personal-information .contact .contact-btn {
+    width: 120px;
+    font-size: 1.7vw;
+  }
+  .profile .profile-name {
+    font-size: 5vw;
+  }
+}
+@media screen and (max-width: 480px) {
+  .profile {
+    margin-top: -150px;
+    overflow: hidden;
+  }
+  .profile .profile-information {
     flex-direction: column;
     align-items: center;
-}
-.account-info .user-details img{
-    width: 25em;
-    height: 25em;
-    border: 2px solid #000;
-    border-radius: 50%;
-    padding: 3em;
-}
-.account-info .user-details .username{
-    margin-top: 1em;
-    font-size: 3em;
-}
-.password{
+    height: auto;
+    min-height: 200px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.password input{
-    border: 0;
+  }
+  .profile .avatar {
+    width: 200px;
+    height: 200px;
+  }
+  .profile .profile-name {
+    height: 300px;
+    font-size: 6vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    font-size: 8vw;
+  }
+  .ta-level {
+    top: 650px;
+    right: 50%;
+    left: 50%;
+  }
+  .ta-level-tab {
+    top: 800px;
+  }
+  .ta-level .sign {
+    width: 150px;
+    height: 150px;
+    font-size: 12vw;
+  }
+  .ta-level .experience {
+    font-size: 8vw;
+  }
+  .ta-level .level {
+    font-size: 10vw;
+    width: 300px;
     text-align: center;
-    width: 65%;
-}
-.account-info .person-details{
-    width: 50%;
-    height: 90%;
-    border-left: 1px solid #CCC;
-    padding: 4em 8em 4em 8em;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-.person-info-box{
-    height: 48%;
-    width: 90%;
-    background-color: #cf4e6c;
-    color: #FFF;
-    padding: 2em;
-    display: flex;
-    border-radius: 20px;
-}
-.person-info-box .content{
-    width: 70%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-.person-info-box .edit{
-    width: 30%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 6em;
-}
-.person-info-box .edit:hover{
-    cursor: pointer;
-}
-.icon-label{
-    font-size: 3em;
-}
-.info-text{
-    width: 80%;
-    height: 1.5em;
-    font-size: 1.5em;
-    display: flex;
-    align-items: center;
-}
-.account-history{
-    height: 50em;
-    display: flex;
-    flex-direction: column;
-}
-.section-label{
-    width: 90%;
-    height: 5em;
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-end;
-    font-size: 1.5em;
-    font-weight: bold;
-}
-.tags{
-    height: 30em;
-    display: flex;
-    flex-direction: column;
-}
-.tags .section-label .add-tag{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 30%;
-}
-.tags .section-label .add-tag input{
-    background: #eff0f0;
+  }
+  .profile .profile-information .account-information {
+    width: 100%;
+    padding: 0;
     border: 0;
-    width: 30%;
-    height: 70%;
-    font-size: 0.9em;
-    margin-left: 0.4em;
-    font-weight: bold;
-    text-align: right;
-    border-radius: 5px;
-}
-.tags .tags-list{
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 90%;
+    flex-direction: column;
+    align-items: center;
+    font-size: 5vw;
+    height: 200px;
+  }
+  .profile .profile-information .account-information .name {
+    font-size: 8vw;
+  }
+  .profile .profile-information .account-information i {
+    font-size: 5vw;
+    padding-right: 10px;
+  }
+  .account-activity {
+    font-size: 5vw;
+  }
+  .account-btn {
+    width: 200px;
+    font-size: 5vw;
+  }
+  .account-activity .activity-icon {
+    width: 40px;
+  }
+  .profile .profile-information .personal-information {
+    font-size: 4vw;
+    flex-direction: column;
+    padding: 0;
+    margin-top: 30px;
+    width: 100%;
+    border: 0;
+  }
+  .profile .profile-information .personal-information .contact .data {
+    width: 250px;
+  }
+  .general-info .product-general-information .buy-product-button {
+    width: 100%;
+  }
+  .profile .profile-information .personal-information .contact .contact-btn {
+    margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
-    padding: 2em 0 2em 0;
-}
-.tags .tags-list .item{
-    width: 8em;
-    height: 3em;
-    background: #cf4e6c;
-    border-radius: 5px;
-    padding: 10px 15px 10px 15px;
-    font-weight: bold;
-    color: #FFF;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-left: 1em;
-}
-.tags .tags-list .item i:hover{
-    cursor: pointer;
-}
-@media screen and (max-width: 768px){
-    .account{
-        height: 180em;
-    }
-    .account-info{
-        flex-direction: column;
-        height: 100em;
-    }
-    .account-info .user-details{
-        width: 100%;
-        padding: 5em 0 5em 0;
-    }
-    .account-info .user-details img{
-        width: 15em;
-        height: 15em;
-    }
-    .account-info .user-details .password{
-        font-size: 0.9em;
-        width: 100%;
-    }
-    .account-info .person-details{
-        width: 100%;
-        padding: 0;
-        align-items: center;
-        border: 0;
-    }
-    .account-info .person-details .person-info-box{
-        width: 95%;
-        height: 45%;
-        flex-direction: column;
-    }
-    .account-info .person-details .person-info-box .content{
-        width: 100%;
-    }
-    .account-info .person-details .person-info-box .edit{
-        width: 100%;
-    }
-    .account-info .person-details .person-info-box .content .icon-label{
-        width: 100%;
-        display: flex;
-        justify-content: center;
-    }
-    .account-info .person-details .person-info-box .content .info-text{
-        width: 100%;
-        display: flex;
-        justify-content: center;
-    }
-    .account-history{
-        height: 35em;
-    }
-    .tags{
-        height: 40em;
-    }
-    .tags .tags-list{
-        height: 80%;
-    }
-    .tags .section-label .add-tag{
-        width: 100%;
-    }
-    .tags .section-label .add-tag input{
-        width: 50%;
-    }
+    width: 200px;
+    font-size: 5vw;
+  }
+  .history {
+    width: 100%;
+    min-height: 25em;
+  }
+  .history .item-group {
+    overflow: hidden;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding-left: 30px;
+    scrollbar-width: none;
+  }
+  .history .item-group::-webkit-scrollbar {
+    display: none;
+  }
+  .history .item-group .item:nth-last-child(3) {
+    display: none;
+  }
+  .history .item-group .item {
+    width: 150px;
+    height: 250px;
+    border-radius: 20px;
+    margin-right: 15px;
+  }
+  .history .item-group i {
+    display: none;
+  }
+  .history .title {
+    font-size: 8vw;
+  }
+  .history .item-group .item .name {
+    font-size: 4vw;
+  }
+  .history .item-group .item .used {
+    font-size: 3.5vw;
+  }
+  .history .item-group .item .price {
+    font-size: 6vw;
+  }
 }

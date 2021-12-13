@@ -39,6 +39,15 @@
         <i class="fas fa-cart-plus"></i>
       </div>
     </div>
+    <div class="product-grid-item">
+      <img src="@/assets/dress.png" />
+      <h1 class="name">Dress</h1>
+      <h3 class="used">USED</h3>
+      <h2 class="price">29.29$</h2>
+      <div class="cart-btn">
+        <i class="fas fa-cart-plus"></i>
+      </div>
+    </div>
   </div>
 </template>
 <style></style>
