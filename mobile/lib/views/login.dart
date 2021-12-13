@@ -145,6 +145,7 @@ class _LoginState extends State<Login> {
                                 } else {
                                   print('sign in');
                                   print(result.uid);
+                                  Navigator.pushReplacementNamed(context, 'Home');
                                 }
                                 //Navigator.pushReplacementNamed(context, 'Home');
                               },
