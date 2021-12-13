@@ -3,11 +3,20 @@ import 'dart:ui';
 //Views for Navigator
 import './home.dart';
 
+import 'package:mobile/services/auth.dart';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
+
+  @override
+  _LoginState createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  final AuthService _auth = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -122,20 +131,27 @@ class Login extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            new TextButton(
+                            TextButton(
                               style: ButtonStyle(
                                   backgroundColor:
                                       MaterialStateProperty.all<Color>(
                                           const Color(0xffcf4e6c)),
                                   minimumSize: MaterialStateProperty.all<Size>(
                                       const Size(200, 50))),
-                              onPressed: () {
-                                Navigator.pushReplacementNamed(context, 'Home');
+                              onPressed: () async {
+                                dynamic result = await _auth.signInAnon();
+                                if(result == null) {
+                                  print('error signing in');
+                                } else {
+                                  print('sign in');
+                                  print(result.uid);
+                                }
+                                //Navigator.pushReplacementNamed(context, 'Home');
                               },
-                              child: Text(
+                              child: const Text(
                                 'Log In',
                                 style: TextStyle(
-                                    color: const Color(0xffffffff),
+                                    color: Color(0xffffffff),
                                     fontSize: 20),
                               ),
                             )

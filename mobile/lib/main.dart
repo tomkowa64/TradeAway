@@ -4,9 +4,14 @@ import 'package:mobile/views/login.dart';
 import 'package:mobile/views/register.dart';
 import 'package:mobile/views/shop.dart';
 import 'views/splash.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
