@@ -32,14 +32,14 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         home: Splash(),
-        routes: {
+        routes: <String, WidgetBuilder>{
           // Here you define the names and the Widgets (Preferably ones with a Scaffold) that are your pages
           'Home': (context) => const Home(),
           'Splash': (context) => const Splash(),
           'Login': (context) => const Login(),
           'Register': (context) => const Register(),
           'Shop': (context) => const Shop(),
-          'Product': (ctx) => Product(),
+          'Product': (BuildContext context) => new ProductSilder(),
         });
   }
 }
