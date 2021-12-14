@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/views/home.dart';
 import 'package:mobile/views/login.dart';
+import 'package:mobile/views/product.dart';
 import 'package:mobile/views/register.dart';
 import 'package:mobile/views/shop.dart';
 import 'views/splash.dart';
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
           'Login': (context) => const Login(),
           'Register': (context) => const Register(),
           'Shop': (context) => const Shop(),
+          'Product': (ctx) => Product(),
         });
   }
 }

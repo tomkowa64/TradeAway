@@ -1,8 +1,6 @@
 import 'dart:ui';
 
 //Components
-import 'package:mobile/components/homeCategoryTile.dart';
-import 'package:mobile/components/homeProductItem.dart';
 import 'package:mobile/components/shopProductItem.dart';
 import 'package:mobile/inc/navigationDrawer.dart';
 

@@ -47,7 +47,9 @@ class ShopProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
         child: GestureDetector(
-            onTap: (/* Redirection to tapped item */) {},
+            onTap: (/* Redirection to tapped item */) {
+              Navigator.pushNamed(context, 'Product');
+            },
             child: Container(
               padding:
                   EdgeInsets.only(top: 30, right: 10, bottom: 10, left: 10),
@@ -64,6 +66,7 @@ class ShopProductItem extends StatelessWidget {
                   ]),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   AspectRatio(
                     aspectRatio: 1 / 1,
@@ -75,7 +78,6 @@ class ShopProductItem extends StatelessWidget {
                         fit: BoxFit.scaleDown,
                         child: Text(
                           "${this.productName}",
-                          textAlign: TextAlign.left,
                           style: TextStyle(
                               color: const Color(0xff303744), fontSize: 20),
                         )),
@@ -99,7 +101,7 @@ class ShopProductItem extends StatelessWidget {
                           child: Text("\$${this.price}",
                               style: TextStyle(
                                   fontWeight: FontWeight.w600,
-                                  fontSize: 25,
+                                  fontSize: 20,
                                   fontFamily: "Times New Roman",
                                   color: const Color(0xff303744))),
                         ),
