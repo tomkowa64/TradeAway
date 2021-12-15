@@ -80,7 +80,7 @@ class NavigationDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.shopping_cart),
             title: Text('Cart'),
-            onTap: () => () {},
+            onTap: () => Navigator.pushReplacementNamed(context, 'Cart'),
           ),
           Divider(
             height: 1,

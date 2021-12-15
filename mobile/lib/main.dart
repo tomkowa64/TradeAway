@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/views/cart.dart';
 import 'package:mobile/views/home.dart';
 import 'package:mobile/views/login.dart';
 import 'package:mobile/views/product.dart';
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
           'Register': (context) => const Register(),
           'Shop': (context) => const Shop(),
           'Product': (BuildContext context) => new ProductSilder(),
+          'Cart': (context) => const Cart(),
         });
   }
 }
