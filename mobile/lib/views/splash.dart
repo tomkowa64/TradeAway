@@ -78,8 +78,7 @@ class Splash extends StatelessWidget {
                                   minimumSize: MaterialStateProperty.all<Size>(
                                       const Size(200, 50))),
                               onPressed: () {
-                                Navigator.pushReplacementNamed(
-                                    context, 'Login');
+                                Navigator.pushNamed(context, 'Login');
                               },
                               child: Text(
                                 'Log In',
@@ -108,8 +107,7 @@ class Splash extends StatelessWidget {
                                   minimumSize: MaterialStateProperty.all<Size>(
                                       const Size(200, 50))),
                               onPressed: () {
-                                Navigator.pushReplacementNamed(
-                                    context, 'Register');
+                                Navigator.pushNamed(context, 'Register');
                               },
                               child: Text(
                                 'Create Account',

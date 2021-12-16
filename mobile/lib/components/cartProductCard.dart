@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CartProductCard extends StatelessWidget {
   late String _imgUrl;
@@ -75,7 +74,7 @@ class CartProductCard extends StatelessWidget {
             ],
           ),
           Container(
-              width: 150,
+              width: 120,
               padding: EdgeInsets.only(left: 5),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -127,9 +126,18 @@ class CartProductCard extends StatelessWidget {
                     children: [
                       GestureDetector(
                         onTap: () {},
-                        child: Icon(
-                          FontAwesomeIcons.minusCircle,
-                          size: 25,
+                        child: Container(
+                          width: 30,
+                          height: 30,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(width: 1)),
+                          child: Text(
+                            '-',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 25, fontWeight: FontWeight.w500),
+                          ),
                         ),
                       ),
                       //Product Quantity
@@ -159,10 +167,22 @@ class CartProductCard extends StatelessWidget {
                         ),
                       GestureDetector(
                         onTap: () {},
-                        child: Icon(
-                          FontAwesomeIcons.plusCircle,
-                          size: 25,
-                          color: const Color(0xffcf4e6c),
+                        child: Container(
+                          width: 30,
+                          height: 30,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: const Color(0xffcf4e6c),
+                              border: Border.all(
+                                  width: 1, color: const Color(0xffcf4e6c))),
+                          child: Text(
+                            '+',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 25,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.white),
+                          ),
                         ),
                       )
                     ],

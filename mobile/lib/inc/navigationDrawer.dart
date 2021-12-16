@@ -57,7 +57,7 @@ class NavigationDrawer extends StatelessWidget {
           ListTile(
               leading: Icon(Icons.home),
               title: Text('Home'),
-              onTap: () => Navigator.pushReplacementNamed(context, 'Home')),
+              onTap: () => Navigator.pushNamed(context, 'Home')),
           ListTile(
             leading: Icon(Icons.account_circle),
             title: Text('Profile'),
@@ -76,11 +76,11 @@ class NavigationDrawer extends StatelessWidget {
           ListTile(
               leading: Icon(Icons.shop),
               title: Text('Shop'),
-              onTap: () => Navigator.pushReplacementNamed(context, 'Shop')),
+              onTap: () => Navigator.pushNamed(context, 'Shop')),
           ListTile(
             leading: Icon(Icons.shopping_cart),
             title: Text('Cart'),
-            onTap: () => Navigator.pushReplacementNamed(context, 'Cart'),
+            onTap: () => Navigator.pushNamed(context, 'Cart'),
           ),
           Divider(
             height: 1,
@@ -95,7 +95,7 @@ class NavigationDrawer extends StatelessWidget {
           ListTile(
               leading: Icon(Icons.logout),
               title: Text('Log out'),
-              onTap: () => Navigator.pushReplacementNamed(context, 'Splash'))
+              onTap: () => Navigator.pushNamed(context, 'Splash'))
         ],
       ),
     );

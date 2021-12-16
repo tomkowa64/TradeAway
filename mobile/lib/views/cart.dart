@@ -64,14 +64,14 @@ class Cart extends StatelessWidget {
                         Text(
                           'Total',
                           style: TextStyle(
-                              fontSize: 30,
+                              fontSize: 20,
                               fontWeight: FontWeight.w600,
                               fontFamily: 'Times New Roman'),
                         ),
                         Text(
                           '\$45.99',
                           style: TextStyle(
-                              fontSize: 30,
+                              fontSize: 20,
                               fontWeight: FontWeight.w600,
                               fontFamily: 'Times New Roman'),
                         )

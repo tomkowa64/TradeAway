@@ -130,7 +130,7 @@ class Login extends StatelessWidget {
                                   minimumSize: MaterialStateProperty.all<Size>(
                                       const Size(200, 50))),
                               onPressed: () {
-                                Navigator.pushReplacementNamed(context, 'Home');
+                                Navigator.pushNamed(context, 'Home');
                               },
                               child: Text(
                                 'Log In',

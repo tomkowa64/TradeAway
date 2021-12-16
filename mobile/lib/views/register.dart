@@ -154,8 +154,7 @@ class Register extends StatelessWidget {
                                   minimumSize: MaterialStateProperty.all<Size>(
                                       const Size(200, 50))),
                               onPressed: () {
-                                Navigator.pushReplacementNamed(
-                                    context, 'Login');
+                                Navigator.pushNamed(context, 'Login');
                               },
                               child: Text(
                                 'Register',
