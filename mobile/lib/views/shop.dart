@@ -43,7 +43,7 @@ class Shop extends StatelessWidget {
                               children: [
                                 Container(
                                   padding: EdgeInsets.only(
-                                      top: 20, right: 5, bottom: 20),
+                                      top: 10, right: 5, bottom: 10),
                                   child: TextFormField(
                                     textAlignVertical: TextAlignVertical.center,
                                     decoration: InputDecoration(

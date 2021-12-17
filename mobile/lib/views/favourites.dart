@@ -32,31 +32,6 @@ class Favourites extends StatelessWidget {
                       child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Container(
-                          padding:
-                              EdgeInsets.only(left: 10, right: 10, top: 30),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Icon(
-                                FontAwesomeIcons.solidHeart,
-                                size: 30,
-                                color: const Color(0xffcf4e6c),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(left: 10),
-                                child: Text(
-                                  'Favourites offers',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w600,
-                                    color: const Color(0xff303744),
-                                  ),
-                                ),
-                              )
-                            ],
-                          )),
                       //Favourites items grid
                       SizedBox(
                         height: 1000,
