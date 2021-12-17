@@ -61,7 +61,7 @@ class NavigationDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.account_circle),
             title: Text('Profile'),
-            onTap: () => () {},
+            onTap: () => Navigator.pushNamed(context, 'Profile'),
           ),
           ListTile(
             leading: Icon(Icons.star),

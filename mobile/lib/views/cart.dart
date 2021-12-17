@@ -12,7 +12,7 @@ class Cart extends StatelessWidget {
     return Scaffold(
         body: SingleChildScrollView(
       child: Container(
-        padding: EdgeInsets.only(top: 40, left: 10, right: 20, bottom: 10),
+        padding: EdgeInsets.only(top: 40, left: 10, right: 10, bottom: 10),
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(color: const Color(0xfff5f5f5)),

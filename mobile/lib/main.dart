@@ -3,6 +3,7 @@ import 'package:mobile/views/cart.dart';
 import 'package:mobile/views/home.dart';
 import 'package:mobile/views/login.dart';
 import 'package:mobile/views/product.dart';
+import 'package:mobile/views/profile.dart';
 import 'package:mobile/views/register.dart';
 import 'package:mobile/views/shop.dart';
 import 'views/splash.dart';
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
           'Shop': (context) => const Shop(),
           'Product': (BuildContext context) => new ProductSilder(),
           'Cart': (context) => const Cart(),
+          'Profile': (context) => const Profile(),
         });
   }
 }
