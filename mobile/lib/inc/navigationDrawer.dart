@@ -66,7 +66,7 @@ class NavigationDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.star),
             title: Text('Fauvorites'),
-            onTap: () => () {},
+            onTap: () => Navigator.pushNamed(context, 'Favourites'),
           ),
           ListTile(
             leading: Icon(Icons.transform),

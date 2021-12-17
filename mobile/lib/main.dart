@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/views/cart.dart';
+import 'package:mobile/views/favourites.dart';
 import 'package:mobile/views/home.dart';
 import 'package:mobile/views/login.dart';
 import 'package:mobile/views/product.dart';
@@ -44,6 +45,7 @@ class MyApp extends StatelessWidget {
           'Product': (BuildContext context) => new ProductSilder(),
           'Cart': (context) => const Cart(),
           'Profile': (context) => const Profile(),
+          'Favourites': (context) => const Favourites(),
         });
   }
 }
