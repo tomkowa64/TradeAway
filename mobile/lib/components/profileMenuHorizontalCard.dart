@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 class ProfileMenuHorizontalCard extends StatelessWidget {
   late Icon _itemIcon;
   late String _itemName;
+  late String _itemView;
 
-  ProfileMenuHorizontalCard(this._itemIcon, this._itemName);
+  ProfileMenuHorizontalCard(this._itemIcon, this._itemName, this._itemView);
 
   Icon get itemIcon => _itemIcon;
 
@@ -20,6 +21,12 @@ class ProfileMenuHorizontalCard extends StatelessWidget {
     _itemName = value;
   }
 
+  String get itemView => _itemView;
+
+  set itemView(String value) {
+    _itemView = value;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,42 +34,44 @@ class ProfileMenuHorizontalCard extends StatelessWidget {
       child: Column(
         children: [
           //Action List Item
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
+          GestureDetector(
+              onTap: () => Navigator.pushNamed(context, this.itemView),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(
+                  Column(
                     children: [
-                      this.itemIcon,
-                      Padding(
-                        padding: EdgeInsets.only(left: 15),
-                        child: Text(
-                          '${this.itemName}',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontFamily: 'Times New Roman',
-                            color: const Color(0xff303744),
-                          ),
-                        ),
+                      Row(
+                        children: [
+                          this.itemIcon,
+                          Padding(
+                            padding: EdgeInsets.only(left: 15),
+                            child: Text(
+                              '${this.itemName}',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontFamily: 'Times New Roman',
+                                color: const Color(0xff303744),
+                              ),
+                            ),
+                          )
+                        ],
                       )
                     ],
-                  )
-                ],
-              ),
-              Column(
-                children: [
-                  Row(
+                  ),
+                  Column(
                     children: [
-                      Icon(
-                        Icons.arrow_forward_ios,
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.arrow_forward_ios,
+                          )
+                        ],
                       )
                     ],
-                  )
+                  ),
                 ],
-              ),
-            ],
-          ),
+              )),
           Divider(
             color: const Color(0xff303744),
             thickness: 2,

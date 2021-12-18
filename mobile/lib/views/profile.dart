@@ -82,42 +82,48 @@ class Profile extends StatelessWidget {
                                 size: 40,
                                 color: const Color(0xff303744),
                               ),
-                              'My Transactions'),
+                              'My Transactions',
+                              'PersonalData'),
                           ProfileMenuHorizontalCard(
                               Icon(
                                 Icons.account_circle,
                                 size: 40,
                                 color: const Color(0xff303744),
                               ),
-                              'Personal Data'),
+                              'Personal Data',
+                              'PersonalData'),
                           ProfileMenuHorizontalCard(
                               Icon(
                                 Icons.history,
                                 size: 40,
                                 color: const Color(0xff303744),
                               ),
-                              'Order History'),
+                              'Order History',
+                              'PersonalData'),
                           ProfileMenuHorizontalCard(
                               Icon(
                                 Icons.info,
                                 size: 40,
                                 color: const Color(0xff303744),
                               ),
-                              'About'),
+                              'About',
+                              'PersonalData'),
                           ProfileMenuHorizontalCard(
                               Icon(
                                 Icons.settings,
                                 size: 40,
                                 color: const Color(0xff303744),
                               ),
-                              'Account'),
+                              'Account',
+                              'AccountSettings'),
                           ProfileMenuHorizontalCard(
                               Icon(
                                 Icons.add_circle_outlined,
                                 size: 40,
                                 color: const Color(0xff303744),
                               ),
-                              'Create Offer'),
+                              'Create Offer',
+                              'PersonalData'),
                         ],
                       ),
                     )
