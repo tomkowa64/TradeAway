@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile/views/accountSettingsForm.dart';
 import 'package:mobile/views/cart.dart';
 import 'package:mobile/views/favourites.dart';
+import 'package:mobile/views/history.dart';
 import 'package:mobile/views/home.dart';
 import 'package:mobile/views/login.dart';
 import 'package:mobile/views/personalDataForm.dart';
@@ -9,6 +10,7 @@ import 'package:mobile/views/product.dart';
 import 'package:mobile/views/profile.dart';
 import 'package:mobile/views/register.dart';
 import 'package:mobile/views/shop.dart';
+import 'package:mobile/views/transactions.dart';
 import 'views/splash.dart';
 
 void main() {
@@ -47,6 +49,8 @@ class MyApp extends StatelessWidget {
           'Product': (BuildContext context) => new ProductSilder(),
           'Cart': (context) => const Cart(),
           'Profile': (context) => const Profile(),
+          'History': (context) => const History(),
+          'Transactions': (context) => const Transactions(),
           'Favourites': (context) => const Favourites(),
           'PersonalData': (context) => const PersonalDataForm(),
           'AccountSettings': (context) => new AccountSettingsForm(),

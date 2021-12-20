@@ -71,7 +71,7 @@ class NavigationDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.transform),
             title: Text('Transactions'),
-            onTap: () => () {},
+            onTap: () => Navigator.pushNamed(context, 'Transactions'),
           ),
           ListTile(
               leading: Icon(Icons.shop),

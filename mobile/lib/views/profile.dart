@@ -83,7 +83,7 @@ class Profile extends StatelessWidget {
                                 color: const Color(0xff303744),
                               ),
                               'My Transactions',
-                              'PersonalData'),
+                              'Transactions'),
                           ProfileMenuHorizontalCard(
                               Icon(
                                 Icons.account_circle,
@@ -99,7 +99,7 @@ class Profile extends StatelessWidget {
                                 color: const Color(0xff303744),
                               ),
                               'Order History',
-                              'PersonalData'),
+                              'History'),
                           ProfileMenuHorizontalCard(
                               Icon(
                                 Icons.info,
