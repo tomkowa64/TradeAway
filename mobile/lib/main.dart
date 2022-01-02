@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/services/auth.dart';
+import 'package:mobile/views/accountSettingsForm.dart';
+import 'package:mobile/views/cart.dart';
+import 'package:mobile/views/favourites.dart';
+import 'package:mobile/views/history.dart';
 import 'package:mobile/views/home.dart';
 import 'package:mobile/views/login.dart';
+import 'package:mobile/views/personalDataForm.dart';
+import 'package:mobile/views/product.dart';
+import 'package:mobile/views/profile.dart';
 import 'package:mobile/views/register.dart';
 import 'package:mobile/views/shop.dart';
 import 'package:mobile/wrapper.dart';
+import 'package:mobile/views/transactions.dart';
 import 'views/splash.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -50,6 +58,14 @@ class MyApp extends StatelessWidget {
             'Login': (context) => const Login(),
             'Register': (context) => const Register(),
             'Shop': (context) => const Shop(),
+            'Product': (BuildContext context) => new ProductSilder(),
+            'Cart': (context) => const Cart(),
+            'Profile': (context) => const Profile(),
+            'History': (context) => const History(),
+            'Transactions': (context) => const Transactions(),
+            'Favourites': (context) => const Favourites(),
+            'PersonalData': (context) => const PersonalDataForm(),
+            'AccountSettings': (context) => new AccountSettingsForm(),
           }
         ),
     );

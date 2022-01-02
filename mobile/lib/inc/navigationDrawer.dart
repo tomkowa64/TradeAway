@@ -60,30 +60,30 @@ class NavigationDrawer extends StatelessWidget {
           ListTile(
               leading: Icon(Icons.home),
               title: Text('Home'),
-              onTap: () => Navigator.pushReplacementNamed(context, 'Home')),
+              onTap: () => Navigator.pushNamed(context, 'Home')),
           ListTile(
             leading: Icon(Icons.account_circle),
             title: Text('Profile'),
-            onTap: () => () {},
+            onTap: () => Navigator.pushNamed(context, 'Profile'),
           ),
           ListTile(
             leading: Icon(Icons.star),
             title: Text('Fauvorites'),
-            onTap: () => () {},
+            onTap: () => Navigator.pushNamed(context, 'Favourites'),
           ),
           ListTile(
             leading: Icon(Icons.transform),
             title: Text('Transactions'),
-            onTap: () => () {},
+            onTap: () => Navigator.pushNamed(context, 'Transactions'),
           ),
           ListTile(
               leading: Icon(Icons.shop),
               title: Text('Shop'),
-              onTap: () => Navigator.pushReplacementNamed(context, 'Shop')),
+              onTap: () => Navigator.pushNamed(context, 'Shop')),
           ListTile(
             leading: Icon(Icons.shopping_cart),
             title: Text('Cart'),
-            onTap: () => () {},
+            onTap: () => Navigator.pushNamed(context, 'Cart'),
           ),
           Divider(
             height: 1,

@@ -47,7 +47,9 @@ class HomeProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(context, 'Product');
+      },
       child: Card(
           child: new Container(
         width: 150.0,
