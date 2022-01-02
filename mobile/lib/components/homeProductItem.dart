@@ -6,14 +6,14 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class HomeProductItem extends StatelessWidget {
   late String _imgUrl;
   late String _productName;
-  double? _oldPrice;
-  late double _price;
+  num? _oldPrice;
+  late num _price;
 
   HomeProductItem(this._imgUrl, this._productName, this._price,
       [this._oldPrice]);
 
   HomeProductItem.empty(
-      String imgUrl, String productName, double oldPrice, double price) {
+      String imgUrl, String productName, num oldPrice, num price) {
     this._imgUrl = "";
     this._productName = "";
     this._oldPrice = 0;
@@ -32,15 +32,15 @@ class HomeProductItem extends StatelessWidget {
     _productName = value;
   }
 
-  double? get oldPrice => _oldPrice;
+  num? get oldPrice => _oldPrice;
 
-  set oldPrice(double? value) {
+  set oldPrice(num? value) {
     _oldPrice = value;
   }
 
-  double get price => _price;
+  num get price => _price;
 
-  set price(double value) {
+  set price(num value) {
     _price = value;
   }
 
