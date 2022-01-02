@@ -1,13 +1,18 @@
 import 'dart:ui';
-
+import 'package:mobile/services/auth.dart';
+import 'package:provider/provider.dart';
+import 'package:mobile/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+final AuthService _auth = AuthService();
 class Splash extends StatelessWidget {
   const Splash({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<AppUser?>(context);
+
     return Scaffold(
       body: Container(
           padding: const EdgeInsets.only(top: 150),
@@ -28,12 +33,12 @@ class Splash extends StatelessWidget {
                     children: [
                       Column(
                         mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          new Text(
+                        children: const [
+                          Text(
                             "Trade",
                             style: TextStyle(
                                 fontSize: 40,
-                                color: const Color(0xff303744),
+                                color: Color(0xff303744),
                                 fontStyle: FontStyle.italic,
                                 fontFamily: "Lucida Calligraphy Italic"),
                           )
@@ -41,12 +46,12 @@ class Splash extends StatelessWidget {
                       ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          new Text(
+                        children: const [
+                          Text(
                             "Away",
                             style: TextStyle(
                                 fontSize: 40,
-                                color: const Color(0xffcf4e6c),
+                                color: Color(0xffcf4e6c),
                                 fontStyle: FontStyle.italic,
                                 fontFamily: "Lucida Calligraphy Italic"),
                           )
@@ -56,17 +61,17 @@ class Splash extends StatelessWidget {
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      new Text("The easiest way to sell unused things away",
+                    children: const [
+                      Text("The easiest way to sell unused things away",
                           style: TextStyle(
                               fontStyle: FontStyle.italic,
-                              color: const Color(0xff9e9e9e)))
+                              color: Color(0xff9e9e9e)))
                     ],
                   ),
                   Row(
                     children: [
                       Container(
-                        padding: EdgeInsets.only(top: 30),
+                        padding: const EdgeInsets.only(top: 30),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -78,7 +83,12 @@ class Splash extends StatelessWidget {
                                   minimumSize: MaterialStateProperty.all<Size>(
                                       const Size(200, 50))),
                               onPressed: () {
-                                Navigator.pushNamed(context, 'Login');
+                                if(user == null) {
+                                  Navigator.pushNamed(context, 'Login');
+                                }
+                                else {
+                                  Navigator.pushNamed(context, 'Home');
+                                }
                               },
                               child: const Text(
                                 'Log In',
@@ -95,11 +105,11 @@ class Splash extends StatelessWidget {
                   Row(
                     children: [
                       Container(
-                        padding: EdgeInsets.only(top: 30),
+                        padding: const EdgeInsets.only(top: 30),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            new TextButton(
+                            TextButton(
                               style: ButtonStyle(
                                   backgroundColor:
                                       MaterialStateProperty.all<Color>(
@@ -107,12 +117,38 @@ class Splash extends StatelessWidget {
                                   minimumSize: MaterialStateProperty.all<Size>(
                                       const Size(200, 50))),
                               onPressed: () {
-                                Navigator.pushNamed(context, 'Register');
+                                if(user == null) {
+                                  Navigator.pushNamed(context, 'Register');
+                                }
+                                else {
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: Text("Logout?"),
+                                        content: Text("To register a new account you have to logout."),
+                                        actions: [
+                                          TextButton(
+                                              onPressed: () => Navigator.pop(context, 'Cancel'),
+                                              child: const Text('Back')
+                                          ),
+                                          TextButton(
+                                              onPressed: () async {
+                                                await _auth.signOut();
+                                                Navigator.pushNamed(context, 'Register');
+                                              },
+                                              child: const Text('Logout')
+                                          )
+                                        ],
+                                      );
+                                    }
+                                  );
+                                }
                               },
-                              child: Text(
+                              child: const Text(
                                 'Create Account',
                                 style: TextStyle(
-                                    color: const Color(0xffffffff),
+                                    color: Color(0xffffffff),
                                     fontSize: 20),
                               ),
                             )
