@@ -1,19 +1,23 @@
 import 'dart:ui';
 
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:mobile/services/storage.dart';
 
 class HomeProductItem extends StatelessWidget {
+  late num _productId;
   late String _imgUrl;
   late String _productName;
   num? _oldPrice;
   late num _price;
 
-  HomeProductItem(this._imgUrl, this._productName, this._price,
+  HomeProductItem(this._productId, this._imgUrl, this._productName, this._price,
       [this._oldPrice]);
 
   HomeProductItem.empty(
-      String imgUrl, String productName, num oldPrice, num price) {
+      num productId, String imgUrl, String productName, num oldPrice, num price) {
+    this._productId = 0;
     this._imgUrl = "";
     this._productName = "";
     this._oldPrice = 0;
@@ -46,6 +50,8 @@ class HomeProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Storage storage = Storage();
+
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(context, 'Product');
@@ -57,7 +63,19 @@ class HomeProductItem extends StatelessWidget {
         child: new Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Image.asset(this.imgUrl),
+            FutureBuilder(
+                future: storage.getURL(this._productId, this._imgUrl),
+                builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+                  if(snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
+                    return Image.network(snapshot.data!, fit: BoxFit.cover);
+                  }
+                  if(snapshot.connectionState == ConnectionState.waiting || !snapshot.hasData) {
+                    return CircularProgressIndicator();
+                  }
+                  return Container();
+                }
+            ),
+            // Image.asset(this.imgUrl),
             FittedBox(
                 fit: BoxFit.scaleDown,
                 child: Text(
@@ -88,7 +106,10 @@ class HomeProductItem extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             TextButton(
-                onPressed: () {},
+                onPressed: () async {
+                  // ListResult results = await storage.storage.ref('products/' + this._productId.toString()).listAll();
+                  // storage.uploadFile(this._productId, '/sdcard/Download/blender.png', results.items.length.toString() + '_' + this._productName);
+                },
                 child: Container(
                   padding: EdgeInsets.only(top: 5, bottom: 5),
                   color: const Color(0xffcf4e6c),
