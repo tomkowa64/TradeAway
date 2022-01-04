@@ -93,7 +93,7 @@ class Shop extends StatelessWidget {
                       //Shop items grid
 
                       ConstrainedBox(
-                        constraints: BoxConstraints.expand(height: MediaQuery.of(context).size.height - 170),
+                        constraints: BoxConstraints.expand(height: MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top - MediaQuery.of(context).padding.bottom - 140),
                         child: const ProductsList(),
                         // GridView.count(
                         //     // Create a grid with 2 columns. If you change the scrollDirection to
