@@ -48,6 +48,7 @@ class Favourites extends StatelessWidget {
                             // Generate 100 widgets that display their index in the List.
                             children: List.generate(100, (index) {
                               return ShopProductItem(
+                                  index,
                                   'assets/images/backpack.png',
                                   'Backpack Adidas',
                                   'Lorem ipsum dolor sit amet, consectetur adipiscing elit,'

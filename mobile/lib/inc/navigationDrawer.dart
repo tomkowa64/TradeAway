@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mobile/services/auth.dart';
+import 'package:mobile/views/shop.dart';
 
 class NavigationDrawer extends StatelessWidget {
   final AuthService _auth = AuthService();
@@ -79,7 +80,9 @@ class NavigationDrawer extends StatelessWidget {
           ListTile(
               leading: Icon(Icons.shop),
               title: Text('Shop'),
-              onTap: () => Navigator.pushNamed(context, 'Shop')),
+              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Shop())),
+                  // Navigator.pushNamed(context, 'Shop')
+          ),
           ListTile(
             leading: Icon(Icons.shopping_cart),
             title: Text('Cart'),

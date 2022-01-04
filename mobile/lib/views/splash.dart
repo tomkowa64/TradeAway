@@ -1,9 +1,13 @@
 import 'dart:ui';
 import 'package:mobile/services/auth.dart';
+import 'package:mobile/views/register.dart';
 import 'package:provider/provider.dart';
 import 'package:mobile/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'home.dart';
+import 'login.dart';
 
 final AuthService _auth = AuthService();
 class Splash extends StatelessWidget {
@@ -84,10 +88,10 @@ class Splash extends StatelessWidget {
                                       const Size(200, 50))),
                               onPressed: () {
                                 if(user == null) {
-                                  Navigator.pushNamed(context, 'Login');
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => const Login()));
                                 }
                                 else {
-                                  Navigator.pushNamed(context, 'Home');
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => const Home()));
                                 }
                               },
                               child: const Text(
@@ -118,7 +122,7 @@ class Splash extends StatelessWidget {
                                       const Size(200, 50))),
                               onPressed: () {
                                 if(user == null) {
-                                  Navigator.pushNamed(context, 'Register');
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => const Register()));
                                 }
                                 else {
                                   showDialog(
@@ -135,7 +139,7 @@ class Splash extends StatelessWidget {
                                           TextButton(
                                               onPressed: () async {
                                                 await _auth.signOut();
-                                                Navigator.pushNamed(context, 'Register');
+                                                Navigator.push(context, MaterialPageRoute(builder: (context) => const Register()));
                                               },
                                               child: const Text('Logout')
                                           )

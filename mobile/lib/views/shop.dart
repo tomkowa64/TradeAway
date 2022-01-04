@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 //Components
+import 'package:mobile/components/productsList.dart';
 import 'package:mobile/components/shopProductItem.dart';
 import 'package:mobile/inc/navigationDrawer.dart';
 
@@ -15,7 +16,7 @@ class Shop extends StatelessWidget {
   const Shop({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,) {
     return Scaffold(
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(50),
@@ -80,7 +81,7 @@ class Shop extends StatelessWidget {
                                           BorderRadius.circular(20.0)),
                                   child: IconButton(
                                     onPressed: () {},
-                                    icon: Icon(FontAwesomeIcons.cogs),
+                                    icon: const Icon(FontAwesomeIcons.cogs),
                                     iconSize: 25,
                                   ),
                                 )
@@ -91,34 +92,36 @@ class Shop extends StatelessWidget {
                       ),
                       //Shop items grid
 
-                      SizedBox(
-                        height: 1000,
-                        child: GridView.count(
-                            // Create a grid with 2 columns. If you change the scrollDirection to
-                            // horizontal, this produces 2 rows.
-                            crossAxisSpacing: 10,
-                            crossAxisCount: 2,
-                            mainAxisSpacing: 20,
-                            childAspectRatio: 100 / 190,
-                            shrinkWrap: true,
-                            padding:
-                                EdgeInsets.only(left: 10, right: 10, top: 10),
-                            // Generate 100 widgets that display their index in the List.
-                            children: List.generate(100, (index) {
-                              return ShopProductItem(
-                                  'assets/images/backpack.png',
-                                  'Backpack Adidas',
-                                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit,'
-                                      ' sed do eiusmod tempor incididunt ut labore et dolore'
-                                      ' magna aliqua. Ut enim ad minim veniam, quis nostrud '
-                                      'exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
-                                      ' Duis aute irure dolor in reprehenderit in voluptate velit esse'
-                                      ' cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat '
-                                      'cupidatat non proident, sunt in culpa qui officia '
-                                      'deserunt mollit anim id est laborum.',
-                                  69.99,
-                                  true);
-                            })),
+                      ConstrainedBox(
+                        constraints: BoxConstraints.expand(height: MediaQuery.of(context).size.height - 170),
+                        child: const ProductsList(),
+                        // GridView.count(
+                        //     // Create a grid with 2 columns. If you change the scrollDirection to
+                        //     // horizontal, this produces 2 rows.
+                        //     crossAxisSpacing: 10,
+                        //     crossAxisCount: 2,
+                        //     mainAxisSpacing: 20,
+                        //     childAspectRatio: 100 / 190,
+                        //     shrinkWrap: true,
+                        //     padding:
+                        //         EdgeInsets.only(left: 10, right: 10, top: 10),
+                        //     // Generate 100 widgets that display their index in the List.
+                        //     children: List.generate(100, (index) {
+                        //       return ShopProductItem(
+                        //           'assets/images/backpack.png',
+                        //           'Backpack Adidas',
+                        //           'Lorem ipsum dolor sit amet, consectetur adipiscing elit,'
+                        //               ' sed do eiusmod tempor incididunt ut labore et dolore'
+                        //               ' magna aliqua. Ut enim ad minim veniam, quis nostrud '
+                        //               'exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+                        //               ' Duis aute irure dolor in reprehenderit in voluptate velit esse'
+                        //               ' cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat '
+                        //               'cupidatat non proident, sunt in culpa qui officia '
+                        //               'deserunt mollit anim id est laborum.',
+                        //           69.99,
+                        //           true);
+                        //     })
+                        // ),
                       )
                     ],
                   ))
