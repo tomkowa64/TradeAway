@@ -29,23 +29,23 @@ class _ProductsListState extends State<ProductsList> {
       ),
       itemCount: products.length,
       itemBuilder: (context, index) {
-        if(products[index].discount > 0) {
+        if(products[products.length - 1 - index].discount > 0) {
           return ShopProductItem(
-              index,
-              '0_' + products[index].name,
-              products[index].name,
-              products[index].description,
-              ((products[index].price - products[index].discount) * 100).round() /
+              products.length - 1 - index,
+              '0_' + products[products.length - 1 - index].name,
+              products[products.length - 1 - index].name,
+              products[products.length - 1 - index].description,
+              ((products[products.length - 1 - index].price - products[products.length - 1 - index].discount) * 100).round() /
                   100,
               false,
-              products[index].price);
+              products[products.length - 1 - index].price);
         } else {
           return ShopProductItem(
-              index,
-              '0_' + products[index].name,
-              products[index].name,
-              products[index].description,
-              products[index].price,
+              products.length - 1 - index,
+              '0_' + products[products.length - 1 - index].name,
+              products[products.length - 1 - index].name,
+              products[products.length - 1 - index].description,
+              products[products.length - 1 - index].price,
               false
           );
         }

@@ -95,33 +95,6 @@ class Shop extends StatelessWidget {
                       ConstrainedBox(
                         constraints: BoxConstraints.expand(height: MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top - MediaQuery.of(context).padding.bottom - 140),
                         child: const ProductsList(),
-                        // GridView.count(
-                        //     // Create a grid with 2 columns. If you change the scrollDirection to
-                        //     // horizontal, this produces 2 rows.
-                        //     crossAxisSpacing: 10,
-                        //     crossAxisCount: 2,
-                        //     mainAxisSpacing: 20,
-                        //     childAspectRatio: 100 / 190,
-                        //     shrinkWrap: true,
-                        //     padding:
-                        //         EdgeInsets.only(left: 10, right: 10, top: 10),
-                        //     // Generate 100 widgets that display their index in the List.
-                        //     children: List.generate(100, (index) {
-                        //       return ShopProductItem(
-                        //           'assets/images/backpack.png',
-                        //           'Backpack Adidas',
-                        //           'Lorem ipsum dolor sit amet, consectetur adipiscing elit,'
-                        //               ' sed do eiusmod tempor incididunt ut labore et dolore'
-                        //               ' magna aliqua. Ut enim ad minim veniam, quis nostrud '
-                        //               'exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
-                        //               ' Duis aute irure dolor in reprehenderit in voluptate velit esse'
-                        //               ' cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat '
-                        //               'cupidatat non proident, sunt in culpa qui officia '
-                        //               'deserunt mollit anim id est laborum.',
-                        //           69.99,
-                        //           true);
-                        //     })
-                        // ),
                       )
                     ],
                   ))
