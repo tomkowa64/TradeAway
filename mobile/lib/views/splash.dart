@@ -2,7 +2,7 @@ import 'dart:ui';
 import 'package:mobile/services/auth.dart';
 import 'package:mobile/views/register.dart';
 import 'package:provider/provider.dart';
-import 'package:mobile/models/user.dart';
+import 'package:mobile/models/appUser.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 

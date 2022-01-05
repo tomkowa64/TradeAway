@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/models/user.dart';
+import 'package:mobile/models/appUser.dart';
 import 'package:provider/provider.dart';
 import 'views/splash.dart';
 import 'views/home.dart';

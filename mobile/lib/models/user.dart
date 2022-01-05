@@ -1,5 +1,11 @@
-class AppUser {
+class OurUser {
   final String uid;
+  final String name;
+  final String surname;
 
-  AppUser({ required this.uid });
+  OurUser({
+    required this.uid,
+    required this.name,
+    required this.surname
+  });
 }

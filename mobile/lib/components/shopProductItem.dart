@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mobile/services/storage.dart';
+import 'package:mobile/views/product.dart';
 
 class ShopProductItem extends StatelessWidget {
   late num _productId;
@@ -52,8 +53,8 @@ class ShopProductItem extends StatelessWidget {
 
     return Center(
         child: GestureDetector(
-            onTap: (/* Redirection to tapped item */) {
-              Navigator.pushNamed(context, 'Product');
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => ProductSilder(productId: this._productId)));
             },
             child: Container(
               padding:

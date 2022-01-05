@@ -1,9 +1,11 @@
+import 'dart:async';
 import 'dart:ui';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mobile/services/storage.dart';
+import 'package:mobile/views/product.dart';
 
 class HomeProductItem extends StatelessWidget {
   late num _productId;
@@ -54,7 +56,7 @@ class HomeProductItem extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, 'Product');
+        Navigator.push(context, MaterialPageRoute(builder: (context) => ProductSilder(productId: this._productId)));
       },
       child: Card(
           child: new Container(

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class Storage {
@@ -29,11 +30,25 @@ class Storage {
   Future<ListResult> listFiles(num id) async {
     ListResult results = await storage.ref('products/$id/').listAll();
     
-    for (var ref in results.items) {
-      print('Found file: $ref');
-    }
+    // for (var ref in results.items) {
+    //   print('Found file: $ref');
+    // }
 
     return results;
+  }
+
+  Future<List<Image>> listImages(num id) async {
+    ListResult results = await storage.ref('products/$id/').listAll();
+    List<Image> imgList = [];
+    String url, name;
+
+    for (var element in results.items) {
+      name = element.name;
+      url = await storage.ref('products/$id/$name').getDownloadURL();
+      imgList.add(Image.network(url, fit: BoxFit.cover));
+    }
+
+    return imgList;
   }
 
   Future<String> getURL(num id, String fileName) async {

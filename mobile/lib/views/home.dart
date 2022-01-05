@@ -9,7 +9,7 @@ import 'package:mobile/components/trendsList.dart';
 import 'package:mobile/components/yourPicksList.dart';
 import 'package:mobile/inc/navigationDrawer.dart';
 import 'package:mobile/models/product.dart';
-import 'package:mobile/models/user.dart';
+import 'package:mobile/models/appUser.dart';
 
 //Views for Navigator
 import './login.dart';
