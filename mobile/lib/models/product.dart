@@ -7,6 +7,7 @@ class Product {
   final String seller;
   final num category;
   final num units;
+  final String state;
 
   Product({
     required this.id,
@@ -16,6 +17,7 @@ class Product {
     required this.discount,
     required this.seller,
     required this.category,
-    required this.units
+    required this.units,
+    required this.state
   });
 }
