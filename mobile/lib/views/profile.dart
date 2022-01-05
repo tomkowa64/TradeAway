@@ -123,7 +123,7 @@ class Profile extends StatelessWidget {
                                 color: const Color(0xff303744),
                               ),
                               'Create Offer',
-                              'PersonalData'),
+                              'AddOffer'),
                         ],
                       ),
                     )

@@ -3,6 +3,7 @@ import 'package:mobile/models/product.dart';
 import 'package:mobile/services/auth.dart';
 import 'package:mobile/services/database.dart';
 import 'package:mobile/views/accountSettingsForm.dart';
+import 'package:mobile/views/addOfferForm.dart';
 import 'package:mobile/views/cart.dart';
 import 'package:mobile/views/favourites.dart';
 import 'package:mobile/views/history.dart';
