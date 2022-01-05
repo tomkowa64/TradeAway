@@ -116,7 +116,6 @@ class _Product extends State<ProductSilder> {
                       );
                     }
                     if(snapshot.connectionState == ConnectionState.waiting || !snapshot.hasData) {
-                      print('loading');
                       return const CircularProgressIndicator();
                     }
                     return Container();
