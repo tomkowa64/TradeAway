@@ -72,6 +72,7 @@ class MyApp extends StatelessWidget {
               'Favourites': (context) => const Favourites(),
               'PersonalData': (context) => const PersonalDataForm(),
               'AccountSettings': (context) => AccountSettingsForm(),
+              'AddOffer': (context) => AddOfferForm(),
             }
         )
       )
