@@ -2,9 +2,13 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:mobile/services/auth.dart';
+import 'package:mobile/views/shop.dart';
 
 class NavigationDrawer extends StatelessWidget {
-  const NavigationDrawer({Key? key}) : super(key: key);
+  final AuthService _auth = AuthService();
+
+  // const NavigationDrawer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +80,9 @@ class NavigationDrawer extends StatelessWidget {
           ListTile(
               leading: Icon(Icons.shop),
               title: Text('Shop'),
-              onTap: () => Navigator.pushNamed(context, 'Shop')),
+              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Shop())),
+                  // Navigator.pushNamed(context, 'Shop')
+          ),
           ListTile(
             leading: Icon(Icons.shopping_cart),
             title: Text('Cart'),
@@ -95,7 +101,11 @@ class NavigationDrawer extends StatelessWidget {
           ListTile(
               leading: Icon(Icons.logout),
               title: Text('Log out'),
-              onTap: () => Navigator.pushNamed(context, 'Splash'))
+              onTap: () async {
+                await _auth.signOut();
+                Navigator.pushReplacementNamed(context, 'Splash');
+              },
+          )
         ],
       ),
     );

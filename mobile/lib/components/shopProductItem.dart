@@ -2,16 +2,19 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:mobile/services/storage.dart';
 
 class ShopProductItem extends StatelessWidget {
+  late num _productId;
   late String _imgUrl;
   late String _productName;
   late String _description;
-  late double _price;
+  num? _oldPrice;
+  late num _price;
   late bool _isFavourite;
 
-  ShopProductItem(this._imgUrl, this._productName, this._description,
-      this._price, this._isFavourite);
+  ShopProductItem(this._productId, this._imgUrl, this._productName, this._description,
+      this._price, this._isFavourite, [this._oldPrice]);
 
   String get imgUrl => _imgUrl;
 
@@ -31,9 +34,9 @@ class ShopProductItem extends StatelessWidget {
     _description = value;
   }
 
-  double get price => _price;
+  num get price => _price;
 
-  set price(double value) {
+  set price(num value) {
     _price = value;
   }
 
@@ -45,6 +48,8 @@ class ShopProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Storage storage = Storage();
+
     return Center(
         child: GestureDetector(
             onTap: (/* Redirection to tapped item */) {
@@ -70,7 +75,19 @@ class ShopProductItem extends StatelessWidget {
                 children: [
                   AspectRatio(
                     aspectRatio: 1 / 1,
-                    child: Image.asset("${this.imgUrl}", fit: BoxFit.cover),
+                    child: FutureBuilder(
+                        future: storage.getURL(this._productId, this._imgUrl),
+                        builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+                          if(snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
+                            return Image.network(snapshot.data!, fit: BoxFit.cover);
+                          }
+                          if(snapshot.connectionState == ConnectionState.waiting || !snapshot.hasData) {
+                            return CircularProgressIndicator();
+                          }
+                          return Container();
+                        }
+                    ),
+                    // Image.asset("${this.imgUrl}", fit: BoxFit.cover),
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 15),
