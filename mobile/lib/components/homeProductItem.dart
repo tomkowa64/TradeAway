@@ -65,17 +65,20 @@ class HomeProductItem extends StatelessWidget {
         child: new Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            FutureBuilder(
-                future: storage.getURL(this._productId, this._imgUrl),
-                builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-                  if(snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
-                    return Image.network(snapshot.data!, fit: BoxFit.cover);
+            AspectRatio(
+              aspectRatio: 1/1,
+              child: FutureBuilder(
+                  future: storage.getURL(this._productId, this._imgUrl),
+                  builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+                    if(snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
+                      return Image.network(snapshot.data!, fit: BoxFit.cover);
+                    }
+                    if(snapshot.connectionState == ConnectionState.waiting || !snapshot.hasData) {
+                      return CircularProgressIndicator();
+                    }
+                    return Container();
                   }
-                  if(snapshot.connectionState == ConnectionState.waiting || !snapshot.hasData) {
-                    return CircularProgressIndicator();
-                  }
-                  return Container();
-                }
+              ),
             ),
             // Image.asset(this.imgUrl),
             FittedBox(
