@@ -22,14 +22,14 @@ class _YourPicksListState extends State<YourPicksList> {
         itemBuilder: (context, index) {
           if (products[index].discount > 0)
             return HomeProductItem(
-                index,
+                products[index].id,
                 '0_' + products[index].name,
                 products[index].name,
                 ((products[index].price - products[index].discount) * 100)
                         .round() /
                     100,
                 products[index].price);
-          return HomeProductItem(index, '0_' + products[index].name,
+          return HomeProductItem(products[index].id, '0_' + products[index].name,
               products[index].name, products[index].price);
         },
         scrollDirection: Axis.horizontal);

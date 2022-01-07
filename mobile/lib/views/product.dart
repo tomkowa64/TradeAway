@@ -152,7 +152,7 @@ class _Product extends State<ProductSilder> {
                           children: [
                             Text(
                               //Product Name
-                              products[widget.productId.toInt()].name,
+                              products.where((element) => element.id == widget.productId.toInt()).first.name,
                               style: TextStyle(
                                   fontSize: 30,
                                   fontFamily: 'Times New Roman',
@@ -166,7 +166,7 @@ class _Product extends State<ProductSilder> {
                                   color: Colors.black,
                                   borderRadius: BorderRadius.circular(30)),
                               child: Text(
-                                  products[widget.productId.toInt()].state,
+                                  products.where((element) => element.id == widget.productId.toInt()).first.state,
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.w700,
@@ -182,11 +182,11 @@ class _Product extends State<ProductSilder> {
                               //Product seller
                               Text(
                                 users.firstWhere(
-                                        (element) => element.uid == products[widget.productId.toInt()].seller
+                                        (element) => element.uid == products.where((element) => element.id == widget.productId.toInt()).first.seller
                                 ).name
                                   + ' ' +
                                 users.firstWhere(
-                                        (element) => element.uid == products[widget.productId.toInt()].seller
+                                        (element) => element.uid == products.where((element) => element.id == widget.productId.toInt()).first.seller
                                 ).surname,
                                 style: TextStyle(
                                     fontSize: 13,
@@ -194,7 +194,7 @@ class _Product extends State<ProductSilder> {
                               ),
                               //Quantity left
                               Text(
-                                products[widget.productId.toInt()]
+                                products.where((element) => element.id == widget.productId.toInt()).first
                                         .units
                                         .toString() +
                                     ' items left',
@@ -212,7 +212,7 @@ class _Product extends State<ProductSilder> {
                             children: [
                               Flexible(
                                 child: Text(
-                                    products[widget.productId.toInt()]
+                                    products.where((element) => element.id == widget.productId.toInt()).first
                                         .description,
                                     maxLines: 4,
                                     style: TextStyle(
@@ -231,8 +231,8 @@ class _Product extends State<ProductSilder> {
                             children: [
                               Text(
                                 '\$' +
-                                    (products[widget.productId.toInt()].price -
-                                            products[widget.productId.toInt()]
+                                    (products.where((element) => element.id == widget.productId.toInt()).first.price -
+                                        products.where((element) => element.id == widget.productId.toInt()).first
                                                 .discount)
                                         .toString(),
                                 style: TextStyle(

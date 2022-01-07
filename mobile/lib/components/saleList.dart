@@ -24,7 +24,7 @@ class _SaleListState extends State<SaleList> {
         itemBuilder: (context, index) {
           if (products[index].discount > 0)
             return HomeProductItem(
-                index,
+                products[index].id,
                 '0_' + products[index].name,
                 products[index].name,
                 ((products[index].price - products[index].discount) * 100)
