@@ -16,7 +16,7 @@ class _ProductsListState extends State<ProductsList> {
   @override
   Widget build(BuildContext context) {
     final products = Provider.of<List<Product>>(context);
-    // final Storage storage = Storage();
+    products.sort((a, b) => b.id.compareTo(a.id));
 
     return GridView.builder(
       shrinkWrap: true,
