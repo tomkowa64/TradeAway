@@ -5,8 +5,10 @@ import 'package:mobile/models/product.dart';
 import 'package:mobile/services/storage.dart';
 import 'package:provider/provider.dart';
 
+// old file with no filtering, not used anymore
+
 class ProductsList extends StatefulWidget {
-  const ProductsList({Key? key}) : super(key: key);
+  const ProductsList({ Key? key }) : super(key: key);
 
   @override
   _ProductsListState createState() => _ProductsListState();
