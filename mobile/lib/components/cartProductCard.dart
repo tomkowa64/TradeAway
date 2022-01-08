@@ -1,15 +1,17 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:mobile/services/storage.dart';
 
 class CartProductCard extends StatelessWidget {
+  late num _productId;
   late String _imgUrl;
   late String _productName;
   late String _sellerName;
   late double _price;
   late int _quantity;
 
-  CartProductCard(this._imgUrl, this._productName, this._sellerName,
+  CartProductCard(this._productId, this._imgUrl, this._productName, this._sellerName,
       this._price, this._quantity);
 
   String get imgUrl => _imgUrl;
@@ -44,6 +46,8 @@ class CartProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Storage storage = Storage();
+
     return Container(
       width: MediaQuery.of(context).size.width,
       height: 100,
@@ -69,7 +73,21 @@ class CartProductCard extends StatelessWidget {
                     )
                   ],
                 ),
-                child: Image.asset('${this.imgUrl}'),
+                child: AspectRatio(
+                  aspectRatio: 1/1,
+                  child: FutureBuilder(
+                      future: storage.getURL(this._productId, this._imgUrl),
+                      builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+                        if(snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
+                          return Image.network(snapshot.data!, fit: BoxFit.cover);
+                        }
+                        if(snapshot.connectionState == ConnectionState.waiting || !snapshot.hasData) {
+                          return CircularProgressIndicator();
+                        }
+                        return Container();
+                      }
+                  ),
+                ),
               ))
             ],
           ),

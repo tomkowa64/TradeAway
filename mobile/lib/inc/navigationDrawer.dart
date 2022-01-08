@@ -3,7 +3,12 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mobile/services/auth.dart';
+import 'package:mobile/views/cart.dart';
+import 'package:mobile/views/favourites.dart';
+import 'package:mobile/views/home.dart';
+import 'package:mobile/views/profile.dart';
 import 'package:mobile/views/shop.dart';
+import 'package:mobile/views/transactions.dart';
 
 class NavigationDrawer extends StatelessWidget {
   final AuthService _auth = AuthService();
@@ -61,32 +66,31 @@ class NavigationDrawer extends StatelessWidget {
           ListTile(
               leading: Icon(Icons.home),
               title: Text('Home'),
-              onTap: () => Navigator.pushNamed(context, 'Home')),
+    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Home()))),
           ListTile(
             leading: Icon(Icons.account_circle),
             title: Text('Profile'),
-            onTap: () => Navigator.pushNamed(context, 'Profile'),
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Profile())),
           ),
           ListTile(
             leading: Icon(Icons.star),
             title: Text('Fauvorites'),
-            onTap: () => Navigator.pushNamed(context, 'Favourites'),
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Favourites())),
           ),
           ListTile(
             leading: Icon(Icons.transform),
             title: Text('Transactions'),
-            onTap: () => Navigator.pushNamed(context, 'Transactions'),
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Transactions())),
           ),
           ListTile(
-              leading: Icon(Icons.shop),
-              title: Text('Shop'),
-              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Shop())),
-                  // Navigator.pushNamed(context, 'Shop')
+            leading: Icon(Icons.shop),
+            title: Text('Shop'),
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Shop())),
           ),
           ListTile(
             leading: Icon(Icons.shopping_cart),
             title: Text('Cart'),
-            onTap: () => Navigator.pushNamed(context, 'Cart'),
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Cart())),
           ),
           Divider(
             height: 1,
