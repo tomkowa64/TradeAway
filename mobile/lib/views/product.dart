@@ -37,6 +37,13 @@ class _Product extends State<ProductSilder> {
   Widget build(BuildContext context) {
     final products = Provider.of<List<Product>>(context);
     final users = Provider.of<List<OurUser>>(context);
+    if(products.isEmpty || users.isEmpty) {
+      Future.delayed(const Duration(milliseconds: 1), () {
+        Navigator.pop(context);
+        Navigator.push(context, MaterialPageRoute(
+            builder: (context) => ProductSilder(productId: widget.productId)));
+      });
+    }
 
     return Scaffold(
         body: Container(
