@@ -14,7 +14,7 @@ class YourPicksList extends StatefulWidget {
 class _YourPicksListState extends State<YourPicksList> {
   @override
   Widget build(BuildContext context) {
-    final products = Provider.of<List<Product>>(context);
+    final products = Provider.of<List<Product>>(context).where((element) => element.units > 0).toList();
 
     return ListView.builder(
         shrinkWrap: true,

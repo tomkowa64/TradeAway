@@ -15,8 +15,7 @@ class SaleList extends StatefulWidget {
 class _SaleListState extends State<SaleList> {
   @override
   Widget build(BuildContext context) {
-    final products = Provider.of<List<Product>>(context);
-    final Storage storage = Storage();
+    final products = Provider.of<List<Product>>(context).where((element) => element.units > 0).toList();
 
     return ListView.builder(
         shrinkWrap: true,

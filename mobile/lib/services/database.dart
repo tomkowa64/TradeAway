@@ -103,7 +103,7 @@ class DatabaseService {
 
   // update cart data
   Future updateCartData(FlutterCart cart) async {
-    await cartCollection.doc(uid.toString()).delete();
+    // await cartCollection.doc(uid.toString()).delete();
 
     Map<String, int> cartMap = {};
     for (var item in cart.cartItem.toList()) {

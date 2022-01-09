@@ -29,6 +29,7 @@ class _Product extends State<ProductSilder> {
   final Storage storage = Storage();
   late Future<List<Image>> _future;
   int _current = 0;
+  int qty = 1;
   final CarouselController _controller = CarouselController();
 
   @override
@@ -43,6 +44,7 @@ class _Product extends State<ProductSilder> {
     final DatabaseService database = DatabaseService(uid: auth.uid);
     final products = Provider.of<List<Product>>(context);
     final users = Provider.of<List<OurUser>>(context);
+
     if (products.isEmpty || users.isEmpty) {
       Future.delayed(const Duration(milliseconds: 1), () {
         Navigator.pop(context);
@@ -141,8 +143,8 @@ class _Product extends State<ProductSilder> {
                   }),
               Expanded(
                   child: Container(
-                padding:
-                    const EdgeInsets.only(top: 20, right: 10, bottom: 10, left: 10),
+                padding: const EdgeInsets.only(
+                    top: 20, right: 10, bottom: 10, left: 10),
                 height: 1000,
                 margin: const EdgeInsets.only(top: 40),
                 decoration: BoxDecoration(
@@ -230,8 +232,7 @@ class _Product extends State<ProductSilder> {
                                                 .seller)
                                         .surname,
                                 style: const TextStyle(
-                                    fontSize: 13,
-                                    color: Color(0xff9e9e9e)),
+                                    fontSize: 13, color: Color(0xff9e9e9e)),
                               ),
                               //Quantity left
                               Text(
@@ -244,8 +245,7 @@ class _Product extends State<ProductSilder> {
                                         .toString() +
                                     ' items left',
                                 style: const TextStyle(
-                                    fontSize: 13,
-                                    color: Color(0xff303744)),
+                                    fontSize: 13, color: Color(0xff303744)),
                               )
                             ],
                           ),
@@ -311,18 +311,38 @@ class _Product extends State<ProductSilder> {
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
-                                  children: const [
-                                    Icon(
-                                      FontAwesomeIcons.plus,
-                                      size: 15,
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          if (qty <
+                                              products
+                                                  .where((element) =>
+                                                      element.id ==
+                                                      widget.productId.toInt())
+                                                  .first
+                                                  .units) qty++;
+                                        });
+                                      },
+                                      child: const Icon(
+                                        FontAwesomeIcons.plus,
+                                        size: 15,
+                                      ),
                                     ),
                                     Text(
-                                      '1',
-                                      style: TextStyle(fontSize: 25),
+                                      qty.toString(),
+                                      style: const TextStyle(fontSize: 25),
                                     ),
-                                    Icon(
-                                      FontAwesomeIcons.minus,
-                                      size: 15,
+                                    GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          if (qty > 1) qty--;
+                                        });
+                                      },
+                                      child: const Icon(
+                                        FontAwesomeIcons.minus,
+                                        size: 15,
+                                      ),
                                     )
                                   ],
                                 ),
@@ -361,8 +381,7 @@ class _Product extends State<ProductSilder> {
                                                   widget.productId.toInt())
                                               .first
                                               .discount),
-                                      quantity: 1
-                                  );
+                                      quantity: qty);
                                   database.updateCartData(cart);
                                 },
                                 child: const Text(

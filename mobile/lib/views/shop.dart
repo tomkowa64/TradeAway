@@ -45,6 +45,7 @@ class _ShopState extends State<Shop> {
     final products = Provider.of<List<Product>>(context, listen: false);
     if (filteredProducts.isEmpty) {
       filteredProducts = List.from(products);
+      filteredProducts = filteredProducts.where((element) => element.units > 0).toList();
       filteredProducts.sort((a, b) => b.id.compareTo(a.id));
       Future.delayed(const Duration(milliseconds: 1), () {
         Navigator.pop(context);

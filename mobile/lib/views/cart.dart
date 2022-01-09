@@ -24,42 +24,50 @@ class _Cart extends State<Cart> {
 
   @override
   Widget build(BuildContext context) {
+    bool exists = false;
+
     final auth = Provider.of<AppUser>(context);
     final carts = Provider.of<List<Map<String, dynamic>>>(context);
     final products = Provider.of<List<Product>>(context);
     final users = Provider.of<List<OurUser>>(context);
 
-    // print(cart.getTotalAmount());
-    // for (var value in cart.cartItem.toList()) {
-    //   print(value.productId);
-    // };
-
     cart.deleteAllCart();
-    carts
-        .firstWhere((element) => element.values.toList()[0] == auth.uid)
-        .values
-        .toList()[1]
-        .toString()
-        .substring(
+    if(carts.isNotEmpty) {
+      for (var value in carts.toList()) {
+        if(value.values.toList()[0] == auth.uid) {
+          exists = true;
+          break;
+        }
+      }
+    }
+
+    if(exists) {
+      if(carts.firstWhere((element) => element.values.toList()[0] == auth.uid).values.toList().length > 1) {
+        carts
+            .firstWhere((element) => element.values.toList()[0] == auth.uid)
+            .values
+            .toList()[1]
+            .toString()
+            .substring(
             1,
             carts
-                    .firstWhere(
-                        (element) => element.values.toList()[0] == auth.uid)
-                    .values
-                    .toList()[1]
-                    .toString()
-                    .length -
+                .firstWhere(
+                    (element) => element.values.toList()[0] == auth.uid)
+                .values
+                .toList()[1]
+                .toString()
+                .length -
                 1)
-        .split(',')
-        .forEach((element) {
-      cart.addToCart(
-          productId: element.trim().split(':')[0],
-          quantity: int.parse(element.trim().split(':')[1].trim()),
-          unitPrice: products.firstWhere((product) => product.id == int.parse(element.trim().split(':')[0])).price - products.firstWhere((product) => product.id == int.parse(element.trim().split(':')[0])).discount
-      );
-    });
-
-    // print(cart.getTotalAmount());
+            .split(',')
+            .forEach((element) {
+          cart.addToCart(
+              productId: element.trim().split(':')[0],
+              quantity: int.parse(element.trim().split(':')[1].trim()),
+              unitPrice: products.firstWhere((product) => product.id == int.parse(element.trim().split(':')[0])).price - products.firstWhere((product) => product.id == int.parse(element.trim().split(':')[0])).discount
+          );
+        });
+      }
+    }
 
     return Scaffold(
         body: SingleChildScrollView(
@@ -125,7 +133,7 @@ class _Cart extends State<Cart> {
                               fontFamily: 'Times New Roman'),
                         ),
                         Text(
-                          '\$' + cart.getTotalAmount().toString(),
+                          '\$' + ((cart.getTotalAmount() * 100).round() / 100).toString(),
                           style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w600,
