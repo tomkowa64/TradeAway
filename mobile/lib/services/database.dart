@@ -70,12 +70,13 @@ class DatabaseService {
   }
 
   // update transaction data
-  Future updateTransactionData(int id, int productId, String sellerId, String? clientId, num price, String status, Timestamp date) async {
+  Future updateTransactionData(int id, String productId, String sellerId, String? clientId, num price, num quantity, String status, Timestamp date) async {
     return await transactionCollection.doc(id.toString()).set({
       'productId': productId,
       'seller': sellerId,
       'client': clientId,
       'price': price,
+      'quantity': quantity,
       'status': status,
       'date': date
     });
@@ -86,10 +87,12 @@ class DatabaseService {
     return snapshot.docs.map((doc) {
       Map<String, dynamic> data = doc.data()! as Map<String, dynamic>;
       return OurTransaction(
-        productId: doc.id.toString(),
+        transactionId: int.parse(doc.id),
+        productId: data['productId'] ?? '',
         sellerId: data['sellerId'] ?? '',
         clientId: data['clientId'] ?? '',
         price: data['price'] ?? 0,
+        quantity: data['quantity'] ?? 0,
         status: data['status'] ?? '',
         date: data['date'] ?? ''
       );
@@ -113,6 +116,11 @@ class DatabaseService {
     return await cartCollection.doc(uid.toString()).set({
       'cart': cartMap
     });
+  }
+
+  // clear cart
+  Future deleteCartData() async {
+    await cartCollection.doc(uid.toString()).delete();
   }
 
   // transaction list from snapshot

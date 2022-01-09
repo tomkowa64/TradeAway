@@ -162,15 +162,7 @@ class Home extends StatelessWidget {
                             color: const Color(0xffffffff),
                             height: 300.0,
                             child: const YourPicksList()
-                            // ListView(children: [
-                            //   HomeProductItem('assets/images/backpack.png',
-                            //       'Backpack Adidas Premium', 69.99, 49.99),
-                            //   HomeProductItem('assets/images/blender.png',
-                            //       'Blender', 69.99, 49.99),
-                            //   HomeProductItem('assets/images/sample-product.jpg',
-                            //       'Backpack Adidas Premium', 69.99, 49.99),
-                            // ], scrollDirection: Axis.horizontal),
-                            )
+                        )
                       ],
                     ))
                   ],
