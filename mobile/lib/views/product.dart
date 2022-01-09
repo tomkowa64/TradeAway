@@ -367,22 +367,41 @@ class _Product extends State<ProductSilder> {
                                               BorderRadius.circular(25))),
                                 ),
                                 onPressed: () {
-                                  cart.addToCart(
-                                      productId: widget.productId,
-                                      unitPrice: (products
-                                              .where((element) =>
-                                                  element.id ==
-                                                  widget.productId.toInt())
-                                              .first
-                                              .price -
-                                          products
-                                              .where((element) =>
-                                                  element.id ==
-                                                  widget.productId.toInt())
-                                              .first
-                                              .discount),
-                                      quantity: qty);
-                                  database.updateCartData(cart);
+                                  if(products.firstWhere((element) => element.id == widget.productId.toInt()).seller != auth.uid) {
+                                    cart.addToCart(
+                                        productId: widget.productId,
+                                        unitPrice: (products
+                                            .where((element) =>
+                                        element.id ==
+                                            widget.productId.toInt())
+                                            .first
+                                            .price -
+                                            products
+                                                .where((element) =>
+                                            element.id ==
+                                                widget.productId.toInt())
+                                                .first
+                                                .discount),
+                                        quantity: qty);
+                                    database.updateCartData(cart);
+                                  } else {
+                                    showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            title: const Text("It's your product"),
+                                            content: const Text(
+                                                "You can't buy your own product."),
+                                            actions: [
+                                              TextButton(
+                                                  onPressed: () => Navigator.pop(
+                                                      context, 'Cancel'),
+                                                  child: const Text('OK')),
+                                            ],
+                                          );
+                                        }
+                                    );
+                                  }
                                 },
                                 child: const Text(
                                   'Cart',

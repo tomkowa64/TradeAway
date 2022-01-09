@@ -16,13 +16,13 @@ class DatabaseService {
   final CollectionReference cartCollection = FirebaseFirestore.instance.collection('carts');
 
   // update product data
-  Future updateProductData(int id, String name, String description, double price, double discount, int category, int units, String state) async {
+  Future updateProductData(int id, String name, String description, double price, double discount, String sellerId, int category, int units, String state) async {
     return await productCollection.doc(id.toString()).set({
       'name': name,
       'description': description,
       'price': price,
       'discount': discount,
-      'seller': uid,
+      'seller': sellerId,
       'category': category,
       'units': units,
       'state': state
@@ -89,8 +89,8 @@ class DatabaseService {
       return OurTransaction(
         transactionId: int.parse(doc.id),
         productId: data['productId'] ?? '',
-        sellerId: data['sellerId'] ?? '',
-        clientId: data['clientId'] ?? '',
+        sellerId: data['seller'] ?? '',
+        clientId: data['client'] ?? '',
         price: data['price'] ?? 0,
         quantity: data['quantity'] ?? 0,
         status: data['status'] ?? '',

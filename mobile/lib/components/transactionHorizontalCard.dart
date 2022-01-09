@@ -2,64 +2,93 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:mobile/models/appUser.dart';
+import 'package:mobile/models/product.dart';
+import 'package:mobile/models/transaction.dart';
+import 'package:mobile/services/database.dart';
+import 'package:mobile/services/storage.dart';
+import 'package:provider/provider.dart';
 
-class TransactionHorizontalCard extends StatelessWidget {
+class TransactionHorizontalCard extends StatefulWidget {
+  late int _transactionId;
   late String _sellerAvatarUrl;
   late String _productName;
   late String _description;
   late double _price;
+  late num _productId;
   late String _productImgUrl;
   late bool _isSeller;
 
-  TransactionHorizontalCard(this._sellerAvatarUrl, this._productName,
-      this._description, this._price, this._productImgUrl, this._isSeller);
+  TransactionHorizontalCard(this._transactionId, this._sellerAvatarUrl, this._productName,
+      this._description, this._price, this._productId, this._productImgUrl,
+      this._isSeller);
 
-  String get sellerAvatarUrl => _sellerAvatarUrl;
+  @override
+  State<StatefulWidget> createState() {
+    return _TransactionHorizontalCard();
+  }
+}
+
+class _TransactionHorizontalCard extends State<TransactionHorizontalCard> {
+  String get sellerAvatarUrl => widget._sellerAvatarUrl;
+
+  int get transactionId => widget._transactionId;
+
+  num get productId => widget._productId;
 
   set sellerAvatarUrl(String value) {
-    _sellerAvatarUrl = value;
+    widget._sellerAvatarUrl = value;
   }
 
-  String get productName => _productName;
+  String get productName => widget._productName;
 
   set productName(String value) {
-    _productName = value;
+    widget._productName = value;
   }
 
-  String get description => _description;
+  String get description => widget._description;
 
   set description(String value) {
-    _description = value;
+    widget._description = value;
   }
 
-  double get price => _price;
+  double get price => widget._price;
 
   set price(double value) {
-    _price = value;
+    widget._price = value;
   }
 
-  String get productImgUrl => _productImgUrl;
+  String get productImgUrl => widget._productImgUrl;
 
   set productImgUrl(String value) {
-    _productImgUrl = value;
+    widget._productImgUrl = value;
   }
 
-  bool get isSeller => _isSeller;
+  bool get isSeller => widget._isSeller;
 
   set isSeller(bool value) {
-    _isSeller = value;
+    widget._isSeller = value;
   }
 
   @override
   Widget build(BuildContext context) {
+    final auth = Provider.of<AppUser>(context);
+    final Storage storage = Storage();
+    final transactions = Provider.of<List<OurTransaction>>(context);
+    final DatabaseService database = DatabaseService(uid: auth.uid);
+    final products = Provider.of<List<Product>>(context);
+    var userTransactions = transactions.where((element) => element.clientId == auth.uid || element.sellerId == auth.uid).toList();
+    userTransactions = userTransactions.where((element) => element.status != 'Cancelled' && element.status != 'Ended').toList();
+    String status = userTransactions.firstWhere((element) => element.transactionId == transactionId).status;
+
     return Container(
-      margin: EdgeInsets.only(top: 25),
+      margin: EdgeInsets.only(top: 5, bottom: 5),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-              margin: EdgeInsets.only(top: 15),
+              margin: EdgeInsets.only(top: 5, bottom: 5),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -96,7 +125,7 @@ class TransactionHorizontalCard extends StatelessWidget {
                                               image: DecorationImage(
                                                   fit: BoxFit.fill,
                                                   image: AssetImage(
-                                                      '${this.sellerAvatarUrl}')))),
+                                                      '${sellerAvatarUrl}')))),
                                       flex: 3,
                                     ),
                                     Flexible(
@@ -113,7 +142,7 @@ class TransactionHorizontalCard extends StatelessWidget {
                                           FittedBox(
                                             fit: BoxFit.scaleDown,
                                             child: Text(
-                                              '${this.productName}',
+                                              '${productName}',
                                               style: TextStyle(
                                                   fontSize: 20,
                                                   fontWeight: FontWeight.w600,
@@ -122,7 +151,7 @@ class TransactionHorizontalCard extends StatelessWidget {
                                             ),
                                           ),
                                           Text(
-                                            '\$${this.price}',
+                                            '\$${price}',
                                             style: TextStyle(
                                                 fontSize: 15,
                                                 color: Colors.grey,
@@ -132,13 +161,24 @@ class TransactionHorizontalCard extends StatelessWidget {
                                             children: [
                                               Expanded(
                                                 child: Text(
-                                                  '${this.description}',
+                                                  '${description}\n',
                                                   overflow:
                                                       TextOverflow.ellipsis,
-                                                  maxLines: 3,
+                                                  maxLines: 2,
                                                 ),
                                               )
                                             ],
+                                          ),
+                                          FittedBox(
+                                            fit: BoxFit.scaleDown,
+                                            child: Text(
+                                              '${status}',
+                                              style: TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w600,
+                                                  fontFamily:
+                                                  'Times New Roman'),
+                                            ),
                                           )
                                         ],
                                       ),
@@ -150,9 +190,22 @@ class TransactionHorizontalCard extends StatelessWidget {
                                             MainAxisAlignment.center,
                                         children: [
                                           Container(
-                                              child: Image.asset(
-                                            '${this.productImgUrl}',
-                                          ))
+                                              child: AspectRatio(
+                                                aspectRatio: 1/1,
+                                                child: FutureBuilder(
+                                                    future: storage.getURL(productId, productImgUrl),
+                                                    builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+                                                      if(snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
+                                                        return Image.network(snapshot.data!, fit: BoxFit.cover);
+                                                      }
+                                                      if(snapshot.connectionState == ConnectionState.waiting || !snapshot.hasData) {
+                                                        return CircularProgressIndicator();
+                                                      }
+                                                      return Container();
+                                                    }
+                                                ),
+                                              )
+                                          )
                                         ],
                                       ),
                                       flex: 3,
@@ -176,52 +229,211 @@ class TransactionHorizontalCard extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Flexible(
-                            child: Column(
-                              children: [
-                                Container(
-                                  padding: EdgeInsets.all(10),
-                                  decoration:
-                                      BoxDecoration(color: Colors.white),
-                                  child: Column(
-                                    children: [
-                                      Icon(FontAwesomeIcons.ban),
-                                      Text(
-                                        'Cancel',
-                                        style: TextStyle(
-                                            fontFamily: 'Times New Roman'),
-                                      )
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
-                            flex: 1,
-                          ),
-                          Flexible(
-                            child: Column(
-                              children: [
-                                Container(
-                                  padding: EdgeInsets.all(10),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        FontAwesomeIcons.checkDouble,
-                                        color: Colors.white,
+                            Flexible(
+                              child: Column(
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return AlertDialog(
+                                              title: const Text("Cancel Transaction"),
+                                              content: const Text(
+                                                  "Are you sure you want to cancel transaction?"),
+                                              actions: [
+                                                TextButton(
+                                                    onPressed: () => Navigator.pop(
+                                                        context, 'Cancel'),
+                                                    child: const Text('No')),
+                                                TextButton(
+                                                    onPressed: () {
+                                                      database.updateTransactionData(
+                                                          transactionId,
+                                                          userTransactions.firstWhere((element) => element.transactionId == transactionId).productId,
+                                                          userTransactions.firstWhere((element) => element.transactionId == transactionId).sellerId,
+                                                          userTransactions.firstWhere((element) => element.transactionId == transactionId).clientId,
+                                                          userTransactions.firstWhere((element) => element.transactionId == transactionId).price,
+                                                          userTransactions.firstWhere((element) => element.transactionId == transactionId).quantity,
+                                                          'Cancelled',
+                                                          userTransactions.firstWhere((element) => element.transactionId == transactionId).date
+                                                      );
+
+                                                      database.updateProductData(
+                                                          productId.toInt(),
+                                                          products.firstWhere((element) => element.id == productId).name,
+                                                          products.firstWhere((element) => element.id == productId).description,
+                                                          products.firstWhere((element) => element.id == productId).price.toDouble(),
+                                                          products.firstWhere((element) => element.id == productId).discount.toDouble(),
+                                                          products.firstWhere((element) => element.id == productId).seller,
+                                                          products.firstWhere((element) => element.id == productId).category.toInt(),
+                                                          products.firstWhere((element) => element.id == productId).units.toInt() + userTransactions.firstWhere((element) => element.transactionId == transactionId).quantity.toInt(),
+                                                          products.firstWhere((element) => element.id == productId).state
+                                                      );
+                                                      Navigator.pop(context, 'Cancel');
+                                                    },
+                                                    child:
+                                                    const Text('Yes'))
+                                              ],
+                                            );
+                                          }
+                                      );
+                                    },
+                                    child: Container(
+                                      padding: EdgeInsets.all(10),
+                                      decoration:
+                                          BoxDecoration(color: Colors.white),
+                                      child: Column(
+                                        children: [
+                                          Icon(FontAwesomeIcons.ban),
+                                          Text(
+                                            'Cancel',
+                                            style: TextStyle(
+                                                fontFamily: 'Times New Roman'),
+                                          )
+                                        ],
                                       ),
-                                      if (this.isSeller == true)
-                                        Text('Confirm payment',
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontFamily: 'Times New Roman'))
-                                      else
-                                        Text('Confirm delivery',
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontFamily: 'Times New Roman'))
-                                    ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                              flex: 1,
+                            ),
+                          Flexible(
+                            child: Column(
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    if(isSeller == true && status == 'In Progress') {
+                                      showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return AlertDialog(
+                                              title: const Text("Confirm Payment"),
+                                              content: const Text(
+                                                  "Are you sure you got payment from client for this product?"),
+                                              actions: [
+                                                TextButton(
+                                                    onPressed: () => Navigator.pop(
+                                                        context, 'Cancel'),
+                                                    child: const Text('No')),
+                                                TextButton(
+                                                    onPressed: () {
+                                                      database.updateTransactionData(
+                                                          transactionId,
+                                                          userTransactions.firstWhere((element) => element.transactionId == transactionId).productId,
+                                                          userTransactions.firstWhere((element) => element.transactionId == transactionId).sellerId,
+                                                          userTransactions.firstWhere((element) => element.transactionId == transactionId).clientId,
+                                                          userTransactions.firstWhere((element) => element.transactionId == transactionId).price,
+                                                          userTransactions.firstWhere((element) => element.transactionId == transactionId).quantity,
+                                                          'Paid',
+                                                          userTransactions.firstWhere((element) => element.transactionId == transactionId).date
+                                                      );
+                                                      setState(() {
+                                                        status = 'Paid';
+                                                      });
+                                                      Navigator.pop(context, 'Cancel');
+                                                    },
+                                                    child: const Text('Yes')),
+                                              ],
+                                            );
+                                          }
+                                      );
+                                    } else if(isSeller == true) {
+                                      showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return AlertDialog(
+                                              title: const Text("Payment already confirmed"),
+                                              content: const Text(
+                                                  "Wait for client to confirm product delivery."),
+                                              actions: [
+                                                TextButton(
+                                                    onPressed: () => Navigator.pop(
+                                                        context, 'Cancel'),
+                                                    child: const Text('OK')),
+                                              ],
+                                            );
+                                          }
+                                      );
+                                    }
+
+                                    if(isSeller == false && status == 'Paid') {
+                                      showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return AlertDialog(
+                                              title: const Text("Confirm Payment"),
+                                              content: const Text(
+                                                  "Are you sure you got payment from client for this product?"),
+                                              actions: [
+                                                TextButton(
+                                                    onPressed: () => Navigator.pop(
+                                                        context, 'Cancel'),
+                                                    child: const Text('No')),
+                                                TextButton(
+                                                    onPressed: () {
+                                                      database.updateTransactionData(
+                                                          transactionId,
+                                                          userTransactions.firstWhere((element) => element.transactionId == transactionId).productId,
+                                                          userTransactions.firstWhere((element) => element.transactionId == transactionId).sellerId,
+                                                          userTransactions.firstWhere((element) => element.transactionId == transactionId).clientId,
+                                                          userTransactions.firstWhere((element) => element.transactionId == transactionId).price,
+                                                          userTransactions.firstWhere((element) => element.transactionId == transactionId).quantity,
+                                                          'Ended',
+                                                          userTransactions.firstWhere((element) => element.transactionId == transactionId).date
+                                                      );
+                                                      setState(() {
+                                                        status = 'Ended';
+                                                      });
+                                                      Navigator.pop(context, 'Cancel');
+                                                    },
+                                                    child: const Text('Yes')),
+                                              ],
+                                            );
+                                          }
+                                      );
+                                    } else if(isSeller == false) {
+                                      showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return AlertDialog(
+                                              title: const Text("Wait for payment confirmation"),
+                                              content: const Text(
+                                                  "Wait for seller to confirm payment delivery."),
+                                              actions: [
+                                                TextButton(
+                                                    onPressed: () => Navigator.pop(
+                                                        context, 'Cancel'),
+                                                    child: const Text('OK')),
+                                              ],
+                                            );
+                                          }
+                                      );
+                                    }
+                                  },
+                                  child: Container(
+                                    padding: EdgeInsets.all(10),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                          FontAwesomeIcons.checkDouble,
+                                          color: Colors.white,
+                                        ),
+                                        if(isSeller == true)
+                                          Text('Confirm payment',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontFamily: 'Times New Roman'))
+                                        else
+                                          Text('Confirm delivery',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontFamily: 'Times New Roman'))
+                                      ],
+                                    ),
                                   ),
                                 )
                               ],

@@ -3,9 +3,14 @@ import 'dart:ui';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cart/flutter_cart.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:mobile/models/appUser.dart';
+import 'package:mobile/models/product.dart';
+import 'package:mobile/services/database.dart';
 import 'package:mobile/services/storage.dart';
 import 'package:mobile/views/product.dart';
+import 'package:provider/provider.dart';
 
 class HomeProductItem extends StatelessWidget {
   late num _productId;
@@ -32,6 +37,8 @@ class HomeProductItem extends StatelessWidget {
     _imgUrl = value;
   }
 
+  num get productId => _productId;
+
   String get productName => _productName;
 
   set productName(String value) {
@@ -52,6 +59,10 @@ class HomeProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var cart = FlutterCart();
+    final auth = Provider.of<AppUser>(context);
+    final DatabaseService database = DatabaseService(uid: auth.uid);
+    final products = Provider.of<List<Product>>(context);
     final Storage storage = Storage();
 
     return GestureDetector(
@@ -112,8 +123,41 @@ class HomeProductItem extends StatelessWidget {
             ),
             TextButton(
                 onPressed: () async {
-                  // ListResult results = await storage.storage.ref('products/' + this._productId.toString()).listAll();
-                  // storage.uploadFile(this._productId, '/sdcard/Download/blender.png', results.items.length.toString() + '_' + this._productName);
+                  if(products.firstWhere((element) => element.id == productId.toInt()).seller != auth.uid) {
+                    cart.addToCart(
+                        productId: productId,
+                        unitPrice: (products
+                            .where((element) =>
+                        element.id ==
+                            productId.toInt())
+                            .first
+                            .price -
+                            products
+                                .where((element) =>
+                            element.id ==
+                                productId.toInt())
+                                .first
+                                .discount),
+                        quantity: 1);
+                    database.updateCartData(cart);
+                  } else {
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: const Text("It's your product"),
+                            content: const Text(
+                                "You can't buy your own product."),
+                            actions: [
+                              TextButton(
+                                  onPressed: () => Navigator.pop(
+                                      context, 'Cancel'),
+                                  child: const Text('OK')),
+                            ],
+                          );
+                        }
+                    );
+                  }
                 },
                 child: Container(
                   padding: EdgeInsets.only(top: 5, bottom: 5),

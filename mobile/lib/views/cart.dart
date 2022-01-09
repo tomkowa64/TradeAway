@@ -39,7 +39,8 @@ class _Cart extends State<Cart> {
     cart.deleteAllCart();
     if (carts.isNotEmpty) {
       for (var value in carts.toList()) {
-        if (value.values.toList()[0] == auth.uid) {
+        if (value.values.toList()[0] == auth.uid &&
+            value.values.toList()[1].toString().length > 2) {
           exists = true;
           break;
         }
@@ -247,6 +248,12 @@ class _Cart extends State<Cart> {
                                                 item.productId.toString()))
                                         .discount
                                         .toDouble(),
+                                    products
+                                        .firstWhere((element) =>
+                                            element.id ==
+                                            num.parse(
+                                                item.productId.toString()))
+                                        .seller,
                                     products
                                         .firstWhere((element) =>
                                             element.id ==

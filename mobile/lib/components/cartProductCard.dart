@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_cart/flutter_cart.dart';
 import 'package:mobile/models/appUser.dart';
+import 'package:mobile/models/product.dart';
 import 'package:mobile/services/database.dart';
 import 'package:mobile/services/storage.dart';
 import 'package:provider/provider.dart';
@@ -51,6 +52,7 @@ class CartProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final auth = Provider.of<AppUser>(context);
+    final products = Provider.of<List<Product>>(context);
     final DatabaseService database = DatabaseService(uid: auth.uid);
     var cart = FlutterCart();
     final Storage storage = Storage();
@@ -197,7 +199,8 @@ class CartProductCard extends StatelessWidget {
                         ),
                       GestureDetector(
                         onTap: () {
-                          if(cart.findItemIndexFromCart(this._productId.toString()) != null) {
+                          if(cart.findItemIndexFromCart(this._productId.toString()) != null
+                              && products.firstWhere((element) => element.id == this._productId).units > quantity) {
                             cart.incrementItemToCart(cart.findItemIndexFromCart(this._productId.toString())!);
                             database.updateCartData(cart);
                           }

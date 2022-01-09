@@ -563,6 +563,7 @@ class _AddOfferFormState extends State<AddOfferForm> {
                                         description,
                                         price.toDouble(),
                                         0,
+                                        auth.uid,
                                         tag,
                                         quantity,
                                         state
