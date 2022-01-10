@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "438841586075",
+    "firebase_url": "https://tradeaway-90fa0-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "tradeaway-90fa0",
+    "storage_bucket": "tradeaway-90fa0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:438841586075:android:7af86ba8d5620f4a1db13e",
+        "android_client_info": {
+          "package_name": "com.kj.tradeaway"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "438841586075-54apko5av9gclflpvbo0n34bv043d8or.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpqwF75Ukb4lQyuk_P-G8ZCTj05GTSbwU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "438841586075-54apko5av9gclflpvbo0n34bv043d8or.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
