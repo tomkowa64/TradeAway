@@ -56,4 +56,26 @@ class Storage {
 
     return url;
   }
+
+  Future<String> getAvatarURL(String id) async {
+    String url = await storage.ref('users/$id/avatar').getDownloadURL();
+
+    return url;
+  }
+
+  Future<void> uploadAvatar(String id, String filePath) async {
+    final status = await Permission.storage.request();
+    if(status.isDenied) {
+      print('denied');
+    } else if(status.isGranted) {
+      // print('granted');
+      File file = File(filePath);
+
+      try {
+        await storage.ref('users/$id/avatar').putFile(file);
+      } on FirebaseException catch(e) {
+        print(e);
+      }
+    }
+  }
 }
