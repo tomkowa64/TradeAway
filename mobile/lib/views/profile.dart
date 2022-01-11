@@ -8,6 +8,7 @@ import 'package:mobile/components/profileMenuHorizontalCard.dart';
 import 'package:mobile/models/appUser.dart';
 import 'package:mobile/models/user.dart';
 import 'package:mobile/services/storage.dart';
+import 'package:mobile/views/shop.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
@@ -107,10 +108,13 @@ class _Profile extends State<Profile> {
                                               FontAwesomeIcons.camera,
                                               size: 40,
                                             ),
-                                            onPressed: () {
-                                              _getFromCamera();
-                                              storage.uploadAvatar(auth!.uid, imgPath);
-                                              Navigator.pop(context);
+                                            onPressed: () async {
+                                              await _getFromCamera();
+                                              storage.uploadAvatar(auth!.uid, imgPath).whenComplete(() {
+                                                Navigator.pop(context);
+                                                Navigator.pop(context);
+                                                Navigator.push(context, MaterialPageRoute(builder: (context) => const Profile()));
+                                              });
                                             },
                                           ),
                                           CupertinoDialogAction(
@@ -118,10 +122,13 @@ class _Profile extends State<Profile> {
                                                 FontAwesomeIcons.file,
                                                 size: 40,
                                             ),
-                                            onPressed: () {
-                                              _getFromGallery();
-                                              storage.uploadAvatar(auth!.uid, imgPath);
-                                              Navigator.pop(context);
+                                            onPressed: () async {
+                                              await _getFromGallery();
+                                              storage.uploadAvatar(auth!.uid, imgPath).whenComplete(() {
+                                                Navigator.pop(context);
+                                                Navigator.pop(context);
+                                                Navigator.push(context, MaterialPageRoute(builder: (context) => const Profile()));
+                                              });
                                             },
                                           )
                                         ],
