@@ -6,7 +6,7 @@ class AuthService {
 
   // create user
   AppUser? _userFromFirebase(User? user) {
-    return user != null ? AppUser(uid: user.uid) : null;
+    return user != null ? AppUser(uid: user.uid, email: user.email) : null;
   }
 
   // auth change user stream
@@ -47,6 +47,19 @@ class AuthService {
     } catch(e) {
       print(e.toString());
       return null;
+    }
+  }
+
+  // change email and password
+  Future changeEmailAndPassword(String email, String password) async {
+    var user = _auth.currentUser;
+
+    try{
+      if(email.isNotEmpty) await user!.updateEmail(email);
+      if(password.isNotEmpty)await user!.updatePassword(password);
+      await signOut();
+    } catch(e) {
+      print(e.toString());
     }
   }
 
