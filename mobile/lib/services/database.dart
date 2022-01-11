@@ -52,6 +52,20 @@ class DatabaseService {
     return productCollection.snapshots().map(_productListFromSnapshot);
   }
 
+  // update user data
+  Future updateUserData(String id, String name, String surname, int age, num phone, String country, String city, String postalCode, String address) async {
+    return await userCollection.doc(id).set({
+      'name': name,
+      'surname': surname,
+      'age': age,
+      'phone': phone,
+      'country': country,
+      'city': city,
+      'postalCode': postalCode,
+      'address': address
+    });
+  }
+
   // user list from snapshot
   List<OurUser> _userListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.docs.map((doc) {
@@ -60,6 +74,12 @@ class DatabaseService {
           uid: doc.id.toString(),
           name: data['name'] ?? '',
           surname: data['surname'] ?? '',
+          age: data['age'] ?? 0,
+          phone: data['phone'] ?? 0,
+          country: data['country'] ?? '',
+          city: data['city'] ?? '',
+          postalCode: data['postalCode'] ?? '',
+          address: data['address'] ?? ''
       );
     }).toList();
   }
