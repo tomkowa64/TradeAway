@@ -11,7 +11,7 @@ class Storage {
   Future<void> uploadFile(num id, String filePath, String fileName) async {
     final status = await Permission.storage.request();
     if(status.isDenied) {
-      print('denied');
+      // print('denied');
     } else if(status.isGranted) {
       // print('granted');
       File file = File(filePath);
@@ -23,16 +23,9 @@ class Storage {
       }
     }
   }
-  // Upload photo
-  // ListResult results = await storage.storage.ref('products/' + this._productId.toString()).listAll();
-  // storage.uploadFile(this._productId, '/sdcard/Download/blender.png', results.items.length.toString() + '_' + this._productName);
 
   Future<ListResult> listFiles(num id) async {
     ListResult results = await storage.ref('products/$id/').listAll();
-    
-    // for (var ref in results.items) {
-    //   print('Found file: $ref');
-    // }
 
     return results;
   }
@@ -66,7 +59,7 @@ class Storage {
   Future<void> uploadAvatar(String id, String filePath) async {
     final status = await Permission.storage.request();
     if(status.isDenied) {
-      print('denied');
+      // print('denied');
     } else if(status.isGranted) {
       // print('granted');
       File file = File(filePath);

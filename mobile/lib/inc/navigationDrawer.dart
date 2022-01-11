@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mobile/services/auth.dart';
 import 'package:mobile/views/cart.dart';
 import 'package:mobile/views/favourites.dart';

@@ -1,7 +1,6 @@
 import 'package:flutter_cart/flutter_cart.dart';
 import 'package:mobile/models/transaction.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:mobile/models/product.dart';
 import 'package:mobile/models/user.dart';
 

@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cart/flutter_cart.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -277,7 +276,7 @@ class _Product extends State<ProductSilder> {
                         ),
                         //Product Price
                         Container(
-                          margin: EdgeInsets.only(top: 10),
+                          margin: const EdgeInsets.only(top: 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [

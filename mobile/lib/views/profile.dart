@@ -8,7 +8,6 @@ import 'package:mobile/components/profileMenuHorizontalCard.dart';
 import 'package:mobile/models/appUser.dart';
 import 'package:mobile/models/user.dart';
 import 'package:mobile/services/storage.dart';
-import 'package:mobile/views/shop.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
@@ -146,7 +145,7 @@ class _Profile extends State<Profile> {
                                       );
                                     }
                                     if(snapshot.connectionState == ConnectionState.waiting) {
-                                      return SizedBox(
+                                      return const SizedBox(
                                         child: CircularProgressIndicator(),
                                         height: 120,
                                         width: 120,
@@ -168,7 +167,7 @@ class _Profile extends State<Profile> {
                                   }
                               ),
                             ),
-                            SizedBox(height: 10),
+                            const SizedBox(height: 10),
                             Text(
                               users
                                       .firstWhere((element) =>
@@ -179,17 +178,17 @@ class _Profile extends State<Profile> {
                                       .firstWhere((element) =>
                                           element.uid == auth.uid)
                                       .surname,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 30,
                                   fontFamily: 'Times New Roman'),
                             ),
                             SizedBox(height: 5),
                             Text(
                               auth.email.toString(),
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 15,
                                   fontFamily: 'Times New Roman',
-                                  color: const Color(0xff9e9e9e)),
+                                  color: Color(0xff9e9e9e)),
                             )
                           ],
                         )
@@ -201,50 +200,50 @@ class _Profile extends State<Profile> {
                         children: [
                           //Action List Item
                           ProfileMenuHorizontalCard(
-                              Icon(
+                              const Icon(
                                 Icons.compare_arrows,
                                 size: 40,
-                                color: const Color(0xff303744),
+                                color: Color(0xff303744),
                               ),
                               'My Transactions',
                               'Transactions'),
                           ProfileMenuHorizontalCard(
-                              Icon(
+                              const Icon(
                                 Icons.account_circle,
                                 size: 40,
-                                color: const Color(0xff303744),
+                                color: Color(0xff303744),
                               ),
                               'Personal Data',
                               'PersonalData'),
                           ProfileMenuHorizontalCard(
-                              Icon(
+                              const Icon(
                                 Icons.history,
                                 size: 40,
-                                color: const Color(0xff303744),
+                                color: Color(0xff303744),
                               ),
                               'Order History',
                               'History'),
                           ProfileMenuHorizontalCard(
-                              Icon(
+                              const Icon(
                                 Icons.info,
                                 size: 40,
-                                color: const Color(0xff303744),
+                                color: Color(0xff303744),
                               ),
                               'About',
                               'PersonalData'),
                           ProfileMenuHorizontalCard(
-                              Icon(
+                              const Icon(
                                 Icons.settings,
                                 size: 40,
-                                color: const Color(0xff303744),
+                                color: Color(0xff303744),
                               ),
                               'Account',
                               'AccountSettings'),
                           ProfileMenuHorizontalCard(
-                              Icon(
+                              const Icon(
                                 Icons.add_circle_outlined,
                                 size: 40,
-                                color: const Color(0xff303744),
+                                color: Color(0xff303744),
                               ),
                               'Create Offer',
                               'AddOffer'),

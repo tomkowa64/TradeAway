@@ -1,13 +1,11 @@
 import 'dart:ui';
 
 //Components
-import 'package:mobile/components/shopProductItem.dart';
 import 'package:mobile/components/transactionHorizontalCard.dart';
 import 'package:mobile/inc/navigationDrawer.dart';
 import 'package:mobile/models/appUser.dart';
 import 'package:mobile/models/product.dart';
 import 'package:mobile/models/transaction.dart';
-import 'package:mobile/models/user.dart';
 import 'package:mobile/services/database.dart';
 import 'package:provider/provider.dart';
 
@@ -16,7 +14,6 @@ import '../inc/nav.dart';
 import '../inc/navigationDrawer.dart';
 
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Transactions extends StatefulWidget {
   const Transactions({Key? key}) : super(key: key);

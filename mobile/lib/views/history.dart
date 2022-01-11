@@ -6,7 +6,6 @@ import 'package:mobile/inc/navigationDrawer.dart';
 import 'package:mobile/models/appUser.dart';
 import 'package:mobile/models/product.dart';
 import 'package:mobile/models/transaction.dart';
-import 'package:mobile/services/database.dart';
 import 'package:provider/provider.dart';
 
 //Included widgets
@@ -28,17 +27,17 @@ class History extends StatelessWidget {
     userTransactions.sort((a, b) => b.date.compareTo(a.date));
 
     return Scaffold(
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(50),
+        appBar: const PreferredSize(
+          preferredSize: Size.fromHeight(50),
           child: Nav(),
         ),
         drawer: NavigationDrawer(),
         body: SingleChildScrollView(
           child: Container(
               padding:
-                  EdgeInsets.only(top: 0, left: 10, right: 10, bottom: 10),
+                  const EdgeInsets.only(top: 0, left: 10, right: 10, bottom: 10),
               width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(color: const Color(0xfff5f5f5)),
+              decoration: const BoxDecoration(color: Color(0xfff5f5f5)),
               child: Row(
                 children: [
                   Expanded(

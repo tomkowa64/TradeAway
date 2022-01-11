@@ -10,10 +10,10 @@ class Nav extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppBar(
       foregroundColor: const Color(0xff303744),
-      actions: [
+      actions: const [
         Padding(
           padding: EdgeInsets.symmetric(vertical: 16, horizontal: 20),
-          child: FaIcon(FontAwesomeIcons.bell, color: const Color(0xff303744)),
+          child: FaIcon(FontAwesomeIcons.bell, color: Color(0xff303744)),
         ),
       ],
       backgroundColor: Colors.white,

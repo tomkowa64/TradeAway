@@ -1,8 +1,6 @@
 import 'dart:ui';
 
 //Views for Navigator
-import './home.dart';
-
 import 'package:mobile/services/auth.dart';
 
 import 'package:flutter/material.dart';
@@ -30,7 +28,7 @@ class _LoginState extends State<Login> {
           padding: const EdgeInsets.only(top: 50),
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage("assets/images/auth-bg.jpg"),
               fit: BoxFit.cover,
@@ -49,12 +47,12 @@ class _LoginState extends State<Login> {
                         children: [
                           Column(
                             mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              new Text(
+                            children: const [
+                              Text(
                                 "Trade",
                                 style: TextStyle(
                                     fontSize: 40,
-                                    color: const Color(0xff303744),
+                                    color: Color(0xff303744),
                                     fontStyle: FontStyle.italic,
                                     fontFamily: "Lucida Calligraphy Italic"),
                               )
@@ -62,12 +60,12 @@ class _LoginState extends State<Login> {
                           ),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              new Text(
+                            children: const [
+                              Text(
                                 "Away",
                                 style: TextStyle(
                                     fontSize: 40,
-                                    color: const Color(0xffcf4e6c),
+                                    color: Color(0xffcf4e6c),
                                     fontStyle: FontStyle.italic,
                                     fontFamily: "Lucida Calligraphy Italic"),
                               )
@@ -77,17 +75,17 @@ class _LoginState extends State<Login> {
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          new Text("Login",
+                        children: const [
+                          Text("Login",
                               style: TextStyle(
-                                  color: const Color(0xff303744), fontSize: 25))
+                                  color: Color(0xff303744), fontSize: 25))
                         ],
                       ),
                       Row(
                         children: [
                           Expanded(
                               child: Container(
-                            padding: EdgeInsets.only(left: 20, right: 20, top: 50),
+                            padding: const EdgeInsets.only(left: 20, right: 20, top: 50),
                             child: Column(
                               children: [
                                 TextFormField(
@@ -116,7 +114,7 @@ class _LoginState extends State<Login> {
                         children: [
                           Expanded(
                             child: Container(
-                              padding: EdgeInsets.only(left: 20, right: 20, top: 30),
+                              padding: const EdgeInsets.only(left: 20, right: 20, top: 30),
                               child: Column(
                                 children: [
                                   TextFormField(
@@ -147,7 +145,7 @@ class _LoginState extends State<Login> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            padding: EdgeInsets.only(top: 30),
+                            padding: const EdgeInsets.only(top: 30),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -168,7 +166,7 @@ class _LoginState extends State<Login> {
                                         });
                                       } else {
                                         print('login success');
-                                        print(result.uid);
+                                        // print(result.uid);
                                         Navigator.pushReplacementNamed(context, 'Home');
                                       }
                                     }

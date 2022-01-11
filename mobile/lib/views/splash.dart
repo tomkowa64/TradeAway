@@ -22,7 +22,7 @@ class Splash extends StatelessWidget {
           padding: const EdgeInsets.only(top: 150),
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage("assets/images/auth-bg.jpg"),
               fit: BoxFit.cover,
@@ -129,8 +129,8 @@ class Splash extends StatelessWidget {
                                     context: context,
                                     builder: (BuildContext context) {
                                       return AlertDialog(
-                                        title: Text("Logout?"),
-                                        content: Text("To register a new account you have to logout."),
+                                        title: const Text("Logout?"),
+                                        content: const Text("To register a new account you have to logout."),
                                         actions: [
                                           TextButton(
                                               onPressed: () => Navigator.pop(context, 'Cancel'),
@@ -164,11 +164,11 @@ class Splash extends StatelessWidget {
                   Row(
                     children: [
                       Container(
-                        padding: EdgeInsets.only(top: 60),
+                        padding: const EdgeInsets.only(top: 60),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            new IconButton(
+                            IconButton(
                                 onPressed: () {},
                                 icon: const FaIcon(
                                     FontAwesomeIcons.questionCircle,

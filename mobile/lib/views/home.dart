@@ -1,9 +1,7 @@
 import 'dart:ui';
 
 //Components
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mobile/components/homeCategoryTile.dart';
-import 'package:mobile/components/homeProductItem.dart';
 import 'package:mobile/components/saleList.dart';
 import 'package:mobile/components/trendsList.dart';
 import 'package:mobile/components/yourPicksList.dart';
@@ -11,13 +9,8 @@ import 'package:mobile/inc/navigationDrawer.dart';
 import 'package:mobile/models/product.dart';
 import 'package:mobile/models/appUser.dart';
 
-//Views for Navigator
-import './login.dart';
-import './register.dart';
-
 //Included widgets
 import '../inc/nav.dart';
-import '../inc/bottomMenu.dart';
 import '../inc/navigationDrawer.dart';
 
 import 'package:flutter/material.dart';

@@ -9,7 +9,6 @@ import '../inc/nav.dart';
 import '../inc/navigationDrawer.dart';
 
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Favourites extends StatelessWidget {
   const Favourites({Key? key}) : super(key: key);
@@ -17,15 +16,15 @@ class Favourites extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(50),
+        appBar: const PreferredSize(
+          preferredSize: Size.fromHeight(50),
           child: Nav(),
         ),
         drawer: NavigationDrawer(),
         body: SingleChildScrollView(
           child: Container(
               width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(color: const Color(0xfff5f5f5)),
+              decoration: const BoxDecoration(color: Color(0xfff5f5f5)),
               child: Row(
                 children: [
                   Expanded(
@@ -44,7 +43,7 @@ class Favourites extends StatelessWidget {
                             childAspectRatio: 100 / 190,
                             shrinkWrap: true,
                             padding:
-                                EdgeInsets.only(left: 10, right: 10, top: 30),
+                                const EdgeInsets.only(left: 10, right: 10, top: 30),
                             // Generate 100 widgets that display their index in the List.
                             children: List.generate(100, (index) {
                               return ShopProductItem(
