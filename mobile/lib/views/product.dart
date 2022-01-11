@@ -15,6 +15,8 @@ import 'package:mobile/services/storage.dart';
 import 'package:mobile/views/personalDataForm.dart';
 import 'package:provider/provider.dart';
 
+import 'cart.dart';
+
 class ProductSilder extends StatefulWidget {
   const ProductSilder({Key? key, required this.productId}) : super(key: key);
   final num productId;
@@ -401,6 +403,27 @@ class _Product extends State<ProductSilder> {
                                                   .discount),
                                           quantity: qty);
                                       database.updateCartData(cart);
+                                      showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return AlertDialog(
+                                              title: const Text("Product added to cart"),
+                                              content: const Text(
+                                                  "Do you want to continue shopping or see your cart?"),
+                                              actions: [
+                                                TextButton(
+                                                    onPressed: () {
+                                                      Navigator.pop(context, 'Cancel');
+                                                    },
+                                                    child: const Text('Continue shopping')),
+                                                TextButton(
+                                                    onPressed: () {
+                                                      Navigator.push(context, MaterialPageRoute(builder: (context) => const Cart()));
+                                                    },
+                                                    child: const Text('My Cart'))
+                                              ],
+                                            );
+                                          });
                                     } else {
                                       showDialog(
                                           context: context,
