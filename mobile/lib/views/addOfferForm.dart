@@ -6,8 +6,10 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mobile/models/appUser.dart';
 import 'package:mobile/models/product.dart';
+import 'package:mobile/models/user.dart';
 import 'package:mobile/services/database.dart';
 import 'package:mobile/services/storage.dart';
+import 'package:mobile/views/personalDataForm.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
@@ -78,6 +80,7 @@ class _AddOfferFormState extends State<AddOfferForm> {
     final DatabaseService database = DatabaseService(uid: auth.uid);
     final products = Provider.of<List<Product>>(context);
     final storage = Storage();
+    final users = Provider.of<List<OurUser>>(context);
 
     return Scaffold(
         appBar: PreferredSize(
@@ -551,38 +554,71 @@ class _AddOfferFormState extends State<AddOfferForm> {
                                   const Color(0xffcf4e6c)),
                             ),
                             onPressed: () async {
-                              if(_formKey.currentState!.validate()) {
-                                if(state != '') {
-                                  if(imgPath != '') {
-                                    products.sort((a, b) => a.id.compareTo(b.id));
-                                    storage.uploadFile((products.last.id + 1), imgPath, '0_' + name);
+                              var thisUserDetails = users.firstWhere((element) => element.uid == auth.uid);
+                              if(
+                                  thisUserDetails.postalCode != ''
+                                  && thisUserDetails.address != ''
+                                  && thisUserDetails.country != ''
+                                  && thisUserDetails.phone != 0
+                                  && thisUserDetails.age != 0
+                                  && thisUserDetails.surname != ''
+                                  && thisUserDetails.city != ''
+                                  && thisUserDetails.name != ''
+                              ) {
+                                if (_formKey.currentState!.validate()) {
+                                  if (state != '') {
+                                    if (imgPath != '') {
+                                      products
+                                          .sort((a, b) => a.id.compareTo(b.id));
+                                      storage.uploadFile((products.last.id + 1),
+                                          imgPath, '0_' + name);
 
-                                    database.updateProductData(
-                                        (products.last.id + 1).toInt(),
-                                        name,
-                                        description,
-                                        price.toDouble(),
-                                        0,
-                                        auth.uid,
-                                        tag,
-                                        quantity,
-                                        state
-                                    );
+                                      database.updateProductData(
+                                          (products.last.id + 1).toInt(),
+                                          name,
+                                          description,
+                                          price.toDouble(),
+                                          0,
+                                          auth.uid,
+                                          tag,
+                                          quantity,
+                                          state);
+                                      setState(() {
+                                        error = 'Successfully added product';
+                                      });
+                                    } else {
+                                      setState(() {
+                                        error = 'Add Photo';
+                                      });
+                                    }
+                                  } else {
                                     setState(() {
-                                      error = 'Successfully added product';
-                                    });
-                                  }
-                                  else {
-                                    setState(() {
-                                      error = 'Add Photo';
+                                      error = 'Choose state';
                                     });
                                   }
                                 }
-                                else {
-                                  setState(() {
-                                    error = 'Choose state';
-                                  });
-                                }
+                              } else {
+                                showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: const Text("Update Personal Data"),
+                                        content: const Text(
+                                            "To add offer you need to specify your personal data first."),
+                                        actions: [
+                                          TextButton(
+                                              onPressed: () {
+                                                Navigator.pop(context, 'Cancel');
+                                              },
+                                              child: const Text('Back')),
+                                          TextButton(
+                                              onPressed: () {
+                                                Navigator.push(context, MaterialPageRoute(builder: (context) => const PersonalDataForm()));
+                                              },
+                                              child: const Text('Personal Data'))
+                                        ],
+                                      );
+                                    });
                               }
                             },
                             child: Text(

@@ -7,8 +7,11 @@ import 'package:flutter_cart/flutter_cart.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mobile/models/appUser.dart';
 import 'package:mobile/models/product.dart';
+import 'package:mobile/models/user.dart';
 import 'package:mobile/services/database.dart';
 import 'package:mobile/services/storage.dart';
+import 'package:mobile/views/cart.dart';
+import 'package:mobile/views/personalDataForm.dart';
 import 'package:mobile/views/product.dart';
 import 'package:provider/provider.dart';
 
@@ -64,6 +67,7 @@ class HomeProductItem extends StatelessWidget {
     final DatabaseService database = DatabaseService(uid: auth.uid);
     final products = Provider.of<List<Product>>(context);
     final Storage storage = Storage();
+    final users = Provider.of<List<OurUser>>(context);
 
     return GestureDetector(
       onTap: () {
@@ -123,40 +127,96 @@ class HomeProductItem extends StatelessWidget {
             ),
             TextButton(
                 onPressed: () async {
-                  if(products.firstWhere((element) => element.id == productId.toInt()).seller != auth.uid) {
-                    cart.addToCart(
-                        productId: productId,
-                        unitPrice: (products
-                            .where((element) =>
-                        element.id ==
-                            productId.toInt())
-                            .first
-                            .price -
-                            products
-                                .where((element) =>
-                            element.id ==
-                                productId.toInt())
-                                .first
-                                .discount),
-                        quantity: 1);
-                    database.updateCartData(cart);
+                  var thisUserDetails = users.firstWhere((element) => element.uid == auth.uid);
+                  if(
+                  thisUserDetails.postalCode != ''
+                      && thisUserDetails.address != ''
+                      && thisUserDetails.country != ''
+                      && thisUserDetails.phone != 0
+                      && thisUserDetails.age != 0
+                      && thisUserDetails.surname != ''
+                      && thisUserDetails.city != ''
+                      && thisUserDetails.name != ''
+                  ) {
+                    if (products
+                            .firstWhere(
+                                (element) => element.id == productId.toInt())
+                            .seller !=
+                        auth.uid) {
+                      cart.addToCart(
+                          productId: productId,
+                          unitPrice: (products
+                                  .where((element) =>
+                                      element.id == productId.toInt())
+                                  .first
+                                  .price -
+                              products
+                                  .where((element) =>
+                                      element.id == productId.toInt())
+                                  .first
+                                  .discount),
+                          quantity: 1);
+                      database.updateCartData(cart);
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: const Text("Product added to cart"),
+                              content: const Text(
+                                  "Do you want to continue shopping or see your cart?"),
+                              actions: [
+                                TextButton(
+                                    onPressed: () {
+                                      Navigator.pop(context, 'Cancel');
+                                    },
+                                    child: const Text('Continue shopping')),
+                                TextButton(
+                                    onPressed: () {
+                                      Navigator.push(context, MaterialPageRoute(builder: (context) => const Cart()));
+                                    },
+                                    child: const Text('My Cart'))
+                              ],
+                            );
+                          });
+                    } else {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: const Text("It's your product"),
+                              content:
+                                  const Text("You can't buy your own product."),
+                              actions: [
+                                TextButton(
+                                    onPressed: () =>
+                                        Navigator.pop(context, 'Cancel'),
+                                    child: const Text('OK')),
+                              ],
+                            );
+                          });
+                    }
                   } else {
                     showDialog(
                         context: context,
                         builder: (BuildContext context) {
                           return AlertDialog(
-                            title: const Text("It's your product"),
+                            title: const Text("Update Personal Data"),
                             content: const Text(
-                                "You can't buy your own product."),
+                                "To buy any product you need to specify your personal data first."),
                             actions: [
                               TextButton(
-                                  onPressed: () => Navigator.pop(
-                                      context, 'Cancel'),
-                                  child: const Text('OK')),
+                                  onPressed: () {
+                                    Navigator.pop(context, 'Cancel');
+                                  },
+                                  child: const Text('Back')),
+                              TextButton(
+                                  onPressed: () {
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) => const PersonalDataForm()));
+                                  },
+                                  child: const Text('Personal Data'))
                             ],
                           );
-                        }
-                    );
+                        });
                   }
                 },
                 child: Container(
