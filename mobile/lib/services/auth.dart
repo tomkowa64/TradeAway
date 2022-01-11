@@ -50,6 +50,19 @@ class AuthService {
     }
   }
 
+  // change email and password
+  Future changeEmailAndPassword(String email, String password) async {
+    var user = _auth.currentUser;
+
+    try{
+      if(email.isNotEmpty) await user!.updateEmail(email);
+      if(password.isNotEmpty)await user!.updatePassword(password);
+      await signOut();
+    } catch(e) {
+      print(e.toString());
+    }
+  }
+
   // sign out
   Future signOut() async {
     try {
