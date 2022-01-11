@@ -2,6 +2,9 @@ import 'dart:ui';
 
 //Included widgets
 import 'package:mobile/components/profileMenuHorizontalCard.dart';
+import 'package:mobile/models/appUser.dart';
+import 'package:mobile/models/user.dart';
+import 'package:provider/provider.dart';
 
 import '../inc/nav.dart';
 import '../inc/navigationDrawer.dart';
@@ -15,6 +18,9 @@ class Profile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final auth = Provider.of<AppUser?>(context);
+    final users = Provider.of<List<OurUser>>(context);
+
     return Scaffold(
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(50),
@@ -43,7 +49,8 @@ class Profile extends StatelessWidget {
                               CircleAvatar(
                                 radius: 60,
                                 backgroundColor: const Color(0xffcf4e6c),
-                                child: Text('AJ',
+                                child: Text(
+                                    users.firstWhere((element) => element.uid == auth!.uid).name.substring(0, 1) + users.firstWhere((element) => element.uid == auth!.uid).surname.substring(0, 1),
                                     style: TextStyle(
                                         fontSize: 40,
                                         color: Colors.white,
@@ -53,14 +60,22 @@ class Profile extends StatelessWidget {
                               //CircleAvatar(),
                               SizedBox(height: 10),
                               Text(
-                                'Anna James',
+                                users
+                                        .firstWhere((element) =>
+                                            element.uid == auth!.uid)
+                                        .name +
+                                    ' ' +
+                                    users
+                                        .firstWhere((element) =>
+                                            element.uid == auth!.uid)
+                                        .surname,
                                 style: TextStyle(
                                     fontSize: 30,
                                     fontFamily: 'Times New Roman'),
                               ),
                               SizedBox(height: 5),
                               Text(
-                                'annja@ex.com',
+                                auth!.email.toString(),
                                 style: TextStyle(
                                     fontSize: 15,
                                     fontFamily: 'Times New Roman',
