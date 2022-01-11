@@ -143,7 +143,7 @@ class _TransactionHorizontalCard extends State<TransactionHorizontalCard> {
                                                 radius: 40,
                                                 backgroundColor: const Color(0xffcf4e6c),
                                                 child: Text(
-                                                    users.firstWhere((element) => element.uid == auth.uid).name.substring(0, 1) + users.firstWhere((element) => element.uid == auth.uid).surname.substring(0, 1),
+                                                    users.firstWhere((element) => element.uid == sellerAvatarUrl).name.substring(0, 1) + users.firstWhere((element) => element.uid == sellerAvatarUrl).surname.substring(0, 1),
                                                     style: const TextStyle(
                                                         fontSize: 40,
                                                         color: Colors.white,

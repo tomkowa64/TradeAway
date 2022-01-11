@@ -23,7 +23,6 @@ class History extends StatelessWidget {
     final auth = Provider.of<AppUser>(context);
     final products = Provider.of<List<Product>>(context);
     final transactions = Provider.of<List<OurTransaction>>(context);
-    final DatabaseService database = DatabaseService(uid: auth.uid);
     var userTransactions = transactions.where((element) => element.clientId == auth.uid || element.sellerId == auth.uid).toList();
     userTransactions = userTransactions.where((element) => element.status == 'Cancelled' || element.status == 'Ended').toList();
 
@@ -62,7 +61,7 @@ class History extends StatelessWidget {
                               if(userTransactions[index].quantity.toInt() > 1) {
                                 return HistoryHorizontalCard(
                                     userTransactions[index].transactionId,
-                                    'assets/images/user-profile.jpeg',
+                                    userTransactions[index].sellerId,
                                     products.firstWhere((element) => element.id.toString() == userTransactions[index].productId).name + ' x' + userTransactions[index].quantity.toString(),
                                     products.firstWhere((element) => element.id.toString() == userTransactions[index].productId).description,
                                     userTransactions[index].price.toDouble() * userTransactions[index].quantity.toInt(),
@@ -73,7 +72,7 @@ class History extends StatelessWidget {
                               } else {
                                 return HistoryHorizontalCard(
                                     userTransactions[index].transactionId,
-                                    'assets/images/user-profile.jpeg',
+                                    userTransactions[index].sellerId,
                                     products.firstWhere((element) => element.id.toString() == userTransactions[index].productId).name,
                                     products.firstWhere((element) => element.id.toString() == userTransactions[index].productId).description,
                                     userTransactions[index].price.toDouble(),
@@ -84,48 +83,6 @@ class History extends StatelessWidget {
                               }
                             }
                         ),
-                    // children: [
-                    //   HistoryHorizontalCard(
-                    //       'assets/images/user-profile.jpeg',
-                    //       'Backpack Adidas',
-                    //       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do '
-                    //           'eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-                    //           ' Ut enim ad minim veniam, quis nostrud exercitation ullamco '
-                    //           'laboris nisi ut aliquip ex ea commodo consequat.',
-                    //       69.99,
-                    //       'assets/images/backpack.png',
-                    //       '20.12.2021'),
-                    //   HistoryHorizontalCard(
-                    //       'assets/images/user-profile.jpeg',
-                    //       'Backpack Adidas',
-                    //       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do '
-                    //           'eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-                    //           ' Ut enim ad minim veniam, quis nostrud exercitation ullamco '
-                    //           'laboris nisi ut aliquip ex ea commodo consequat.',
-                    //       69.99,
-                    //       'assets/images/backpack.png',
-                    //       '20.12.2021'),
-                    //   HistoryHorizontalCard(
-                    //       'assets/images/user-profile.jpeg',
-                    //       'Backpack Adidas',
-                    //       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do '
-                    //           'eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-                    //           ' Ut enim ad minim veniam, quis nostrud exercitation ullamco '
-                    //           'laboris nisi ut aliquip ex ea commodo consequat.',
-                    //       69.99,
-                    //       'assets/images/backpack.png',
-                    //       '20.12.2021'),
-                    //   HistoryHorizontalCard(
-                    //       'assets/images/user-profile.jpeg',
-                    //       'Backpack Adidas',
-                    //       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do '
-                    //           'eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-                    //           ' Ut enim ad minim veniam, quis nostrud exercitation ullamco '
-                    //           'laboris nisi ut aliquip ex ea commodo consequat.',
-                    //       69.99,
-                    //       'assets/images/backpack.png',
-                    //       '20.12.2021')
-                    // ],
                   ))
                 ],
               )),
