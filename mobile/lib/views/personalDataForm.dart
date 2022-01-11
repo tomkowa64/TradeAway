@@ -5,6 +5,8 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:mobile/models/appUser.dart';
 import 'package:mobile/models/user.dart';
 import 'package:mobile/services/database.dart';
@@ -27,6 +29,11 @@ class _PersonalDataForm extends State<PersonalDataForm> {
   late String cityField = '';
   late String postalCodeField = '';
   late String addressField = '';
+
+  late TextEditingController countryController = TextEditingController();
+  late TextEditingController cityController = TextEditingController();
+  late TextEditingController postalCodeController = TextEditingController();
+  late TextEditingController addressController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -174,10 +181,15 @@ class _PersonalDataForm extends State<PersonalDataForm> {
                     Container(
                       height: 50,
                       child: TextFormField(
-                        validator: (val) => val!.length != 0 ? int.parse(val) < 18 ? 'U need to be above 18 to use out app' : null : null,
+                        validator: (val) => val!.length != 0
+                            ? int.parse(val, onError: (e) => -1) < 18
+                                ? 'U need to be above 18 to use our app'
+                                : null
+                            : null,
                         onChanged: (value) {
                           setState(() {
-                            if (value.isNotEmpty)
+                            if (value.isNotEmpty &&
+                                int.parse(value, onError: (e) => -1) != -1)
                               ageField = int.parse(value);
                             else
                               ageField = 0;
@@ -210,10 +222,17 @@ class _PersonalDataForm extends State<PersonalDataForm> {
                     Container(
                       height: 50,
                       child: TextFormField(
-                        validator: (val) => val!.length != 9 && val.length != 0 ? 'Enter valid phone number' : null,
+                        validator: (val) => val!.length != 0
+                            ? val.length != 9
+                                ? 'Enter valid phone number'
+                                : num.parse(val, (e) => -1) == -1
+                                    ? 'Enter valid phone number'
+                                    : null
+                            : null,
                         onChanged: (value) {
                           setState(() {
-                            if (value.isNotEmpty)
+                            if (value.isNotEmpty &&
+                                num.parse(value, (e) => -1) != -1)
                               phoneField = num.parse(value);
                             else
                               phoneField = 0;
@@ -232,13 +251,73 @@ class _PersonalDataForm extends State<PersonalDataForm> {
                     SizedBox(
                       height: 20,
                     ),
-                    Text(
-                      'Country',
-                      style: TextStyle(
-                          fontFamily: 'Times New Roman',
-                          fontWeight: FontWeight.w600,
-                          fontSize: 16),
-                      textAlign: TextAlign.start,
+                    Row(
+                      children: [
+                        Text(
+                          'Country',
+                          style: TextStyle(
+                              fontFamily: 'Times New Roman',
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16),
+                          textAlign: TextAlign.start,
+                        ),
+                        Spacer(),
+                        GestureDetector(
+                            onTap: () async {
+                              LocationPermission _permission;
+
+                              _permission = await Geolocator.checkPermission();
+                              if (_permission == LocationPermission.denied) {
+                                _permission =
+                                    await Geolocator.requestPermission();
+                                if (_permission == LocationPermission.denied) {
+                                  return Future.error(
+                                      'Location permissions are denied');
+                                }
+                              }
+
+                              if (_permission ==
+                                  LocationPermission.deniedForever) {
+                                return Future.error(
+                                    'Location permissions are permanently denied, we cannot request permissions.');
+                              }
+
+                              await Geolocator.getCurrentPosition(
+                                      desiredAccuracy: LocationAccuracy.best)
+                                  .then((Position position) async {
+                                try {
+                                  List<Placemark> p =
+                                      await placemarkFromCoordinates(
+                                          position.latitude,
+                                          position.longitude);
+                                  Placemark place = p[0];
+                                  print(place.locality);
+                                  print(place.postalCode);
+                                  print(place.country);
+                                  print(place.street);
+                                  setState(() {
+                                    countryField = place.country!;
+                                    countryController.text = place.country!;
+                                    cityField = place.locality!;
+                                    cityController.text = place.locality!;
+                                    postalCodeField = place.postalCode!;
+                                    postalCodeController.text =
+                                        place.postalCode!;
+                                    addressField = place.street!;
+                                    addressController.text = place.street!;
+                                  });
+                                } catch (e) {
+                                  print(e);
+                                }
+                              }).catchError((e) {
+                                print(e);
+                              });
+                            },
+                            child: const FaIcon(
+                              FontAwesomeIcons.searchLocation,
+                              color: Color(0xaf000000),
+                            ))
+                      ],
                     ),
                     SizedBox(
                       height: 10,
@@ -246,6 +325,7 @@ class _PersonalDataForm extends State<PersonalDataForm> {
                     Container(
                       height: 50,
                       child: TextFormField(
+                        controller: countryController,
                         onChanged: (value) {
                           setState(() {
                             countryField = value;
@@ -278,6 +358,7 @@ class _PersonalDataForm extends State<PersonalDataForm> {
                     Container(
                       height: 50,
                       child: TextFormField(
+                        controller: cityController,
                         onChanged: (value) {
                           setState(() {
                             cityField = value;
@@ -310,6 +391,7 @@ class _PersonalDataForm extends State<PersonalDataForm> {
                     Container(
                       height: 50,
                       child: TextFormField(
+                        controller: postalCodeController,
                         onChanged: (value) {
                           setState(() {
                             postalCodeField = value;
@@ -342,6 +424,7 @@ class _PersonalDataForm extends State<PersonalDataForm> {
                     Container(
                       height: 50,
                       child: TextFormField(
+                        controller: addressController,
                         onChanged: (value) {
                           setState(() {
                             addressField = value;

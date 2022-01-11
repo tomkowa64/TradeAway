@@ -52,6 +52,8 @@ dependencies:
   firebase_storage: ^10.2.4
   permission_handler: ^8.3.0
   flutter_cart: ^0.0.6
+  geolocator: ^8.0.1
+  geocoding: ^2.0.1
 
 dev_dependencies:
   flutter_test:
