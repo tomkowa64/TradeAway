@@ -60,7 +60,7 @@ class _Transactions extends State<Transactions> {
                           if(userTransactions[index].quantity.toInt() > 1) {
                             return TransactionHorizontalCard(
                                 userTransactions[index].transactionId,
-                                'assets/images/user-profile.jpeg',
+                                userTransactions[index].sellerId,
                                 products.firstWhere((element) => element.id.toString() == userTransactions[index].productId).name + ' x' + userTransactions[index].quantity.toString(),
                                 products.firstWhere((element) => element.id.toString() == userTransactions[index].productId).description,
                                 userTransactions[index].price.toDouble() * userTransactions[index].quantity.toInt(),
@@ -71,7 +71,7 @@ class _Transactions extends State<Transactions> {
                           } else {
                             return TransactionHorizontalCard(
                                 userTransactions[index].transactionId,
-                                'assets/images/user-profile.jpeg',
+                                userTransactions[index].sellerId,
                                 products.firstWhere((element) => element.id.toString() == userTransactions[index].productId).name,
                                 products.firstWhere((element) => element.id.toString() == userTransactions[index].productId).description,
                                 userTransactions[index].price.toDouble(),

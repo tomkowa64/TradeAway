@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mobile/models/appUser.dart';
 import 'package:mobile/models/product.dart';
 import 'package:mobile/models/transaction.dart';
+import 'package:mobile/models/user.dart';
 import 'package:mobile/services/database.dart';
 import 'package:mobile/services/storage.dart';
 import 'package:provider/provider.dart';
@@ -73,6 +74,7 @@ class _TransactionHorizontalCard extends State<TransactionHorizontalCard> {
   @override
   Widget build(BuildContext context) {
     final auth = Provider.of<AppUser>(context);
+    final users = Provider.of<List<OurUser>>(context);
     final Storage storage = Storage();
     final transactions = Provider.of<List<OurTransaction>>(context);
     final DatabaseService database = DatabaseService(uid: auth.uid);
@@ -119,13 +121,38 @@ class _TransactionHorizontalCard extends State<TransactionHorizontalCard> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Flexible(
-                                      child: new Container(
-                                          decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              image: DecorationImage(
-                                                  fit: BoxFit.fill,
-                                                  image: AssetImage(
-                                                      '${sellerAvatarUrl}')))),
+                                      child: FutureBuilder(
+                                          future: storage.getAvatarURL(sellerAvatarUrl),
+                                          builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+                                            if(snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
+                                              return CircleAvatar(
+                                                  radius: 40,
+                                                  backgroundImage: NetworkImage(snapshot.data!),
+                                                  backgroundColor: const Color(0x00000000)
+                                              );
+                                            }
+                                            if(snapshot.connectionState == ConnectionState.waiting) {
+                                              return SizedBox(
+                                                child: CircularProgressIndicator(),
+                                                height: 80,
+                                                width: 80,
+                                              );
+                                            }
+                                            if(!snapshot.hasData) {
+                                              return CircleAvatar(
+                                                radius: 40,
+                                                backgroundColor: const Color(0xffcf4e6c),
+                                                child: Text(
+                                                    users.firstWhere((element) => element.uid == auth.uid).name.substring(0, 1) + users.firstWhere((element) => element.uid == auth.uid).surname.substring(0, 1),
+                                                    style: const TextStyle(
+                                                        fontSize: 40,
+                                                        color: Colors.white,
+                                                        fontFamily: 'Times New Roman')),
+                                              );
+                                            }
+                                            return Container();
+                                          }
+                                      ),
                                       flex: 3,
                                     ),
                                     Flexible(
