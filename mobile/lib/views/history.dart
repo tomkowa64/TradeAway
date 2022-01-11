@@ -2,21 +2,31 @@ import 'dart:ui';
 
 //Components
 import 'package:mobile/components/historyHorizontalCard.dart';
-import 'package:mobile/components/shopProductItem.dart';
 import 'package:mobile/inc/navigationDrawer.dart';
+import 'package:mobile/models/appUser.dart';
+import 'package:mobile/models/product.dart';
+import 'package:mobile/models/transaction.dart';
+import 'package:mobile/services/database.dart';
+import 'package:provider/provider.dart';
 
 //Included widgets
 import '../inc/nav.dart';
 import '../inc/navigationDrawer.dart';
 
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class History extends StatelessWidget {
   const History({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final auth = Provider.of<AppUser>(context);
+    final products = Provider.of<List<Product>>(context);
+    final transactions = Provider.of<List<OurTransaction>>(context);
+    final DatabaseService database = DatabaseService(uid: auth.uid);
+    var userTransactions = transactions.where((element) => element.clientId == auth.uid || element.sellerId == auth.uid).toList();
+    userTransactions = userTransactions.where((element) => element.status == 'Cancelled' || element.status == 'Ended').toList();
+
     return Scaffold(
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(50),
@@ -26,55 +36,96 @@ class History extends StatelessWidget {
         body: SingleChildScrollView(
           child: Container(
               padding:
-                  EdgeInsets.only(top: 40, left: 10, right: 10, bottom: 10),
+                  EdgeInsets.only(top: 0, left: 10, right: 10, bottom: 10),
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(color: const Color(0xfff5f5f5)),
               child: Row(
                 children: [
                   Expanded(
                       child: Column(
-                    children: [
-                      HistoryHorizontalCard(
-                          'assets/images/user-profile.jpeg',
-                          'Backpack Adidas',
-                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do '
-                              'eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-                              ' Ut enim ad minim veniam, quis nostrud exercitation ullamco '
-                              'laboris nisi ut aliquip ex ea commodo consequat.',
-                          69.99,
-                          'assets/images/backpack.png',
-                          '20.12.2021'),
-                      HistoryHorizontalCard(
-                          'assets/images/user-profile.jpeg',
-                          'Backpack Adidas',
-                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do '
-                              'eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-                              ' Ut enim ad minim veniam, quis nostrud exercitation ullamco '
-                              'laboris nisi ut aliquip ex ea commodo consequat.',
-                          69.99,
-                          'assets/images/backpack.png',
-                          '20.12.2021'),
-                      HistoryHorizontalCard(
-                          'assets/images/user-profile.jpeg',
-                          'Backpack Adidas',
-                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do '
-                              'eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-                              ' Ut enim ad minim veniam, quis nostrud exercitation ullamco '
-                              'laboris nisi ut aliquip ex ea commodo consequat.',
-                          69.99,
-                          'assets/images/backpack.png',
-                          '20.12.2021'),
-                      HistoryHorizontalCard(
-                          'assets/images/user-profile.jpeg',
-                          'Backpack Adidas',
-                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do '
-                              'eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-                              ' Ut enim ad minim veniam, quis nostrud exercitation ullamco '
-                              'laboris nisi ut aliquip ex ea commodo consequat.',
-                          69.99,
-                          'assets/images/backpack.png',
-                          '20.12.2021')
-                    ],
+                        children: List.generate(
+                            userTransactions.length,
+                            (index) {
+                              String date;
+                              if(userTransactions[index].date.toDate().day < 10) {
+                                date = '0' + userTransactions[index].date.toDate().day.toString() + '.';
+                              } else {
+                                date = userTransactions[index].date.toDate().day.toString() + '.';
+                              }
+                              if(userTransactions[index].date.toDate().month < 10) {
+                                date += '0' + userTransactions[index].date.toDate().month.toString() + '.';
+                              } else {
+                                date += userTransactions[index].date.toDate().month.toString() + '.';
+                              }
+
+                              date += userTransactions[index].date.toDate().year.toString();
+                              if(userTransactions[index].quantity.toInt() > 1) {
+                                return HistoryHorizontalCard(
+                                    userTransactions[index].transactionId,
+                                    'assets/images/user-profile.jpeg',
+                                    products.firstWhere((element) => element.id.toString() == userTransactions[index].productId).name + ' x' + userTransactions[index].quantity.toString(),
+                                    products.firstWhere((element) => element.id.toString() == userTransactions[index].productId).description,
+                                    userTransactions[index].price.toDouble() * userTransactions[index].quantity.toInt(),
+                                    num.parse(userTransactions[index].productId),
+                                    '0_' + products.firstWhere((element) => element.id.toString() == userTransactions[index].productId).name,
+                                    date
+                                );
+                              } else {
+                                return HistoryHorizontalCard(
+                                    userTransactions[index].transactionId,
+                                    'assets/images/user-profile.jpeg',
+                                    products.firstWhere((element) => element.id.toString() == userTransactions[index].productId).name,
+                                    products.firstWhere((element) => element.id.toString() == userTransactions[index].productId).description,
+                                    userTransactions[index].price.toDouble(),
+                                    num.parse(userTransactions[index].productId),
+                                    '0_' + products.firstWhere((element) => element.id.toString() == userTransactions[index].productId).name,
+                                    date
+                                );
+                              }
+                            }
+                        ),
+                    // children: [
+                    //   HistoryHorizontalCard(
+                    //       'assets/images/user-profile.jpeg',
+                    //       'Backpack Adidas',
+                    //       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do '
+                    //           'eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+                    //           ' Ut enim ad minim veniam, quis nostrud exercitation ullamco '
+                    //           'laboris nisi ut aliquip ex ea commodo consequat.',
+                    //       69.99,
+                    //       'assets/images/backpack.png',
+                    //       '20.12.2021'),
+                    //   HistoryHorizontalCard(
+                    //       'assets/images/user-profile.jpeg',
+                    //       'Backpack Adidas',
+                    //       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do '
+                    //           'eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+                    //           ' Ut enim ad minim veniam, quis nostrud exercitation ullamco '
+                    //           'laboris nisi ut aliquip ex ea commodo consequat.',
+                    //       69.99,
+                    //       'assets/images/backpack.png',
+                    //       '20.12.2021'),
+                    //   HistoryHorizontalCard(
+                    //       'assets/images/user-profile.jpeg',
+                    //       'Backpack Adidas',
+                    //       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do '
+                    //           'eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+                    //           ' Ut enim ad minim veniam, quis nostrud exercitation ullamco '
+                    //           'laboris nisi ut aliquip ex ea commodo consequat.',
+                    //       69.99,
+                    //       'assets/images/backpack.png',
+                    //       '20.12.2021'),
+                    //   HistoryHorizontalCard(
+                    //       'assets/images/user-profile.jpeg',
+                    //       'Backpack Adidas',
+                    //       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do '
+                    //           'eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+                    //           ' Ut enim ad minim veniam, quis nostrud exercitation ullamco '
+                    //           'laboris nisi ut aliquip ex ea commodo consequat.',
+                    //       69.99,
+                    //       'assets/images/backpack.png',
+                    //       '20.12.2021')
+                    // ],
                   ))
                 ],
               )),
