@@ -2,6 +2,7 @@ import 'dart:ui';
 
 //Views for Navigator
 import 'package:mobile/services/auth.dart';
+import 'package:mobile/services/database.dart';
 
 import './login.dart';
 
@@ -18,6 +19,7 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
+  final DatabaseService database = DatabaseService();
 
   String email = '';
   String password = '';
@@ -193,8 +195,9 @@ class _RegisterState extends State<Register> {
                                     if(result == null) {
                                       print('error signing in');
                                     } else {
+                                      database.updateUserData(result.uid, '', '', 0, 0, '', '', '', '');
                                       print('register success');
-                                      print(result);
+                                      // print(result);
                                       Navigator.pushReplacementNamed(context, 'Login');
                                     }
                                   }

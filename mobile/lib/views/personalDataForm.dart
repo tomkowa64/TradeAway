@@ -29,9 +29,9 @@ class _PersonalDataForm extends State<PersonalDataForm> {
 
   @override
   Widget build(BuildContext context) {
-    final auth = Provider.of<AppUser>(context);
+    final auth = Provider.of<AppUser?>(context);
     final users = Provider.of<List<OurUser>>(context);
-    final DatabaseService database = DatabaseService(uid: auth.uid);
+    final DatabaseService database = DatabaseService(uid: auth!.uid);
 
     var name = users.firstWhere((element) => element.uid == auth.uid).name;
     var surname = users.firstWhere((element) => element.uid == auth.uid).surname;
