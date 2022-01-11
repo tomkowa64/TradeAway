@@ -25,6 +25,7 @@ class History extends StatelessWidget {
     final transactions = Provider.of<List<OurTransaction>>(context);
     var userTransactions = transactions.where((element) => element.clientId == auth.uid || element.sellerId == auth.uid).toList();
     userTransactions = userTransactions.where((element) => element.status == 'Cancelled' || element.status == 'Ended').toList();
+    userTransactions.sort((a, b) => b.date.compareTo(a.date));
 
     return Scaffold(
         appBar: PreferredSize(
