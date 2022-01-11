@@ -15,6 +15,7 @@ class _TrendsListState extends State<TrendsList> {
   @override
   Widget build(BuildContext context) {
     final products = Provider.of<List<Product>>(context).where((element) => element.units > 0).toList();
+    products.sort((a, b) => b.id.compareTo(a.id));
 
     return ListView.builder(
         shrinkWrap: true,

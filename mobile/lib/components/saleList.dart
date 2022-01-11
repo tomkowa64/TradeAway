@@ -16,6 +16,7 @@ class _SaleListState extends State<SaleList> {
   @override
   Widget build(BuildContext context) {
     final products = Provider.of<List<Product>>(context).where((element) => element.units > 0).toList();
+    products.sort((a, b) => b.id.compareTo(a.id));
 
     return ListView.builder(
         shrinkWrap: true,
