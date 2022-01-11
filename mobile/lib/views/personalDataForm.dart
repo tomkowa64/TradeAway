@@ -119,7 +119,7 @@ class _PersonalDataForm extends State<PersonalDataForm> {
                       child: TextFormField(
                         onChanged: (value) {
                           setState(() {
-                            nameField = value;
+                            nameField = value.trim();
                           });
                         },
                         decoration: InputDecoration(
@@ -151,7 +151,7 @@ class _PersonalDataForm extends State<PersonalDataForm> {
                       child: TextFormField(
                         onChanged: (value) {
                           setState(() {
-                            surnameField = value;
+                            surnameField = value.trim();
                           });
                         },
                         decoration: InputDecoration(
@@ -181,16 +181,16 @@ class _PersonalDataForm extends State<PersonalDataForm> {
                     Container(
                       height: 50,
                       child: TextFormField(
-                        validator: (val) => val!.length != 0
-                            ? int.parse(val, onError: (e) => -1) < 18
+                        validator: (val) => val!.trim().length != 0
+                            ? int.parse(val.trim(), onError: (e) => -1) < 18
                                 ? 'U need to be above 18 to use our app'
                                 : null
                             : null,
                         onChanged: (value) {
                           setState(() {
-                            if (value.isNotEmpty &&
-                                int.parse(value, onError: (e) => -1) != -1)
-                              ageField = int.parse(value);
+                            if (value.trim().isNotEmpty &&
+                                int.parse(value.trim(), onError: (e) => -1) != -1)
+                              ageField = int.parse(value.trim());
                             else
                               ageField = 0;
                           });
@@ -222,18 +222,18 @@ class _PersonalDataForm extends State<PersonalDataForm> {
                     Container(
                       height: 50,
                       child: TextFormField(
-                        validator: (val) => val!.length != 0
-                            ? val.length != 9
+                        validator: (val) => val!.trim().length != 0
+                            ? val.trim().length != 9
                                 ? 'Enter valid phone number'
-                                : num.parse(val, (e) => -1) == -1
+                                : num.parse(val.trim(), (e) => -1) == -1
                                     ? 'Enter valid phone number'
                                     : null
                             : null,
                         onChanged: (value) {
                           setState(() {
-                            if (value.isNotEmpty &&
-                                num.parse(value, (e) => -1) != -1)
-                              phoneField = num.parse(value);
+                            if (value.trim().isNotEmpty &&
+                                num.parse(value.trim(), (e) => -1) != -1)
+                              phoneField = num.parse(value.trim());
                             else
                               phoneField = 0;
                           });
@@ -328,7 +328,7 @@ class _PersonalDataForm extends State<PersonalDataForm> {
                         controller: countryController,
                         onChanged: (value) {
                           setState(() {
-                            countryField = value;
+                            countryField = value.trim();
                           });
                         },
                         decoration: InputDecoration(
@@ -361,7 +361,7 @@ class _PersonalDataForm extends State<PersonalDataForm> {
                         controller: cityController,
                         onChanged: (value) {
                           setState(() {
-                            cityField = value;
+                            cityField = value.trim();
                           });
                         },
                         decoration: InputDecoration(
@@ -394,7 +394,7 @@ class _PersonalDataForm extends State<PersonalDataForm> {
                         controller: postalCodeController,
                         onChanged: (value) {
                           setState(() {
-                            postalCodeField = value;
+                            postalCodeField = value.trim();
                           });
                         },
                         decoration: InputDecoration(
@@ -427,7 +427,7 @@ class _PersonalDataForm extends State<PersonalDataForm> {
                         controller: addressController,
                         onChanged: (value) {
                           setState(() {
-                            addressField = value;
+                            addressField = value.trim();
                           });
                         },
                         decoration: InputDecoration(

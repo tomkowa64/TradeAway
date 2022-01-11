@@ -91,10 +91,10 @@ class _LoginState extends State<Login> {
                             child: Column(
                               children: [
                                 TextFormField(
-                                  validator: (val) => !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(val!) ? 'Enter proper email' : null,
+                                  validator: (val) => !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(val!.trim()) ? 'Enter proper email' : null,
                                   onChanged: (val) {
                                     setState(() {
-                                      email = val;
+                                      email = val.trim();
                                     });
                                   },
                                   decoration: const InputDecoration(
@@ -120,10 +120,10 @@ class _LoginState extends State<Login> {
                               child: Column(
                                 children: [
                                   TextFormField(
-                                    validator: (val) => val!.length < 6 ? 'Enter a valid password' : null,
+                                    validator: (val) => val!.trim().length < 6 ? 'Enter a valid password' : null,
                                     onChanged: (val) {
                                       setState(() {
-                                        password = val;
+                                        password = val.trim();
                                       });
                                     },
                                     obscureText: true,

@@ -93,10 +93,10 @@ class _RegisterState extends State<Register> {
                           child: Column(
                             children: [
                               TextFormField(
-                                validator: (val) => !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(val!) ? 'Enter proper email' : null,
+                                validator: (val) => !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(val!.trim()) ? 'Enter proper email' : null,
                                 onChanged: (val) {
                                   setState(() {
-                                    email = val;
+                                    email = val.trim();
                                   });
                                 },
                                 decoration: const InputDecoration(
@@ -122,10 +122,10 @@ class _RegisterState extends State<Register> {
                           child: Column(
                             children: [
                               TextFormField(
-                                validator: (val) => val!.length < 6 ? 'Password must have at least 6 characters' : null,
+                                validator: (val) => val!.trim().length < 6 ? 'Password must have at least 6 characters' : null,
                                 onChanged: (val) {
                                   setState(() {
-                                    password = val;
+                                    password = val.trim();
                                   });
                                 },
                                 obscureText: true,
@@ -152,10 +152,10 @@ class _RegisterState extends State<Register> {
                           child: Column(
                             children: [
                               TextFormField(
-                                validator: (val) => val != password ? 'Passwords must match' : null,
+                                validator: (val) => val!.trim() != password ? 'Passwords must match' : null,
                                 onChanged: (val) {
                                   setState(() {
-                                    repeatPassword = val;
+                                    repeatPassword = val.trim();
                                   });
                                 },
                                 obscureText: true,
