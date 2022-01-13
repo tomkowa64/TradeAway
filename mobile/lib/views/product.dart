@@ -51,6 +51,36 @@ class _Product extends State<ProductSilder> {
     final DatabaseService database = DatabaseService(uid: auth.uid);
     final products = Provider.of<List<Product>>(context);
     final users = Provider.of<List<OurUser>>(context);
+    final favorites = Provider.of<List<Map<String, dynamic>>>(context);
+
+    var favoriteArray = [];
+    if (favorites
+            .firstWhere((element) => element.values.toList()[0] == auth.uid)
+            .values
+            .toList()
+            .length >
+        1) {
+      favorites
+          .firstWhere((element) => element.values.toList()[0] == auth.uid)
+          .values
+          .toList()[1]
+          .toString()
+          .substring(
+              1,
+              favorites
+                      .firstWhere(
+                          (element) => element.values.toList()[0] == auth.uid)
+                      .values
+                      .toList()[1]
+                      .toString()
+                      .length -
+                  1)
+          .split(',')
+          .forEach((element) {
+        favoriteArray.add(element.trim());
+      });
+    }
+    localFavorite = favoriteArray.contains(widget.productId.toString());
 
     if (products.isEmpty || users.isEmpty) {
       Future.delayed(const Duration(milliseconds: 1), () {

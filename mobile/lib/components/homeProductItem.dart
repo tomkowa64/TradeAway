@@ -9,6 +9,7 @@ import 'package:mobile/models/user.dart';
 import 'package:mobile/services/database.dart';
 import 'package:mobile/services/storage.dart';
 import 'package:mobile/views/cart.dart';
+import 'package:mobile/views/home.dart';
 import 'package:mobile/views/personalDataForm.dart';
 import 'package:mobile/views/product.dart';
 import 'package:provider/provider.dart';
@@ -61,43 +62,11 @@ class HomeProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var cart = FlutterCart();
-    final auth = Provider.of<AppUser>(context);
-    final DatabaseService database = DatabaseService(uid: auth.uid);
+    final auth = Provider.of<AppUser?>(context);
+    final DatabaseService database = DatabaseService(uid: auth!.uid);
     final products = Provider.of<List<Product>>(context);
     final Storage storage = Storage();
     final users = Provider.of<List<OurUser>>(context);
-    final favorites = Provider.of<List<Map<String, dynamic>>>(context);
-
-    var favoriteArray = [];
-
-    if (favorites
-            .firstWhere((element) => element.values.toList()[0] == auth.uid)
-            .values
-            .toList()
-            .length >
-        1) {
-      favorites
-          .firstWhere((element) => element.values.toList()[0] == auth.uid)
-          .values
-          .toList()[1]
-          .toString()
-          .substring(
-              1,
-              favorites
-                      .firstWhere(
-                          (element) => element.values.toList()[0] == auth.uid)
-                      .values
-                      .toList()[1]
-                      .toString()
-                      .length -
-                  1)
-          .split(',')
-          .forEach((element) {
-        favoriteArray.add(element.trim());
-      });
-    }
-
-    var isFavorite = favoriteArray.contains(this.productId.toString());
 
     return GestureDetector(
       onTap: () {
@@ -105,7 +74,7 @@ class HomeProductItem extends StatelessWidget {
             context,
             MaterialPageRoute(
                 builder: (context) => ProductSilder(
-                    productId: this._productId, isFavorite: isFavorite)));
+                    productId: this._productId, isFavorite: false)));
       },
       child: Card(
           child: new Container(
