@@ -1,8 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/components/homeProductItem.dart';
 import 'package:mobile/components/shopProductItem.dart';
 import 'package:mobile/models/product.dart';
+import 'package:mobile/models/user.dart';
 import 'package:mobile/services/storage.dart';
+import 'package:mobile/services/database.dart';
 import 'package:provider/provider.dart';
 
 // old file with no filtering, not used anymore

@@ -6,16 +6,31 @@ import 'package:mobile/models/user.dart';
 
 class DatabaseService {
   final String? uid;
-  DatabaseService({ this.uid });
+  DatabaseService({this.uid});
 
   // collection references
-  final CollectionReference productCollection = FirebaseFirestore.instance.collection('products');
-  final CollectionReference userCollection = FirebaseFirestore.instance.collection('users');
-  final CollectionReference transactionCollection = FirebaseFirestore.instance.collection('transactions');
-  final CollectionReference cartCollection = FirebaseFirestore.instance.collection('carts');
+  final CollectionReference productCollection =
+      FirebaseFirestore.instance.collection('products');
+  final CollectionReference userCollection =
+      FirebaseFirestore.instance.collection('users');
+  final CollectionReference transactionCollection =
+      FirebaseFirestore.instance.collection('transactions');
+  final CollectionReference cartCollection =
+      FirebaseFirestore.instance.collection('carts');
+  final CollectionReference favoriteCollection =
+      FirebaseFirestore.instance.collection('favorites');
 
   // update product data
-  Future updateProductData(int id, String name, String description, double price, double discount, String sellerId, int category, int units, String state) async {
+  Future updateProductData(
+      int id,
+      String name,
+      String description,
+      double price,
+      double discount,
+      String sellerId,
+      int category,
+      int units,
+      String state) async {
     return await productCollection.doc(id.toString()).set({
       'name': name,
       'description': description,
@@ -28,22 +43,60 @@ class DatabaseService {
     });
   }
 
+  //
+  // update favorites data
+  Future updateFavoriteData(num newFavoriteProductId) async {
+    var items = [];
+    await FirebaseFirestore.instance
+        .collection("favorites")
+        .doc(uid)
+        .get()
+        .then((value) async {
+      List.from(value.data()!['productList']).forEach((element) {
+        items.add(element);
+      });
+      if (items.contains(newFavoriteProductId)) {
+        return await favoriteCollection.doc(uid).update({
+          'productList': FieldValue.arrayRemove([newFavoriteProductId])
+        });
+      } else {
+        return await favoriteCollection.doc(uid).update({
+          'productList': FieldValue.arrayUnion([newFavoriteProductId])
+        });
+      }
+    });
+  }
+
   // product list from snapshot
   List<Product> _productListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.docs.map((doc) {
       Map<String, dynamic> data = doc.data()! as Map<String, dynamic>;
       return Product(
-        id: int.parse(doc.id.toString()),
-        name: data['name'] ?? '',
-        description: data['description'] ?? '',
-        price: data['price'] ?? 0.0,
-        discount: data['discount'] ?? 0.0,
-        seller: data['seller'] ?? '',
-        category: data['category'] ?? 0,
-        units: data['units'] ?? 0,
-        state: data['state'] ?? ''
-      );
+          id: int.parse(doc.id.toString()),
+          name: data['name'] ?? '',
+          description: data['description'] ?? '',
+          price: data['price'] ?? 0.0,
+          discount: data['discount'] ?? 0.0,
+          seller: data['seller'] ?? '',
+          category: data['category'] ?? 0,
+          units: data['units'] ?? 0,
+          state: data['state'] ?? '');
     }).toList();
+  }
+
+  // favorite products id list
+  Future<bool> isFavorite(productId) async {
+    var items = [];
+    return await FirebaseFirestore.instance
+        .collection("favorites")
+        .doc(uid)
+        .get()
+        .then((value) {
+      List.from(value.data()!['productList']).forEach((element) {
+        items.add(element);
+      });
+      return items.contains(productId);
+    });
   }
 
   // get product stream
@@ -52,7 +105,16 @@ class DatabaseService {
   }
 
   // update user data
-  Future updateUserData(String id, String name, String surname, int age, num phone, String country, String city, String postalCode, String address) async {
+  Future updateUserData(
+      String id,
+      String name,
+      String surname,
+      int age,
+      num phone,
+      String country,
+      String city,
+      String postalCode,
+      String address) async {
     return await userCollection.doc(id).set({
       'name': name,
       'surname': surname,
@@ -78,8 +140,7 @@ class DatabaseService {
           country: data['country'] ?? '',
           city: data['city'] ?? '',
           postalCode: data['postalCode'] ?? '',
-          address: data['address'] ?? ''
-      );
+          address: data['address'] ?? '');
     }).toList();
   }
 
@@ -89,7 +150,15 @@ class DatabaseService {
   }
 
   // update transaction data
-  Future updateTransactionData(int id, String productId, String sellerId, String? clientId, num price, num quantity, String status, Timestamp date) async {
+  Future updateTransactionData(
+      int id,
+      String productId,
+      String sellerId,
+      String? clientId,
+      num price,
+      num quantity,
+      String status,
+      Timestamp date) async {
     return await transactionCollection.doc(id.toString()).set({
       'productId': productId,
       'seller': sellerId,
@@ -106,15 +175,14 @@ class DatabaseService {
     return snapshot.docs.map((doc) {
       Map<String, dynamic> data = doc.data()! as Map<String, dynamic>;
       return OurTransaction(
-        transactionId: int.parse(doc.id),
-        productId: data['productId'] ?? '',
-        sellerId: data['seller'] ?? '',
-        clientId: data['client'] ?? '',
-        price: data['price'] ?? 0,
-        quantity: data['quantity'] ?? 0,
-        status: data['status'] ?? '',
-        date: data['date'] ?? ''
-      );
+          transactionId: int.parse(doc.id),
+          productId: data['productId'] ?? '',
+          sellerId: data['seller'] ?? '',
+          clientId: data['client'] ?? '',
+          price: data['price'] ?? 0,
+          quantity: data['quantity'] ?? 0,
+          status: data['status'] ?? '',
+          date: data['date'] ?? '');
     }).toList();
   }
 
@@ -132,9 +200,7 @@ class DatabaseService {
       cartMap[item.productId.toString()] = item.quantity;
     }
 
-    return await cartCollection.doc(uid.toString()).set({
-      'cart': cartMap
-    });
+    return await cartCollection.doc(uid.toString()).set({'cart': cartMap});
   }
 
   // clear cart
