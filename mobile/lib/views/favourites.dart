@@ -42,24 +42,24 @@ class Favourites extends StatelessWidget {
                             mainAxisSpacing: 20,
                             childAspectRatio: 100 / 190,
                             shrinkWrap: true,
-                            padding:
-                                const EdgeInsets.only(left: 10, right: 10, top: 30),
+                            padding: const EdgeInsets.only(
+                                left: 10, right: 10, top: 30),
                             // Generate 100 widgets that display their index in the List.
                             children: List.generate(100, (index) {
                               return ShopProductItem(
-                                  index,
-                                  'assets/images/backpack.png',
-                                  'Backpack Adidas',
-                                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit,'
-                                      ' sed do eiusmod tempor incididunt ut labore et dolore'
-                                      ' magna aliqua. Ut enim ad minim veniam, quis nostrud '
-                                      'exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
-                                      ' Duis aute irure dolor in reprehenderit in voluptate velit esse'
-                                      ' cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat '
-                                      'cupidatat non proident, sunt in culpa qui officia '
-                                      'deserunt mollit anim id est laborum.',
-                                  69.99,
-                                  true);
+                                index,
+                                'assets/images/backpack.png',
+                                'Backpack Adidas',
+                                'Lorem ipsum dolor sit amet, consectetur adipiscing elit,'
+                                    ' sed do eiusmod tempor incididunt ut labore et dolore'
+                                    ' magna aliqua. Ut enim ad minim veniam, quis nostrud '
+                                    'exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+                                    ' Duis aute irure dolor in reprehenderit in voluptate velit esse'
+                                    ' cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat '
+                                    'cupidatat non proident, sunt in culpa qui officia '
+                                    'deserunt mollit anim id est laborum.',
+                                69.99,
+                              );
                             })),
                       )
                     ],

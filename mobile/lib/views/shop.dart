@@ -45,11 +45,13 @@ class _ShopState extends State<Shop> {
     final products = Provider.of<List<Product>>(context, listen: false);
     if (filteredProducts.isEmpty) {
       filteredProducts = List.from(products);
-      filteredProducts = filteredProducts.where((element) => element.units > 0).toList();
+      filteredProducts =
+          filteredProducts.where((element) => element.units > 0).toList();
       filteredProducts.sort((a, b) => b.id.compareTo(a.id));
       Future.delayed(const Duration(milliseconds: 1), () {
         Navigator.pop(context);
-        Navigator.push(context, MaterialPageRoute(builder: (context) => const Shop()));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => const Shop()));
       });
     }
 
@@ -85,14 +87,14 @@ class _ShopState extends State<Shop> {
                                     onChanged: (val) {
                                       _debouncer.run(() {
                                         setState(() {
-                                          filteredProducts =
-                                              products.where((product) =>
-                                                  product.name.toLowerCase()
-                                                      .contains(
-                                                      val.toLowerCase()))
-                                                  .toList();
+                                          filteredProducts = products
+                                              .where((product) => product.name
+                                                  .toLowerCase()
+                                                  .contains(val.toLowerCase()))
+                                              .toList();
                                         });
-                                        filteredProducts.sort((a, b) => b.id.compareTo(a.id));
+                                        filteredProducts.sort(
+                                            (a, b) => b.id.compareTo(a.id));
                                       });
                                     },
                                     textAlignVertical: TextAlignVertical.center,
@@ -110,7 +112,8 @@ class _ShopState extends State<Shop> {
                                           style: BorderStyle.none,
                                         ),
                                       ),
-                                      prefixIcon: const Icon(FontAwesomeIcons.search,
+                                      prefixIcon: const Icon(
+                                          FontAwesomeIcons.search,
                                           size: 25,
                                           color: Color(0xff303744)),
                                     ),
@@ -142,11 +145,17 @@ class _ShopState extends State<Shop> {
                       //Shop items grid
 
                       ConstrainedBox(
-                        constraints: BoxConstraints.expand(height: MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top - MediaQuery.of(context).padding.bottom - 140),
+                        constraints: BoxConstraints.expand(
+                            height: MediaQuery.of(context).size.height -
+                                MediaQuery.of(context).padding.top -
+                                MediaQuery.of(context).padding.bottom -
+                                140),
                         child: GridView.builder(
                           shrinkWrap: true,
-                          padding: const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 20),
-                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          padding: const EdgeInsets.only(
+                              left: 10, right: 10, top: 10, bottom: 20),
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisSpacing: 10,
                             crossAxisCount: 2,
                             mainAxisSpacing: 20,
@@ -154,24 +163,26 @@ class _ShopState extends State<Shop> {
                           ),
                           itemCount: filteredProducts.length,
                           itemBuilder: (context, index) {
-                            if(filteredProducts[index].discount > 0) {
+                            if (filteredProducts[index].discount > 0) {
                               return ShopProductItem(
                                   filteredProducts[index].id,
                                   '0_' + filteredProducts[index].name,
                                   filteredProducts[index].name,
                                   filteredProducts[index].description,
-                                  ((filteredProducts[index].price - filteredProducts[index].discount) * 100).round() /
+                                  ((filteredProducts[index].price -
+                                                  filteredProducts[index]
+                                                      .discount) *
+                                              100)
+                                          .round() /
                                       100,
-                                  false,
                                   filteredProducts[index].price);
                             } else {
                               return ShopProductItem(
-                                  filteredProducts[index].id,
-                                  '0_' + filteredProducts[index].name,
-                                  filteredProducts[index].name,
-                                  filteredProducts[index].description,
-                                  filteredProducts[index].price,
-                                  false
+                                filteredProducts[index].id,
+                                '0_' + filteredProducts[index].name,
+                                filteredProducts[index].name,
+                                filteredProducts[index].description,
+                                filteredProducts[index].price,
                               );
                             }
                           },

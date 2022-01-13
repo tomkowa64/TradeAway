@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:mobile/models/appUser.dart';
 import 'package:mobile/models/product.dart';
 import 'package:mobile/models/user.dart';
 import 'package:mobile/services/storage.dart';
@@ -75,7 +76,7 @@ class _ShopProductItem extends State<ShopProductItem> {
                   context,
                   MaterialPageRoute(
                       builder: (context) =>
-                          ProductSilder(productId: this._productId)));
+                          ProductSilder(productId: widget._productId)));
             },
             child: Container(
               padding:
