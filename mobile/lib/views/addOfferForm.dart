@@ -101,11 +101,12 @@ class _AddOfferFormState extends State<AddOfferForm> {
                       child: Column(children: [
                     Text(
                       'Create Offer',
-                      style:
-                          TextStyle(fontSize: 25, fontFamily: 'Times New Roman'),
+                      style: TextStyle(
+                          fontSize: 25, fontFamily: 'Times New Roman'),
                     ),
                     Container(
-                      padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+                      padding:
+                          EdgeInsets.symmetric(vertical: 20, horizontal: 10),
                       margin: EdgeInsets.only(top: 15),
                       height: 200,
                       decoration: BoxDecoration(
@@ -164,7 +165,8 @@ class _AddOfferFormState extends State<AddOfferForm> {
                                             Text(
                                               'Camera',
                                               style: TextStyle(
-                                                  fontFamily: 'Times New Roman'),
+                                                  fontFamily:
+                                                      'Times New Roman'),
                                             )
                                           ],
                                         )),
@@ -208,7 +210,8 @@ class _AddOfferFormState extends State<AddOfferForm> {
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+                      padding:
+                          EdgeInsets.symmetric(vertical: 20, horizontal: 10),
                       margin: EdgeInsets.only(top: 15),
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
@@ -247,7 +250,8 @@ class _AddOfferFormState extends State<AddOfferForm> {
                           Container(
                             height: 40,
                             child: TextFormField(
-                              validator: (val) => val!.length < 1 ? 'Enter name' : null,
+                              validator: (val) =>
+                                  val!.length < 1 ? 'Enter name' : null,
                               onChanged: (val) {
                                 setState(() {
                                   name = val;
@@ -276,7 +280,8 @@ class _AddOfferFormState extends State<AddOfferForm> {
                           ),
                           Container(
                             child: TextFormField(
-                              validator: (val) => val!.length < 1 ? 'Enter description' : null,
+                              validator: (val) =>
+                                  val!.length < 1 ? 'Enter description' : null,
                               onChanged: (val) {
                                 setState(() {
                                   description = val;
@@ -300,7 +305,8 @@ class _AddOfferFormState extends State<AddOfferForm> {
                               children: [
                                 Flexible(
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         'Quantity',
@@ -316,7 +322,10 @@ class _AddOfferFormState extends State<AddOfferForm> {
                                       Container(
                                         height: 40,
                                         child: TextFormField(
-                                          validator: (val) => val!.length < 1 || int.parse(val) < 1 ? 'Enter quantity' : null,
+                                          validator: (val) => val!.length < 1 ||
+                                                  int.parse(val) < 1
+                                              ? 'Enter quantity'
+                                              : null,
                                           onChanged: (val) {
                                             setState(() {
                                               quantity = int.parse(val);
@@ -346,7 +355,10 @@ class _AddOfferFormState extends State<AddOfferForm> {
                                       Container(
                                         height: 40,
                                         child: TextFormField(
-                                          validator: (val) => val!.length < 1 || num.parse(val) < 0 ? 'Enter price' : null,
+                                          validator: (val) => val!.length < 1 ||
+                                                  num.parse(val) < 0
+                                              ? 'Enter price'
+                                              : null,
                                           onChanged: (val) {
                                             setState(() {
                                               price = num.parse(val);
@@ -371,7 +383,8 @@ class _AddOfferFormState extends State<AddOfferForm> {
                                 ),
                                 Flexible(
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         'State',
@@ -386,8 +399,9 @@ class _AddOfferFormState extends State<AddOfferForm> {
                                       ),
                                       TextButton(
                                         style: ButtonStyle(
-                                          minimumSize: MaterialStateProperty.all(
-                                              Size.fromHeight(10)),
+                                          minimumSize:
+                                              MaterialStateProperty.all(
+                                                  Size.fromHeight(10)),
                                           padding: MaterialStateProperty.all(
                                               EdgeInsets.symmetric(
                                                   vertical: 5, horizontal: 25)),
@@ -401,17 +415,21 @@ class _AddOfferFormState extends State<AddOfferForm> {
                                             error = '';
                                           });
                                         },
-                                        child: Text(
-                                          'NEW',
-                                          style: TextStyle(
-                                              color: const Color(0xffffffff),
-                                              fontSize: 20),
+                                        child: FittedBox(
+                                          fit: BoxFit.fitWidth,
+                                          child: Text(
+                                            'NEW',
+                                            style: TextStyle(
+                                                color: const Color(0xffffffff),
+                                                fontSize: 20),
+                                          ),
                                         ),
                                       ),
                                       TextButton(
                                         style: ButtonStyle(
-                                          minimumSize: MaterialStateProperty.all(
-                                              Size.fromHeight(10)),
+                                          minimumSize:
+                                              MaterialStateProperty.all(
+                                                  Size.fromHeight(10)),
                                           padding: MaterialStateProperty.all(
                                               EdgeInsets.symmetric(
                                                   vertical: 5, horizontal: 25)),
@@ -425,17 +443,21 @@ class _AddOfferFormState extends State<AddOfferForm> {
                                             error = '';
                                           });
                                         },
-                                        child: Text(
-                                          'USED',
-                                          style: TextStyle(
-                                              color: const Color(0xffffffff),
-                                              fontSize: 20),
+                                        child: FittedBox(
+                                          fit: BoxFit.fitWidth,
+                                          child: Text(
+                                            'USED',
+                                            style: TextStyle(
+                                                color: const Color(0xffffffff),
+                                                fontSize: 20),
+                                          ),
                                         ),
                                       ),
                                       TextButton(
                                         style: ButtonStyle(
-                                          minimumSize: MaterialStateProperty.all(
-                                              Size.fromHeight(10)),
+                                          minimumSize:
+                                              MaterialStateProperty.all(
+                                                  Size.fromHeight(10)),
                                           padding: MaterialStateProperty.all(
                                               EdgeInsets.symmetric(
                                                   vertical: 5, horizontal: 25)),
@@ -449,11 +471,14 @@ class _AddOfferFormState extends State<AddOfferForm> {
                                             error = '';
                                           });
                                         },
-                                        child: Text(
-                                          'DMG',
-                                          style: TextStyle(
-                                              color: const Color(0xffffffff),
-                                              fontSize: 20),
+                                        child: FittedBox(
+                                          fit: BoxFit.fitWidth,
+                                          child: Text(
+                                            'DMG',
+                                            style: TextStyle(
+                                                color: const Color(0xffffffff),
+                                                fontSize: 20),
+                                          ),
                                         ),
                                       )
                                     ],
@@ -468,7 +493,8 @@ class _AddOfferFormState extends State<AddOfferForm> {
                                 ),
                                 Flexible(
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         'Tags',
@@ -484,7 +510,10 @@ class _AddOfferFormState extends State<AddOfferForm> {
                                       Container(
                                         height: 40,
                                         child: TextFormField(
-                                          validator: (val) => val!.length < 1 || int.parse(val) < 0 ? 'Choose tags' : null,
+                                          validator: (val) => val!.length < 1 ||
+                                                  int.parse(val) < 0
+                                              ? 'Choose tags'
+                                              : null,
                                           onChanged: (val) {
                                             setState(() {
                                               tag = int.parse(val);
@@ -499,8 +528,9 @@ class _AddOfferFormState extends State<AddOfferForm> {
                                       ),
                                       TextButton(
                                         style: ButtonStyle(
-                                          minimumSize: MaterialStateProperty.all(
-                                              Size.fromHeight(10)),
+                                          minimumSize:
+                                              MaterialStateProperty.all(
+                                                  Size.fromHeight(10)),
                                           padding: MaterialStateProperty.all(
                                               EdgeInsets.symmetric(
                                                   vertical: 2, horizontal: 5)),
@@ -533,10 +563,9 @@ class _AddOfferFormState extends State<AddOfferForm> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text(
-                                        error,
-                                        style: const TextStyle(color: Colors.red, fontSize: 14.0)
-                                    )
+                                    Text(error,
+                                        style: const TextStyle(
+                                            color: Colors.red, fontSize: 14.0))
                                   ],
                                 ),
                               )
@@ -544,8 +573,8 @@ class _AddOfferFormState extends State<AddOfferForm> {
                           ),
                           TextButton(
                             style: ButtonStyle(
-                              minimumSize:
-                                  MaterialStateProperty.all(Size.fromHeight(10)),
+                              minimumSize: MaterialStateProperty.all(
+                                  Size.fromHeight(10)),
                               padding: MaterialStateProperty.all(
                                   EdgeInsets.symmetric(
                                       vertical: 10, horizontal: 5)),
@@ -553,17 +582,16 @@ class _AddOfferFormState extends State<AddOfferForm> {
                                   const Color(0xffcf4e6c)),
                             ),
                             onPressed: () async {
-                              var thisUserDetails = users.firstWhere((element) => element.uid == auth.uid);
-                              if(
-                                  thisUserDetails.postalCode != ''
-                                  && thisUserDetails.address != ''
-                                  && thisUserDetails.country != ''
-                                  && thisUserDetails.phone != 0
-                                  && thisUserDetails.age != 0
-                                  && thisUserDetails.surname != ''
-                                  && thisUserDetails.city != ''
-                                  && thisUserDetails.name != ''
-                              ) {
+                              var thisUserDetails = users.firstWhere(
+                                  (element) => element.uid == auth.uid);
+                              if (thisUserDetails.postalCode != '' &&
+                                  thisUserDetails.address != '' &&
+                                  thisUserDetails.country != '' &&
+                                  thisUserDetails.phone != 0 &&
+                                  thisUserDetails.age != 0 &&
+                                  thisUserDetails.surname != '' &&
+                                  thisUserDetails.city != '' &&
+                                  thisUserDetails.name != '') {
                                 if (_formKey.currentState!.validate()) {
                                   if (state != '') {
                                     if (imgPath != '') {
@@ -601,20 +629,27 @@ class _AddOfferFormState extends State<AddOfferForm> {
                                     context: context,
                                     builder: (BuildContext context) {
                                       return AlertDialog(
-                                        title: const Text("Update Personal Data"),
+                                        title:
+                                            const Text("Update Personal Data"),
                                         content: const Text(
                                             "To add offer you need to specify your personal data first."),
                                         actions: [
                                           TextButton(
                                               onPressed: () {
-                                                Navigator.pop(context, 'Cancel');
+                                                Navigator.pop(
+                                                    context, 'Cancel');
                                               },
                                               child: const Text('Back')),
                                           TextButton(
                                               onPressed: () {
-                                                Navigator.push(context, MaterialPageRoute(builder: (context) => const PersonalDataForm()));
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            const PersonalDataForm()));
                                               },
-                                              child: const Text('Personal Data'))
+                                              child:
+                                                  const Text('Personal Data'))
                                         ],
                                       );
                                     });
