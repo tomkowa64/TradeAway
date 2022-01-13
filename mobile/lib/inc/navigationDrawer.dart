@@ -65,31 +65,37 @@ class NavigationDrawer extends StatelessWidget {
           ListTile(
               leading: Icon(Icons.home),
               title: Text('Home'),
-    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Home()))),
+              onTap: () => Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Home()))),
           ListTile(
             leading: Icon(Icons.account_circle),
             title: Text('Profile'),
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Profile())),
+            onTap: () => Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Profile())),
           ),
           ListTile(
             leading: Icon(Icons.star),
-            title: Text('Fauvorites'),
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Favourites())),
+            title: Text('Favorites'),
+            onTap: () => Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Favourites())),
           ),
           ListTile(
             leading: Icon(Icons.transform),
             title: Text('Transactions'),
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Transactions())),
+            onTap: () => Navigator.push(context,
+                MaterialPageRoute(builder: (context) => Transactions())),
           ),
           ListTile(
             leading: Icon(Icons.shop),
             title: Text('Shop'),
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Shop())),
+            onTap: () => Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Shop())),
           ),
           ListTile(
             leading: Icon(Icons.shopping_cart),
             title: Text('Cart'),
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Cart())),
+            onTap: () => Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Cart())),
           ),
           Divider(
             height: 1,
@@ -102,12 +108,12 @@ class NavigationDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
-              leading: Icon(Icons.logout),
-              title: Text('Log out'),
-              onTap: () async {
-                await _auth.signOut();
-                Navigator.pushReplacementNamed(context, 'Splash');
-              },
+            leading: Icon(Icons.logout),
+            title: Text('Log out'),
+            onTap: () async {
+              await _auth.signOut();
+              Navigator.pushReplacementNamed(context, 'Splash');
+            },
           )
         ],
       ),

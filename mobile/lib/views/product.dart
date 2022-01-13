@@ -17,8 +17,11 @@ import 'package:provider/provider.dart';
 import 'cart.dart';
 
 class ProductSilder extends StatefulWidget {
-  const ProductSilder({Key? key, required this.productId}) : super(key: key);
+  const ProductSilder(
+      {Key? key, required this.productId, required this.isFavorite})
+      : super(key: key);
   final num productId;
+  final bool isFavorite;
 
   @override
   State<StatefulWidget> createState() {
@@ -33,10 +36,12 @@ class _Product extends State<ProductSilder> {
   int _current = 0;
   int qty = 1;
   final CarouselController _controller = CarouselController();
+  late bool localFavorite;
 
   @override
   void initState() {
     _future = storage.listImages(widget.productId);
+    localFavorite = widget.isFavorite;
     super.initState();
   }
 
@@ -53,8 +58,9 @@ class _Product extends State<ProductSilder> {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) =>
-                    ProductSilder(productId: widget.productId)));
+                builder: (context) => ProductSilder(
+                    productId: widget.productId,
+                    isFavorite: widget.isFavorite)));
       });
     }
 
@@ -70,18 +76,43 @@ class _Product extends State<ProductSilder> {
               child: Column(
             children: [
               // Favorite Icon
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: const [
-                  Padding(
-                    padding: EdgeInsets.only(right: 10),
-                    child: Icon(
-                      FontAwesomeIcons.heart,
-                      size: 30,
-                    ),
-                  )
-                ],
-              ),
+              if (localFavorite)
+                Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+                  GestureDetector(
+                      onTap: () {
+                        database.updateFavoriteData(widget.productId);
+                        setState(() {
+                          localFavorite = !localFavorite;
+                        });
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.only(right: 10),
+                        child: Icon(
+                          FontAwesomeIcons.solidHeart,
+                          size: 30,
+                        ),
+                      ))
+                ]),
+              if (!localFavorite)
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    GestureDetector(
+                        onTap: () {
+                          database.updateFavoriteData(widget.productId);
+                          setState(() {
+                            localFavorite = !localFavorite;
+                          });
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.only(right: 10),
+                          child: Icon(
+                            FontAwesomeIcons.heart,
+                            size: 30,
+                          ),
+                        ))
+                  ],
+                ),
               // Image Carousel
               FutureBuilder(
                   future: _future,
@@ -369,17 +400,16 @@ class _Product extends State<ProductSilder> {
                                               BorderRadius.circular(25))),
                                 ),
                                 onPressed: () {
-                                  var thisUserDetails = users.firstWhere((element) => element.uid == auth.uid);
-                                  if(
-                                      thisUserDetails.postalCode != ''
-                                      && thisUserDetails.address != ''
-                                      && thisUserDetails.country != ''
-                                      && thisUserDetails.phone != 0
-                                      && thisUserDetails.age != 0
-                                      && thisUserDetails.surname != ''
-                                      && thisUserDetails.city != ''
-                                      && thisUserDetails.name != ''
-                                  ) {
+                                  var thisUserDetails = users.firstWhere(
+                                      (element) => element.uid == auth.uid);
+                                  if (thisUserDetails.postalCode != '' &&
+                                      thisUserDetails.address != '' &&
+                                      thisUserDetails.country != '' &&
+                                      thisUserDetails.phone != 0 &&
+                                      thisUserDetails.age != 0 &&
+                                      thisUserDetails.surname != '' &&
+                                      thisUserDetails.city != '' &&
+                                      thisUserDetails.name != '') {
                                     if (products
                                             .firstWhere((element) =>
                                                 element.id ==
@@ -406,20 +436,28 @@ class _Product extends State<ProductSilder> {
                                           context: context,
                                           builder: (BuildContext context) {
                                             return AlertDialog(
-                                              title: const Text("Product added to cart"),
+                                              title: const Text(
+                                                  "Product added to cart"),
                                               content: const Text(
                                                   "Do you want to continue shopping or see your cart?"),
                                               actions: [
                                                 TextButton(
                                                     onPressed: () {
-                                                      Navigator.pop(context, 'Cancel');
+                                                      Navigator.pop(
+                                                          context, 'Cancel');
                                                     },
-                                                    child: const Text('Continue shopping')),
+                                                    child: const Text(
+                                                        'Continue shopping')),
                                                 TextButton(
                                                     onPressed: () {
-                                                      Navigator.push(context, MaterialPageRoute(builder: (context) => const Cart()));
+                                                      Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  const Cart()));
                                                     },
-                                                    child: const Text('My Cart'))
+                                                    child:
+                                                        const Text('My Cart'))
                                               ],
                                             );
                                           });
@@ -447,20 +485,27 @@ class _Product extends State<ProductSilder> {
                                         context: context,
                                         builder: (BuildContext context) {
                                           return AlertDialog(
-                                            title: const Text("Update Personal Data"),
+                                            title: const Text(
+                                                "Update Personal Data"),
                                             content: const Text(
                                                 "To buy any product you need to specify your personal data first."),
                                             actions: [
                                               TextButton(
                                                   onPressed: () {
-                                                    Navigator.pop(context, 'Cancel');
+                                                    Navigator.pop(
+                                                        context, 'Cancel');
                                                   },
                                                   child: const Text('Back')),
                                               TextButton(
                                                   onPressed: () {
-                                                    Navigator.push(context, MaterialPageRoute(builder: (context) => const PersonalDataForm()));
+                                                    Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                const PersonalDataForm()));
                                                   },
-                                                  child: const Text('Personal Data'))
+                                                  child: const Text(
+                                                      'Personal Data'))
                                             ],
                                           );
                                         });

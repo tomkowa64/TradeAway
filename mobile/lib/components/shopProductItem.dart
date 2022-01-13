@@ -10,6 +10,7 @@ import 'package:mobile/models/user.dart';
 import 'package:mobile/services/storage.dart';
 import 'package:mobile/views/product.dart';
 import 'package:mobile/services/database.dart';
+import 'package:mobile/views/shop.dart';
 import 'package:provider/provider.dart';
 
 class ShopProductItem extends StatefulWidget {
@@ -59,15 +60,49 @@ class ShopProductItem extends StatefulWidget {
 }
 
 class _ShopProductItem extends State<ShopProductItem> {
+  late bool _isFavorite;
   @override
   Widget build(BuildContext context) {
     final Storage storage = Storage();
     final auth = Provider.of<AppUser>(context);
     final database = DatabaseService(uid: auth.uid);
 
+    final favorites = Provider.of<List<Map<String, dynamic>>>(context);
+
+    var favoriteArray = [];
+
+    if (favorites
+            .firstWhere((element) => element.values.toList()[0] == auth.uid)
+            .values
+            .toList()
+            .length >
+        1) {
+      favorites
+          .firstWhere((element) => element.values.toList()[0] == auth.uid)
+          .values
+          .toList()[1]
+          .toString()
+          .substring(
+              1,
+              favorites
+                      .firstWhere(
+                          (element) => element.values.toList()[0] == auth.uid)
+                      .values
+                      .toList()[1]
+                      .toString()
+                      .length -
+                  1)
+          .split(',')
+          .forEach((element) {
+        favoriteArray.add(element.trim());
+      });
+    }
+
     final currId = Provider.of<List<Product>>(context)
         .firstWhere((element) => element.id == widget.productId)
         .id;
+
+    this._isFavorite = favoriteArray.contains(widget.productId.toString());
 
     return Center(
         child: GestureDetector(
@@ -75,8 +110,9 @@ class _ShopProductItem extends State<ShopProductItem> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) =>
-                          ProductSilder(productId: widget._productId)));
+                      builder: (context) => ProductSilder(
+                          productId: widget._productId,
+                          isFavorite: this._isFavorite)));
             },
             child: Container(
               padding:
@@ -151,35 +187,56 @@ class _ShopProductItem extends State<ShopProductItem> {
                                   fontFamily: "Times New Roman",
                                   color: const Color(0xff303744))),
                         ),
-                        FutureBuilder<bool>(
-                            future: database.isFavorite(currId),
-                            builder:
-                                (BuildContext context, AsyncSnapshot snapshot) {
+                        /*
                               if (snapshot.hasData) {
                                 if (snapshot.data == true) {
-                                  return GestureDetector(
-                                    onTap: (/*Add to favorite*/) {
-                                      database
-                                          .updateFavoriteData(widget.productId);
-                                      Future.delayed(
-                                          Duration(milliseconds: 200), () {
-                                        setState(() {});
-                                      });
-                                    },
-                                    child: Container(
-                                      height: 25,
-                                      width: 25,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(90),
-                                        color: const Color(0xffcf4e6c),
-                                      ),
-                                      child: Icon(
-                                        FontAwesomeIcons.solidHeart,
-                                        color: Colors.white,
-                                        size: 15,
-                                      ),
-                                    ),
-                                  );
+
+                               */
+                        if (this._isFavorite)
+                          GestureDetector(
+                            onTap: () {
+                              database.updateFavoriteData(widget.productId);
+                              setState(() {
+                                this._isFavorite = !this._isFavorite;
+                              });
+                            },
+                            child: Container(
+                              height: 25,
+                              width: 25,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(90),
+                                color: const Color(0xffcf4e6c),
+                              ),
+                              child: Icon(
+                                FontAwesomeIcons.solidHeart,
+                                color: Colors.white,
+                                size: 15,
+                              ),
+                            ),
+                          )
+                        else
+                          GestureDetector(
+                            onTap: () {
+                              database.updateFavoriteData(widget.productId);
+                              setState(() {
+                                this._isFavorite = !this._isFavorite;
+                              });
+                            },
+                            child: Container(
+                              height: 25,
+                              width: 25,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(90),
+                                color: const Color(0xffcf4e6c),
+                              ),
+                              child: Icon(
+                                FontAwesomeIcons.heart,
+                                color: Colors.white,
+                                size: 15,
+                              ),
+                            ),
+                          )
+                        /*
                                 } else {
                                   return GestureDetector(
                                     onTap: (/*Add to favorite*/) {
@@ -187,7 +244,11 @@ class _ShopProductItem extends State<ShopProductItem> {
                                           .updateFavoriteData(widget.productId);
                                       Future.delayed(
                                           Duration(milliseconds: 200), () {
-                                        setState(() {});
+                                        Navigator.pop(context);
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) => Shop()));
                                       });
                                     },
                                     child: Container(
@@ -206,10 +267,11 @@ class _ShopProductItem extends State<ShopProductItem> {
                                   );
                                 }
                               } else {
-                                setState(() {});
                                 return CircularProgressIndicator();
                               }
-                            })
+                            }
+
+                                   */
                       ],
                     ),
                   ),

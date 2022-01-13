@@ -219,8 +219,24 @@ class DatabaseService {
     }).toList();
   }
 
+  // transaction list from snapshot
+  List<Map<String, dynamic>> _favoriteListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.docs.map((doc) {
+      Map<String, dynamic> data = doc.data()! as Map<String, dynamic>;
+      Map<String, dynamic> favoriteMap = {};
+      favoriteMap['uid'] = doc.id;
+      favoriteMap.addAll(data);
+      return favoriteMap;
+    }).toList();
+  }
+
   // get transaction stream
   Stream<List<Map<String, dynamic>>> get cart {
     return cartCollection.snapshots().map(_cartListFromSnapshot);
+  }
+
+  // get favorite stream
+  Stream<List<Map<String, dynamic>>> get favorites {
+    return favoriteCollection.snapshots().map(_favoriteListFromSnapshot);
   }
 }

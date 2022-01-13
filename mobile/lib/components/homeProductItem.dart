@@ -23,8 +23,8 @@ class HomeProductItem extends StatelessWidget {
   HomeProductItem(this._productId, this._imgUrl, this._productName, this._price,
       [this._oldPrice]);
 
-  HomeProductItem.empty(
-      num productId, String imgUrl, String productName, num oldPrice, num price) {
+  HomeProductItem.empty(num productId, String imgUrl, String productName,
+      num oldPrice, num price) {
     this._productId = 0;
     this._imgUrl = "";
     this._productName = "";
@@ -66,10 +66,46 @@ class HomeProductItem extends StatelessWidget {
     final products = Provider.of<List<Product>>(context);
     final Storage storage = Storage();
     final users = Provider.of<List<OurUser>>(context);
+    final favorites = Provider.of<List<Map<String, dynamic>>>(context);
+
+    var favoriteArray = [];
+
+    if (favorites
+            .firstWhere((element) => element.values.toList()[0] == auth.uid)
+            .values
+            .toList()
+            .length >
+        1) {
+      favorites
+          .firstWhere((element) => element.values.toList()[0] == auth.uid)
+          .values
+          .toList()[1]
+          .toString()
+          .substring(
+              1,
+              favorites
+                      .firstWhere(
+                          (element) => element.values.toList()[0] == auth.uid)
+                      .values
+                      .toList()[1]
+                      .toString()
+                      .length -
+                  1)
+          .split(',')
+          .forEach((element) {
+        favoriteArray.add(element.trim());
+      });
+    }
+
+    var isFavorite = favoriteArray.contains(this.productId.toString());
 
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => ProductSilder(productId: this._productId)));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => ProductSilder(
+                    productId: this._productId, isFavorite: isFavorite)));
       },
       child: Card(
           child: new Container(
@@ -79,19 +115,21 @@ class HomeProductItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             AspectRatio(
-              aspectRatio: 1/1,
+              aspectRatio: 1 / 1,
               child: FutureBuilder(
                   future: storage.getURL(this._productId, this._imgUrl),
-                  builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-                    if(snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
+                  builder:
+                      (BuildContext context, AsyncSnapshot<String> snapshot) {
+                    if (snapshot.connectionState == ConnectionState.done &&
+                        snapshot.hasData) {
                       return Image.network(snapshot.data!, fit: BoxFit.cover);
                     }
-                    if(snapshot.connectionState == ConnectionState.waiting || !snapshot.hasData) {
+                    if (snapshot.connectionState == ConnectionState.waiting ||
+                        !snapshot.hasData) {
                       return CircularProgressIndicator();
                     }
                     return Container();
-                  }
-              ),
+                  }),
             ),
             // Image.asset(this.imgUrl),
             FittedBox(
@@ -125,17 +163,16 @@ class HomeProductItem extends StatelessWidget {
             ),
             TextButton(
                 onPressed: () async {
-                  var thisUserDetails = users.firstWhere((element) => element.uid == auth.uid);
-                  if(
-                  thisUserDetails.postalCode != ''
-                      && thisUserDetails.address != ''
-                      && thisUserDetails.country != ''
-                      && thisUserDetails.phone != 0
-                      && thisUserDetails.age != 0
-                      && thisUserDetails.surname != ''
-                      && thisUserDetails.city != ''
-                      && thisUserDetails.name != ''
-                  ) {
+                  var thisUserDetails =
+                      users.firstWhere((element) => element.uid == auth.uid);
+                  if (thisUserDetails.postalCode != '' &&
+                      thisUserDetails.address != '' &&
+                      thisUserDetails.country != '' &&
+                      thisUserDetails.phone != 0 &&
+                      thisUserDetails.age != 0 &&
+                      thisUserDetails.surname != '' &&
+                      thisUserDetails.city != '' &&
+                      thisUserDetails.name != '') {
                     if (products
                             .firstWhere(
                                 (element) => element.id == productId.toInt())
@@ -170,7 +207,11 @@ class HomeProductItem extends StatelessWidget {
                                     child: const Text('Continue shopping')),
                                 TextButton(
                                     onPressed: () {
-                                      Navigator.push(context, MaterialPageRoute(builder: (context) => const Cart()));
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const Cart()));
                                     },
                                     child: const Text('My Cart'))
                               ],
@@ -209,7 +250,11 @@ class HomeProductItem extends StatelessWidget {
                                   child: const Text('Back')),
                               TextButton(
                                   onPressed: () {
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) => const PersonalDataForm()));
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const PersonalDataForm()));
                                   },
                                   child: const Text('Personal Data'))
                             ],
