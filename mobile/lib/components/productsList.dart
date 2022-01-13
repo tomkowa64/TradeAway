@@ -1,8 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/components/homeProductItem.dart';
 import 'package:mobile/components/shopProductItem.dart';
 import 'package:mobile/models/product.dart';
+import 'package:mobile/models/user.dart';
 import 'package:mobile/services/storage.dart';
+import 'package:mobile/services/database.dart';
 import 'package:provider/provider.dart';
 
 class ProductsList extends StatefulWidget {
@@ -29,24 +32,25 @@ class _ProductsListState extends State<ProductsList> {
       ),
       itemCount: products.length,
       itemBuilder: (context, index) {
-        if(products[products.length - 1 - index].discount > 0) {
+        if (products[products.length - 1 - index].discount > 0) {
           return ShopProductItem(
-              products.length - 1 - index,
+              products[products.length - 1 - index].id,
               '0_' + products[products.length - 1 - index].name,
               products[products.length - 1 - index].name,
               products[products.length - 1 - index].description,
-              ((products[products.length - 1 - index].price - products[products.length - 1 - index].discount) * 100).round() /
+              ((products[products.length - 1 - index].price -
+                              products[products.length - 1 - index].discount) *
+                          100)
+                      .round() /
                   100,
-              false,
               products[products.length - 1 - index].price);
         } else {
           return ShopProductItem(
-              products.length - 1 - index,
-              '0_' + products[products.length - 1 - index].name,
-              products[products.length - 1 - index].name,
-              products[products.length - 1 - index].description,
-              products[products.length - 1 - index].price,
-              false
+            products[products.length - 1 - index].id,
+            '0_' + products[products.length - 1 - index].name,
+            products[products.length - 1 - index].name,
+            products[products.length - 1 - index].description,
+            products[products.length - 1 - index].price,
           );
         }
       },
