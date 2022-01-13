@@ -56,21 +56,19 @@ class Favourites extends StatelessWidget {
       });
     }
 
+    filteredProducts = products
+        .where((element) => element.units > 0)
+        .where((element) => favoriteArray.contains(element.id.toString()))
+        .toList();
+    filteredProducts.sort((a, b) => b.id.compareTo(a.id));
+
     if (filteredProducts.isEmpty) {
-      filteredProducts = List.from(products);
-      filteredProducts = filteredProducts
-          .where((element) => element.units > 0)
-          .toList();
       Future.delayed(const Duration(milliseconds: 1), () {
         Navigator.pop(context);
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => const Favourites()));
       });
     }
-
-    filteredProducts = filteredProducts
-        .where((element) => favoriteArray.contains(element.id.toString()))
-        .toList();
 
     return Scaffold(
         appBar: const PreferredSize(
