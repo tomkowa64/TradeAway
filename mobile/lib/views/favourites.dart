@@ -59,7 +59,7 @@ class Favourites extends StatelessWidget {
     if (filteredProducts.isEmpty) {
       filteredProducts = List.from(products);
       filteredProducts = filteredProducts
-          .where((element) => favoriteArray.contains(element.id.toString()))
+          .where((element) => element.units > 0)
           .toList();
       Future.delayed(const Duration(milliseconds: 1), () {
         Navigator.pop(context);
@@ -67,6 +67,10 @@ class Favourites extends StatelessWidget {
             MaterialPageRoute(builder: (context) => const Favourites()));
       });
     }
+
+    filteredProducts = filteredProducts
+        .where((element) => favoriteArray.contains(element.id.toString()))
+        .toList();
 
     return Scaffold(
         appBar: const PreferredSize(
