@@ -190,12 +190,12 @@ class _AccountSettingsFormState extends State<AccountSettingsForm> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         GestureDetector(
-                          onTap: () {
+                          onTap: () async {
                             if(_formKey.currentState!.validate()) {
-                              print(emailField.isNotEmpty);
-                              print(passwordField.isNotEmpty);
-                              _auth.changeEmailAndPassword(emailField, passwordField);
-                              Navigator.pushNamedAndRemoveUntil(context, 'Splash', (Route<dynamic> route) => false);
+                              if(emailField.isNotEmpty || passwordField.isNotEmpty) {
+                                Navigator.pushNamedAndRemoveUntil(context, 'Splash', (Route<dynamic> route) => false);
+                                await _auth.changeEmailAndPassword(emailField, passwordField);
+                              }
                             }
                           },
                           child: Container(

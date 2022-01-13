@@ -56,11 +56,12 @@ class AuthService {
 
     try{
       if(email.isNotEmpty) await user!.updateEmail(email);
-      if(password.isNotEmpty)await user!.updatePassword(password);
+      if(password.isNotEmpty) await user!.updatePassword(password);
       await signOut();
     } catch(e) {
       print(e.toString());
     }
+    await signOut();
   }
 
   // sign out
