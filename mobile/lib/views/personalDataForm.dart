@@ -451,7 +451,7 @@ class _PersonalDataForm extends State<PersonalDataForm> {
                               database.updateUserData(
                                   auth.uid,
                                   nameField == '' ? name : nameField,
-                                  surnameField == '' ? surname : nameField,
+                                  surnameField == '' ? surname : surnameField,
                                   ageField == 0
                                       ? age == ''
                                           ? 0

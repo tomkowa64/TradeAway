@@ -28,12 +28,12 @@ class _Cart extends State<Cart> {
   Widget build(BuildContext context) {
     bool exists = false;
 
-    final auth = Provider.of<AppUser>(context);
+    final auth = Provider.of<AppUser?>(context);
     final carts = Provider.of<Map<String, dynamic>>(context);
     final products = Provider.of<List<Product>>(context);
     final users = Provider.of<List<OurUser>>(context);
     final transactions = Provider.of<List<OurTransaction>>(context);
-    final DatabaseService database = DatabaseService(uid: auth.uid);
+    final DatabaseService database = DatabaseService(uid: auth!.uid);
 
     cart.deleteAllCart();
     exists = carts.isNotEmpty;
