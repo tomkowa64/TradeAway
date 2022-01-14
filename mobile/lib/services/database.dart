@@ -209,14 +209,16 @@ class DatabaseService {
   }
 
   // transaction list from snapshot
-  List<Map<String, dynamic>> _cartListFromSnapshot(QuerySnapshot snapshot) {
-    return snapshot.docs.map((doc) {
+  Map<String, dynamic> _cartListFromSnapshot(QuerySnapshot snapshot) {
+    var carts = snapshot.docs.map((doc) {
       Map<String, dynamic> data = doc.data()! as Map<String, dynamic>;
       Map<String, dynamic> cartMap = {};
       cartMap['uid'] = doc.id;
       cartMap.addAll(data);
       return cartMap;
     }).toList();
+
+    return carts.firstWhere((element) => element[0] == uid);
   }
 
   // transaction list from snapshot
@@ -231,7 +233,7 @@ class DatabaseService {
   }
 
   // get transaction stream
-  Stream<List<Map<String, dynamic>>> get cart {
+  Stream<Map<String, dynamic>> get cart {
     return cartCollection.snapshots().map(_cartListFromSnapshot);
   }
 

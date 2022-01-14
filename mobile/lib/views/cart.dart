@@ -29,40 +29,29 @@ class _Cart extends State<Cart> {
     bool exists = false;
 
     final auth = Provider.of<AppUser>(context);
-    final carts = Provider.of<List<Map<String, dynamic>>>(context);
+    final carts = Provider.of<Map<String, dynamic>>(context);
     final products = Provider.of<List<Product>>(context);
     final users = Provider.of<List<OurUser>>(context);
     final transactions = Provider.of<List<OurTransaction>>(context);
     final DatabaseService database = DatabaseService(uid: auth.uid);
 
     cart.deleteAllCart();
-    if (carts.isNotEmpty) {
-      for (var value in carts.toList()) {
-        if (value.values.toList()[0] == auth.uid &&
-            value.values.toList()[1].toString().length > 2) {
-          exists = true;
-          break;
-        }
-      }
-    }
+    exists = carts.isNotEmpty;
 
     if (exists) {
+      cart.deleteAllCart();
       if (carts
-              .firstWhere((element) => element.values.toList()[0] == auth.uid)
               .values
-              .toList()
+              .toList()[1]
               .length >
-          1) {
+          0) {
         carts
-            .firstWhere((element) => element.values.toList()[0] == auth.uid)
             .values
             .toList()[1]
             .toString()
             .substring(
                 1,
                 carts
-                        .firstWhere(
-                            (element) => element.values.toList()[0] == auth.uid)
                         .values
                         .toList()[1]
                         .toString()

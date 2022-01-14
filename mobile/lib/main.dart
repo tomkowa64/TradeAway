@@ -50,9 +50,9 @@ class MyApp extends StatelessWidget {
               child: StreamProvider<List<OurTransaction>>.value(
                 value: DatabaseService().transaction,
                 initialData: const [],
-                child: StreamProvider<List<Map<String, dynamic>>>.value(
+                child: StreamProvider<Map<String, dynamic>>.value(
                   value: DatabaseService().cart,
-                  initialData: const [],
+                  initialData: const {},
                   child: StreamProvider<List<Map<String, dynamic>>>.value(
                       value: DatabaseService().favorites,
                       initialData: const [],
