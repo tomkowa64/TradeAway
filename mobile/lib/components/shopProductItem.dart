@@ -71,38 +71,41 @@ class _ShopProductItem extends State<ShopProductItem> {
 
     var favoriteArray = [];
 
-    if (favorites
+    if(favorites.where((element) => element.values.toList()[0] == auth.uid).isNotEmpty) {
+      if (favorites
+              .firstWhere((element) => element.values.toList()[0] == auth.uid)
+              .values
+              .toList()
+              .length >
+          1) {
+        favorites
             .firstWhere((element) => element.values.toList()[0] == auth.uid)
             .values
-            .toList()
-            .length >
-        1) {
-      favorites
-          .firstWhere((element) => element.values.toList()[0] == auth.uid)
-          .values
-          .toList()[1]
-          .toString()
-          .substring(
-              1,
-              favorites
-                      .firstWhere(
-                          (element) => element.values.toList()[0] == auth.uid)
-                      .values
-                      .toList()[1]
-                      .toString()
-                      .length -
-                  1)
-          .split(',')
-          .forEach((element) {
-        favoriteArray.add(element.trim());
-      });
+            .toList()[1]
+            .toString()
+            .substring(
+                1,
+                favorites
+                        .firstWhere(
+                            (element) => element.values.toList()[0] == auth.uid)
+                        .values
+                        .toList()[1]
+                        .toString()
+                        .length -
+                    1)
+            .split(',')
+            .forEach((element) {
+          favoriteArray.add(element.trim());
+        });
+      }
+      final currId = Provider.of<List<Product>>(context)
+          .firstWhere((element) => element.id == widget.productId)
+          .id;
+
+      this._isFavorite = favoriteArray.contains(widget.productId.toString());
+    } else {
+      this._isFavorite = false;
     }
-
-    final currId = Provider.of<List<Product>>(context)
-        .firstWhere((element) => element.id == widget.productId)
-        .id;
-
-    this._isFavorite = favoriteArray.contains(widget.productId.toString());
 
     return Center(
         child: GestureDetector(

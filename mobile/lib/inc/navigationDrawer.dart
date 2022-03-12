@@ -7,6 +7,7 @@ import 'package:mobile/views/favourites.dart';
 import 'package:mobile/views/home.dart';
 import 'package:mobile/views/profile.dart';
 import 'package:mobile/views/shop.dart';
+import 'package:mobile/views/splash.dart';
 import 'package:mobile/views/transactions.dart';
 
 class NavigationDrawer extends StatelessWidget {
@@ -111,8 +112,9 @@ class NavigationDrawer extends StatelessWidget {
             leading: Icon(Icons.logout),
             title: Text('Log out'),
             onTap: () async {
+              Navigator.pushAndRemoveUntil(
+                  context, MaterialPageRoute(builder: (context) => Splash()), (Route<dynamic> route) => false);
               await _auth.signOut();
-              Navigator.pushReplacementNamed(context, 'Splash');
             },
           )
         ],

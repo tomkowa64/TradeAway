@@ -29,45 +29,51 @@ class Favourites extends StatelessWidget {
 
     var favoriteArray = [];
 
-    if (favorites
+    if(favorites.where((element) => element.values.toList()[0] == auth.uid).isNotEmpty) {
+      if (favorites
+              .firstWhere((element) => element.values.toList()[0] == auth.uid)
+              .values
+              .toList()
+              .length >
+          1) {
+        favorites
             .firstWhere((element) => element.values.toList()[0] == auth.uid)
             .values
-            .toList()
-            .length >
-        1) {
-      favorites
-          .firstWhere((element) => element.values.toList()[0] == auth.uid)
-          .values
-          .toList()[1]
-          .toString()
-          .substring(
-              1,
-              favorites
-                      .firstWhere(
-                          (element) => element.values.toList()[0] == auth.uid)
-                      .values
-                      .toList()[1]
-                      .toString()
-                      .length -
-                  1)
-          .split(',')
-          .forEach((element) {
-        favoriteArray.add(element.trim());
-      });
-    }
+            .toList()[1]
+            .toString()
+            .substring(
+                1,
+                favorites
+                        .firstWhere(
+                            (element) => element.values.toList()[0] == auth.uid)
+                        .values
+                        .toList()[1]
+                        .toString()
+                        .length -
+                    1)
+            .split(',')
+            .forEach((element) {
+          if(element.isNotEmpty) {
+            favoriteArray.add(element.trim());
+          }
+        });
+      }
 
-    filteredProducts = products
-        .where((element) => element.units > 0)
-        .where((element) => favoriteArray.contains(element.id.toString()))
-        .toList();
-    filteredProducts.sort((a, b) => b.id.compareTo(a.id));
+      if(favoriteArray.isNotEmpty) {
+        filteredProducts = products
+            .where((element) => element.units > 0)
+            .where((element) => favoriteArray.contains(element.id.toString()))
+            .toList();
+        filteredProducts.sort((a, b) => b.id.compareTo(a.id));
 
-    if (filteredProducts.isEmpty) {
-      Future.delayed(const Duration(milliseconds: 1), () {
-        Navigator.pop(context);
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const Favourites()));
-      });
+        if (filteredProducts.isEmpty) {
+          Future.delayed(const Duration(milliseconds: 1), () {
+            Navigator.pop(context);
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const Favourites()));
+          });
+        }
+      }
     }
 
     return Scaffold(

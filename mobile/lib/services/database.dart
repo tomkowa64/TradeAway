@@ -46,6 +46,15 @@ class DatabaseService {
   //
   // update favorites data
   Future updateFavoriteData(num newFavoriteProductId) async {
+    await FirebaseFirestore.instance
+        .collection("favorites")
+        .doc(uid)
+        .get()
+        .then((value) async {
+          if(value.data() == null) {
+            await favoriteCollection.doc(uid).set({'productList': []});
+          }
+    });
     var items = [];
     await FirebaseFirestore.instance
         .collection("favorites")
