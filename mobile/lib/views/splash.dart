@@ -6,10 +6,12 @@ import 'package:mobile/models/appUser.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'about.dart';
 import 'home.dart';
 import 'login.dart';
 
 final AuthService _auth = AuthService();
+
 class Splash extends StatelessWidget {
   const Splash({Key? key}) : super(key: key);
 
@@ -87,18 +89,22 @@ class Splash extends StatelessWidget {
                                   minimumSize: MaterialStateProperty.all<Size>(
                                       const Size(200, 50))),
                               onPressed: () {
-                                if(user == null) {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => const Login()));
-                                }
-                                else {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => const Home()));
+                                if (user == null) {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => const Login()));
+                                } else {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => const Home()));
                                 }
                               },
                               child: const Text(
                                 'Log In',
                                 style: TextStyle(
-                                    color: Color(0xffffffff),
-                                    fontSize: 20),
+                                    color: Color(0xffffffff), fontSize: 20),
                               ),
                             )
                           ],
@@ -121,39 +127,44 @@ class Splash extends StatelessWidget {
                                   minimumSize: MaterialStateProperty.all<Size>(
                                       const Size(200, 50))),
                               onPressed: () {
-                                if(user == null) {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => const Register()));
-                                }
-                                else {
+                                if (user == null) {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const Register()));
+                                } else {
                                   showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return AlertDialog(
-                                        title: const Text("Logout?"),
-                                        content: const Text("To register a new account you have to logout."),
-                                        actions: [
-                                          TextButton(
-                                              onPressed: () => Navigator.pop(context, 'Cancel'),
-                                              child: const Text('Back')
-                                          ),
-                                          TextButton(
-                                              onPressed: () async {
-                                                await _auth.signOut();
-                                                Navigator.push(context, MaterialPageRoute(builder: (context) => const Register()));
-                                              },
-                                              child: const Text('Logout')
-                                          )
-                                        ],
-                                      );
-                                    }
-                                  );
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          title: const Text("Logout?"),
+                                          content: const Text(
+                                              "To register a new account you have to logout."),
+                                          actions: [
+                                            TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    context, 'Cancel'),
+                                                child: const Text('Back')),
+                                            TextButton(
+                                                onPressed: () async {
+                                                  await _auth.signOut();
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              const Register()));
+                                                },
+                                                child: const Text('Logout'))
+                                          ],
+                                        );
+                                      });
                                 }
                               },
                               child: const Text(
                                 'Create Account',
                                 style: TextStyle(
-                                    color: Color(0xffffffff),
-                                    fontSize: 20),
+                                    color: Color(0xffffffff), fontSize: 20),
                               ),
                             )
                           ],
@@ -169,7 +180,10 @@ class Splash extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             IconButton(
-                                onPressed: () {},
+                                onPressed: () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => About())),
                                 icon: const FaIcon(
                                     FontAwesomeIcons.questionCircle,
                                     size: 50))

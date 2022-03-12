@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:mobile/models/product.dart';
 import 'package:mobile/models/transaction.dart';
 import 'package:mobile/services/auth.dart';
@@ -58,6 +59,15 @@ class MyApp extends StatelessWidget {
                       initialData: const [],
                       child: MaterialApp(
                           title: 'Trade Away',
+                          localizationsDelegates: [
+                            GlobalMaterialLocalizations.delegate,
+                            GlobalWidgetsLocalizations.delegate,
+                            GlobalCupertinoLocalizations.delegate,
+                          ],
+                          supportedLocales: [
+                            Locale('en', ''), // English, no country code
+                            Locale('pl', ''), // Polish, no country code
+                          ],
                           theme: ThemeData(
                             // This is the theme of your application.
                             //
