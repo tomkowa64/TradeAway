@@ -90,6 +90,7 @@ flutter:
     - assets/images/sample-product.jpg
     - assets/images/user-profile.jpeg
     - assets/images/ur-logo.jpg
+    - assets/images/graduation-hat.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

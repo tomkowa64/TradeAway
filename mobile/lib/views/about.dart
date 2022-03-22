@@ -29,6 +29,13 @@ class About extends StatelessWidget {
           child: Container(
               width: MediaQuery.of(context).size.width,
               margin: EdgeInsets.only(top: 40),
+              decoration: BoxDecoration(
+              image: DecorationImage(
+                colorFilter: ColorFilter.mode(Colors.white.withOpacity(0.05), BlendMode.dstATop),
+              image: AssetImage("assets/images/graduation-hat.png"),
+              fit: BoxFit.fitWidth,
+              ),
+              ),
               child: Row(
                 children: [
                   Expanded(
