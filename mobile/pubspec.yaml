@@ -49,6 +49,8 @@ dependencies:
   firebase_auth: ^3.3.3
   cloud_firestore: ^3.1.4
   firebase_core: ^1.10.5
+  firebase_core_platform_interface: 4.5.1 # note removed ^
+  firebase_messaging: ^13.0.4 # previously I only had this which was pulling in 4.5.2 which you do not want
   provider: ^6.0.1
   carousel_slider: ^4.0.0
   firebase_storage: ^10.2.4
