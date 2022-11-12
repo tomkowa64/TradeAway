@@ -19,12 +19,12 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mobile/components/cartProductCard.dart';
 
-class AddOfferForm extends StatefulWidget {
+class OfferForm extends StatefulWidget {
   @override
-  _AddOfferFormState createState() => _AddOfferFormState();
+  _OfferFormState createState() => _OfferFormState();
 }
 
-class _AddOfferFormState extends State<AddOfferForm> {
+class _OfferFormState extends State<OfferForm> {
   final _formKey = GlobalKey<FormState>();
 
   XFile? imageFile;
