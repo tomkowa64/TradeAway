@@ -5,6 +5,7 @@ import 'package:mobile/models/transaction.dart';
 import 'package:mobile/services/auth.dart';
 import 'package:mobile/services/database.dart';
 import 'package:mobile/views/accountSettingsForm.dart';
+import 'package:mobile/views/conversationList.dart';
 import 'package:mobile/views/offerForm.dart';
 import 'package:mobile/views/cart.dart';
 import 'package:mobile/views/favourites.dart';
@@ -99,6 +100,7 @@ class MyApp extends StatelessWidget {
                             'AccountSettings': (context) =>
                                 AccountSettingsForm(),
                             'AddOffer': (context) => OfferForm(),
+                            'ConversationList': (context) => ConversationList()
                           })),
                 ),
               ),
