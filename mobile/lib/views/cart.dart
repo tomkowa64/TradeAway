@@ -247,8 +247,7 @@ class _Cart extends State<Cart> {
                                             element.id ==
                                             num.parse(
                                                 item.productId.toString()))
-                                        .category
-                                        .toInt(),
+                                        .categories,
                                     products
                                             .firstWhere((element) =>
                                                 element.id ==

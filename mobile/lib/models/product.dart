@@ -5,7 +5,7 @@ class Product {
   final num price;
   final num discount;
   final String seller;
-  final num category;
+  final List<int> categories;
   final num units;
   final String state;
 
@@ -16,7 +16,7 @@ class Product {
     required this.price,
     required this.discount,
     required this.seller,
-    required this.category,
+    required this.categories,
     required this.units,
     required this.state
   });

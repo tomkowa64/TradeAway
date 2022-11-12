@@ -36,7 +36,7 @@ class _OfferFormState extends State<OfferForm> {
   int quantity = 0;
   num price = 0.0;
   String state = '';
-  int tag = 0;
+  List<int> categories = [];
   String error = '';
   String imgPath = '';
 
@@ -590,7 +590,7 @@ class _OfferFormState extends State<OfferForm> {
                                           price.toDouble(),
                                           0,
                                           auth.uid,
-                                          tag,
+                                          categories,
                                           quantity,
                                           state);
                                       setState(() {

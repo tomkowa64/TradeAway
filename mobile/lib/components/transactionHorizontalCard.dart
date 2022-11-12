@@ -293,7 +293,7 @@ class _TransactionHorizontalCard extends State<TransactionHorizontalCard> {
                                                           products.firstWhere((element) => element.id == productId).price.toDouble(),
                                                           products.firstWhere((element) => element.id == productId).discount.toDouble(),
                                                           products.firstWhere((element) => element.id == productId).seller,
-                                                          products.firstWhere((element) => element.id == productId).category.toInt(),
+                                                          products.firstWhere((element) => element.id == productId).categories,
                                                           products.firstWhere((element) => element.id == productId).units.toInt() + userTransactions.firstWhere((element) => element.transactionId == transactionId).quantity.toInt(),
                                                           products.firstWhere((element) => element.id == productId).state
                                                       );

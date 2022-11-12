@@ -28,7 +28,7 @@ class DatabaseService {
       double price,
       double discount,
       String sellerId,
-      int category,
+      List<int> categories,
       int units,
       String state) async {
     return await productCollection.doc(id.toString()).set({
@@ -37,13 +37,12 @@ class DatabaseService {
       'price': price,
       'discount': discount,
       'seller': sellerId,
-      'category': category,
+      'categories': categories,
       'units': units,
       'state': state
     });
   }
 
-  //
   // update favorites data
   Future updateFavoriteData(num newFavoriteProductId) async {
     await FirebaseFirestore.instance
@@ -87,7 +86,7 @@ class DatabaseService {
           price: data['price'] ?? 0.0,
           discount: data['discount'] ?? 0.0,
           seller: data['seller'] ?? '',
-          category: data['category'] ?? 0,
+          categories: data['categories'] ?? [],
           units: data['units'] ?? 0,
           state: data['state'] ?? '');
     }).toList();
