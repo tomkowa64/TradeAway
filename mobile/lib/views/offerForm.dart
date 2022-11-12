@@ -18,6 +18,7 @@ import '../inc/navigationDrawer.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mobile/components/cartProductCard.dart';
+import 'package:searchfield/searchfield.dart';
 
 class OfferForm extends StatefulWidget {
   @override
@@ -26,6 +27,8 @@ class OfferForm extends StatefulWidget {
 
 class _OfferFormState extends State<OfferForm> {
   final _formKey = GlobalKey<FormState>();
+
+  final categoriesList = ['Cat1','Cat2','Cat3'];
 
   XFile? imageFile;
   String name = '';
@@ -299,7 +302,6 @@ class _OfferFormState extends State<OfferForm> {
                             height: 10,
                           ),
                           Container(
-                            height: 200,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -491,65 +493,6 @@ class _OfferFormState extends State<OfferForm> {
                                   ),
                                   flex: 1,
                                 ),
-                                Flexible(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Tags',
-                                        style: TextStyle(
-                                            fontFamily: 'Times New Roman',
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 16),
-                                        textAlign: TextAlign.start,
-                                      ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      Container(
-                                        height: 40,
-                                        child: TextFormField(
-                                          validator: (val) => val!.length < 1 ||
-                                                  int.parse(val) < 0
-                                              ? 'Choose tags'
-                                              : null,
-                                          onChanged: (val) {
-                                            setState(() {
-                                              tag = int.parse(val);
-                                            });
-                                          },
-                                          decoration: const InputDecoration(
-                                            border: OutlineInputBorder(
-                                                borderRadius: BorderRadius.all(
-                                                    Radius.circular(20))),
-                                          ),
-                                        ),
-                                      ),
-                                      TextButton(
-                                        style: ButtonStyle(
-                                          minimumSize:
-                                              MaterialStateProperty.all(
-                                                  Size.fromHeight(10)),
-                                          padding: MaterialStateProperty.all(
-                                              EdgeInsets.symmetric(
-                                                  vertical: 2, horizontal: 5)),
-                                          backgroundColor:
-                                              MaterialStateProperty.all<Color>(
-                                                  const Color(0xffcf4e6c)),
-                                        ),
-                                        onPressed: () {},
-                                        child: Text(
-                                          '+',
-                                          style: TextStyle(
-                                              color: const Color(0xffffffff),
-                                              fontSize: 20),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                  flex: 3,
-                                )
                               ],
                             ),
                           ),
@@ -570,6 +513,46 @@ class _OfferFormState extends State<OfferForm> {
                                 ),
                               )
                             ],
+                          ),
+                          Container(
+                            padding: EdgeInsets.only(bottom: 20),
+                            child:
+                              Column(
+                                crossAxisAlignment:
+                                CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Provide product categories',
+                                    style: TextStyle(
+                                        fontFamily: 'Times New Roman',
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 16),
+                                    textAlign: TextAlign.start,
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Container(
+                                    child: SearchField<dynamic>(
+                                        suggestions: categoriesList
+                                            .map(
+                                              (e) => SearchFieldListItem<String>(
+                                            e
+                                          ),
+                                        ).toList(),
+                                        validator: (x) {
+                                          // Implement Validation
+                                        },
+                                        onSuggestionTap: (val) => {
+                                          // Implement On Suggest Tap - Add item name to input and create separator among them (,)
+                                        },
+                                        onSubmit: (String val) => {
+                                         // Same as above but after confirmation from keyboard
+                                        }
+                                    ),
+                                  ),
+                                ],
+                              ),
                           ),
                           TextButton(
                             style: ButtonStyle(
