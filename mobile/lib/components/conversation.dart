@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:mobile/views/chat.dart';
 
 import '../inc/nav.dart';
 import '../inc/navigationDrawer.dart';
@@ -44,9 +45,8 @@ class Conversation extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return GestureDetector(
-      onTap: () {
-        // Swap to conversation view
-      },
+      onTap: () => Navigator.push(
+        context, MaterialPageRoute(builder: (context) => Chat())),
       child: Container(
         height: 100,
         width: MediaQuery.of(context).size.width,
