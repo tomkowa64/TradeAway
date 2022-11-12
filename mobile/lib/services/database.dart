@@ -3,6 +3,7 @@ import 'package:mobile/models/transaction.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mobile/models/product.dart';
 import 'package:mobile/models/user.dart';
+import 'package:mobile/models/category.dart';
 
 class DatabaseService {
   final String? uid;
@@ -19,6 +20,8 @@ class DatabaseService {
       FirebaseFirestore.instance.collection('carts');
   final CollectionReference favoriteCollection =
       FirebaseFirestore.instance.collection('favorites');
+  final CollectionReference categoriesCollection =
+      FirebaseFirestore.instance.collection('categories');
 
   // update product data
   Future updateProductData(
@@ -28,7 +31,7 @@ class DatabaseService {
       double price,
       double discount,
       String sellerId,
-      List<int> categories,
+      List<dynamic> categories,
       int units,
       String state) async {
     return await productCollection.doc(id.toString()).set({
@@ -216,7 +219,7 @@ class DatabaseService {
     await cartCollection.doc(uid.toString()).delete();
   }
 
-  // transaction list from snapshot
+  // cart list from snapshot
   Map<String, dynamic> _cartListFromSnapshot(QuerySnapshot snapshot) {
     var carts = snapshot.docs.map((doc) {
       Map<String, dynamic> data = doc.data()! as Map<String, dynamic>;
@@ -229,7 +232,7 @@ class DatabaseService {
     return carts.firstWhere((element) => element[0] == uid);
   }
 
-  // transaction list from snapshot
+  // favorite list from snapshot
   List<Map<String, dynamic>> _favoriteListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.docs.map((doc) {
       Map<String, dynamic> data = doc.data()! as Map<String, dynamic>;
@@ -240,7 +243,7 @@ class DatabaseService {
     }).toList();
   }
 
-  // get transaction stream
+  // get cart stream
   Stream<Map<String, dynamic>> get cart {
     return cartCollection.snapshots().map(_cartListFromSnapshot);
   }
@@ -248,5 +251,20 @@ class DatabaseService {
   // get favorite stream
   Stream<List<Map<String, dynamic>>> get favorites {
     return favoriteCollection.snapshots().map(_favoriteListFromSnapshot);
+  }
+
+  // categories list from snapshot
+  List<OurCategory> _categoriesListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.docs.map((doc) {
+      Map<String, dynamic> data = doc.data()! as Map<String, dynamic>;
+      return OurCategory(
+          id: num.parse(doc.id),
+          name: data['name']);
+    }).toList();
+  }
+
+  // get categories stream
+  Stream<List<OurCategory>> get categories {
+    return categoriesCollection.snapshots().map(_categoriesListFromSnapshot);
   }
 }

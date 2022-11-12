@@ -21,7 +21,7 @@ class _SaleListState extends State<SaleList> {
         shrinkWrap: true,
         itemCount: products.length,
         itemBuilder: (context, index) {
-          if (products[index].discount > 0)
+          if (products[index].discount > 0) {
             return HomeProductItem(
                 products[index].id,
                 '0_' + products[index].name,
@@ -30,6 +30,7 @@ class _SaleListState extends State<SaleList> {
                         .round() /
                     100,
                 products[index].price);
+          }
           return Container(
             height: 0,
             width: 0,

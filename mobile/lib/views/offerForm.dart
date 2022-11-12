@@ -4,6 +4,7 @@ import 'dart:ui';
 //Included widgets
 import 'package:image_picker/image_picker.dart';
 import 'package:mobile/models/appUser.dart';
+import 'package:mobile/models/category.dart';
 import 'package:mobile/models/product.dart';
 import 'package:mobile/models/user.dart';
 import 'package:mobile/services/database.dart';
@@ -28,7 +29,7 @@ class OfferForm extends StatefulWidget {
 class _OfferFormState extends State<OfferForm> {
   final _formKey = GlobalKey<FormState>();
 
-  final categoriesList = ['Cat1','Cat2','Cat3'];
+  // final categoriesList = ['Cat1','Cat2','Cat3'];
 
   XFile? imageFile;
   String name = '';
@@ -36,7 +37,7 @@ class _OfferFormState extends State<OfferForm> {
   int quantity = 0;
   num price = 0.0;
   String state = '';
-  List<int> categories = [];
+  List<num> categories = [];
   String error = '';
   String imgPath = '';
 
@@ -81,6 +82,7 @@ class _OfferFormState extends State<OfferForm> {
     final auth = Provider.of<AppUser>(context);
     final DatabaseService database = DatabaseService(uid: auth.uid);
     final products = Provider.of<List<Product>>(context);
+    final categoriesList = Provider.of<List<OurCategory>>(context);
     final storage = Storage();
     final users = Provider.of<List<OurUser>>(context);
 
@@ -533,20 +535,27 @@ class _OfferFormState extends State<OfferForm> {
                                     height: 10,
                                   ),
                                   Container(
-                                    child: SearchField<dynamic>(
+                                    child: SearchField<OurCategory>(
                                         suggestions: categoriesList
                                             .map(
-                                              (e) => SearchFieldListItem<String>(
-                                            e
+                                              (e) => SearchFieldListItem<OurCategory>(
+                                            e.name,
+                                            item: e,
                                           ),
                                         ).toList(),
                                         validator: (x) {
                                           // Implement Validation
                                         },
                                         onSuggestionTap: (val) => {
-                                          // Implement On Suggest Tap - Add item name to input and create separator among them (,)
+                                          if (!categories.contains(val.item!.id.toInt())) {
+                                            categories.add(val.item!.id),
+                                          }
                                         },
                                         onSubmit: (String val) => {
+                                          if (categoriesList.where((element) => element.name == val).isNotEmpty) {
+                                            if (!categories.contains(categoriesList.firstWhere((element) => element.name == val).id))
+                                            categories.add(categoriesList.firstWhere((element) => element.name == val).id),
+                                          }
                                          // Same as above but after confirmation from keyboard
                                         }
                                     ),

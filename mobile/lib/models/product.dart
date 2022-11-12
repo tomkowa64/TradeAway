@@ -5,7 +5,7 @@ class Product {
   final num price;
   final num discount;
   final String seller;
-  final List<int> categories;
+  final List<dynamic> categories;
   final num units;
   final String state;
 
