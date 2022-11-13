@@ -23,6 +23,27 @@ import 'package:mobile/components/cartProductCard.dart';
 import 'package:searchfield/searchfield.dart';
 
 class OfferForm extends StatefulWidget {
+  late num updatedProductId;
+  late String updatedProductName;
+  late String updatedProductDescription;
+  late double updatedProductPrice;
+  // Discount is always 0 for edit, discount can be made via discount button only
+  // Auth id from form
+  late List<num> updatedProductCategories;
+  late int updatedProductQuantity;
+  late String updatedProductState;
+
+
+  OfferForm(
+      this.updatedProductId,
+      this.updatedProductName,
+      this.updatedProductDescription,
+      this.updatedProductPrice,
+      this.updatedProductCategories,
+      this.updatedProductQuantity,
+      this.updatedProductState);
+
+
   @override
   _OfferFormState createState() => _OfferFormState();
 }
@@ -30,7 +51,16 @@ class OfferForm extends StatefulWidget {
 class _OfferFormState extends State<OfferForm> {
   final _formKey = GlobalKey<FormState>();
 
-  // final categoriesList = ['Cat1','Cat2','Cat3'];
+  // database.updateProductData(
+  // (products.last.id + 1).toInt(),
+  // name,
+  // description,
+  // price.toDouble(),
+  // 0,
+  // auth.uid,
+  // categories,
+  // quantity,
+  // state);
 
   XFile? imageFile;
   String name = '';
@@ -41,6 +71,7 @@ class _OfferFormState extends State<OfferForm> {
   List<num> categories = [];
   String error = '';
   String imgPath = '';
+
 
   /// Get from gallery
   _getFromGallery() async {
