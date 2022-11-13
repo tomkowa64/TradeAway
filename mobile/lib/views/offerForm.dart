@@ -3,6 +3,7 @@ import 'dart:ui';
 
 //Included widgets
 import 'package:image_picker/image_picker.dart';
+import 'package:mobile/components/categoryListItem.dart';
 import 'package:mobile/models/appUser.dart';
 import 'package:mobile/models/category.dart';
 import 'package:mobile/models/product.dart';
@@ -75,6 +76,12 @@ class _OfferFormState extends State<OfferForm> {
         imgPath = pickedFile!.path;
       });
     }
+  }
+
+  _removeItemFromCategoryList(num id) {
+    setState(() {
+      categories.remove(id);
+    });
   }
 
   @override
@@ -563,6 +570,26 @@ class _OfferFormState extends State<OfferForm> {
                                 ],
                               ),
                           ),
+                          if (categories.length > 0)
+                            SizedBox(
+                              height: 200,
+                              child: GridView.builder(
+                                physics: ScrollPhysics(),
+                                  itemCount: categories.length,
+                                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                    childAspectRatio: 12.0 / 4.0,
+                                    crossAxisCount: 3,
+                                    mainAxisSpacing: 10,
+                                    crossAxisSpacing: 10,
+                                  ),
+                                  itemBuilder: (BuildContext context, int index) {
+                                    return CategoryListItem(
+                                        categoriesList.firstWhere((element) => element.id == categories[index]).id,
+                                        categoriesList.firstWhere((element) => element.id == categories[index]).name,
+                                        _removeItemFromCategoryList);
+                                  }
+                              ),
+                            ),
                           TextButton(
                             style: ButtonStyle(
                               minimumSize: MaterialStateProperty.all(
