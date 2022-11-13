@@ -110,9 +110,45 @@ class _Product extends State<ProductSilder> {
           Expanded(
               child: Column(
             children: [
-              // Favorite Icon
-              if (localFavorite)
-                Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+              Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+                GestureDetector(
+                    onTap: () {
+                      // Implement sale product logic
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.only(right: 10),
+                      child: Icon(
+                        FontAwesomeIcons.tags,
+                        size: 30,
+                      ),
+                    )),
+                SizedBox(width: 10),
+                GestureDetector(
+                    onTap: () {
+                      // Implement edit product logic
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.only(right: 10),
+                      child: Icon(
+                        FontAwesomeIcons.edit,
+                        size: 30,
+                      ),
+                    )),
+                SizedBox(width: 10),
+                GestureDetector(
+                    onTap: () {
+                      // Implement delete product logic
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.only(right: 10),
+                      child: Icon(
+                        FontAwesomeIcons.ban,
+                        size: 30,
+                      ),
+                    )),
+                SizedBox(width: 20),
+                // Favorite Icon
+                if (localFavorite)
                   GestureDetector(
                       onTap: () {
                         database.updateFavoriteData(widget.productId);
@@ -127,27 +163,22 @@ class _Product extends State<ProductSilder> {
                           size: 30,
                         ),
                       ))
-                ]),
-              if (!localFavorite)
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    GestureDetector(
-                        onTap: () {
-                          database.updateFavoriteData(widget.productId);
-                          setState(() {
-                            localFavorite = !localFavorite;
-                          });
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.only(right: 10),
-                          child: Icon(
-                            FontAwesomeIcons.heart,
-                            size: 30,
-                          ),
-                        ))
-                  ],
-                ),
+                else
+                  GestureDetector(
+                      onTap: () {
+                        database.updateFavoriteData(widget.productId);
+                        setState(() {
+                          localFavorite = !localFavorite;
+                        });
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.only(right: 10),
+                        child: Icon(
+                          FontAwesomeIcons.heart,
+                          size: 30,
+                        ),
+                      ))
+              ]),
               // Image Carousel
               FutureBuilder(
                   future: _future,
