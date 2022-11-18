@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:ui';
 
 //Included widgets
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mobile/components/categoryListItem.dart';
 import 'package:mobile/models/appUser.dart';
@@ -23,15 +24,16 @@ import 'package:mobile/components/cartProductCard.dart';
 import 'package:searchfield/searchfield.dart';
 
 class OfferForm extends StatefulWidget {
-  late num? updatedProductId;
-  late String? updatedProductName;
-  late String? updatedProductDescription;
-  late double? updatedProductPrice;
+  num? updatedProductId;
+  String? updatedProductName;
+  String? updatedProductDescription;
+  double? updatedProductPrice;
   // Discount is always 0 for edit, discount can be made via discount button only
   // Auth id from form
-  late List<num>? updatedProductCategories;
-  late int? updatedProductQuantity;
-  late String? updatedProductState;
+  List<num>? updatedProductCategories;
+  int? updatedProductQuantity;
+  String? updatedProductState;
+  Future<List<Image>>? updatedProductImages;
 
 
   OfferForm();
@@ -43,7 +45,8 @@ class OfferForm extends StatefulWidget {
       this.updatedProductPrice,
       this.updatedProductCategories,
       this.updatedProductQuantity,
-      this.updatedProductState
+      this.updatedProductState,
+      this.updatedProductImages
   });
 
   @override
@@ -52,17 +55,6 @@ class OfferForm extends StatefulWidget {
 
 class _OfferFormState extends State<OfferForm> {
   final _formKey = GlobalKey<FormState>();
-
-  // database.updateProductData(
-  // (products.last.id + 1).toInt(),
-  // name,
-  // description,
-  // price.toDouble(),
-  // 0,
-  // auth.uid,
-  // categories,
-  // quantity,
-  // state);
 
   XFile? imageFile;
   String name = '';
@@ -73,7 +65,22 @@ class _OfferFormState extends State<OfferForm> {
   List<num> categories = [];
   String error = '';
   String imgPath = '';
+  num prevProductId = 0;
 
+  @override
+  void initState() {
+    if (widget.updatedProductId != null) {
+      setState(() {
+        prevProductId = widget.updatedProductId!;
+        name = widget.updatedProductName!;
+        description = widget.updatedProductDescription!;
+        price = widget.updatedProductPrice!;
+        categories = [...widget.updatedProductCategories!];
+        quantity = widget.updatedProductQuantity!;
+        state = widget.updatedProductState!;
+      });
+    }
+  }
 
   /// Get from gallery
   _getFromGallery() async {
@@ -170,7 +177,7 @@ class _OfferFormState extends State<OfferForm> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              if (this.imageFile == null)
+                              if (this.imageFile == null  && widget.updatedProductId == null)
                                 GestureDetector(
                                     onTap: () {},
                                     child: Text(
@@ -186,7 +193,7 @@ class _OfferFormState extends State<OfferForm> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              if (this.imageFile == null)
+                              if (this.imageFile == null && widget.updatedProductId == null)
                                 Container(
                                     child: Row(
                                   mainAxisAlignment:
@@ -241,7 +248,7 @@ class _OfferFormState extends State<OfferForm> {
                                         )),
                                   ],
                                 ))
-                              else
+                              else if (widget.updatedProductImages == null)
                                 Container(
                                     width: 150,
                                     height: 150,
@@ -249,8 +256,36 @@ class _OfferFormState extends State<OfferForm> {
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(15))),
                                     child: Image.file(File(imageFile!.path)))
+                              else
+                                FutureBuilder(
+                                    future: widget.updatedProductImages,
+                                    builder: (BuildContext context,
+                                        AsyncSnapshot<List<Image>> snapshot) {
+                                      if (snapshot.connectionState == ConnectionState.done &&
+                                          snapshot.hasData) {
+                                        return Column(
+                                            children: [
+                                              Row(
+                                                children: [
+                                                  SizedBox(
+                                                    width: 90,
+                                                    height: 150,
+                                                    child: snapshot.data![0],
+                                                  ),
+                                                ],
+                                              )
+                                            ]
+                                        );
+                                      }
+                                      if (snapshot.connectionState == ConnectionState.waiting ||
+                                          !snapshot.hasData) {
+                                        return const CircularProgressIndicator();
+                                      }
+                                      return Container();
+                                    })
+
                             ],
-                          ))
+                          )),
                         ],
                       ),
                     ),
@@ -295,10 +330,12 @@ class _OfferFormState extends State<OfferForm> {
                           Container(
                             height: 40,
                             child: TextFormField(
+                              initialValue: name != '' ? name : '',
                               validator: (val) =>
                                   val!.length < 1 ? 'Enter name' : null,
                               onChanged: (val) {
                                 setState(() {
+                                  print(name);
                                   name = val;
                                 });
                               },
@@ -325,6 +362,7 @@ class _OfferFormState extends State<OfferForm> {
                           ),
                           Container(
                             child: TextFormField(
+                              initialValue: description != '' ? description : '',
                               validator: (val) =>
                                   val!.length < 1 ? 'Enter description' : null,
                               onChanged: (val) {
@@ -366,6 +404,7 @@ class _OfferFormState extends State<OfferForm> {
                                       Container(
                                         height: 40,
                                         child: TextFormField(
+                                          initialValue: quantity != 0 ? quantity.toString() : '',
                                           validator: (val) => val!.length < 1 ||
                                                   int.parse(val) < 1
                                               ? 'Enter quantity'
@@ -399,6 +438,7 @@ class _OfferFormState extends State<OfferForm> {
                                       Container(
                                         height: 40,
                                         child: TextFormField(
+                                          initialValue: price != 0.0 ? price.toString() : '',
                                           validator: (val) => val!.length < 1 ||
                                                   num.parse(val) < 0
                                               ? 'Enter price'
@@ -646,14 +686,17 @@ class _OfferFormState extends State<OfferForm> {
                                   thisUserDetails.name != '') {
                                 if (_formKey.currentState!.validate()) {
                                   if (state != '') {
-                                    if (imgPath != '') {
+                                    if (imgPath != '' || widget.updatedProductImages != null) {
                                       products
                                           .sort((a, b) => a.id.compareTo(b.id));
-                                      storage.uploadFile((products.last.id + 1),
-                                          imgPath, '0_' + name);
+
+                                      if (widget.updatedProductImages == null) {
+                                        storage.uploadFile((products.last.id + 1),
+                                            imgPath, '0_' + name);
+                                      }
 
                                       database.updateProductData(
-                                          (products.last.id + 1).toInt(),
+                                          widget.updatedProductId != null ? widget.updatedProductId!.toInt() : (products.last.id + 1).toInt(),
                                           name,
                                           description,
                                           price.toDouble(),

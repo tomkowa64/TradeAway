@@ -11,6 +11,7 @@ import 'package:mobile/models/product.dart';
 import 'package:mobile/models/user.dart';
 import 'package:mobile/services/database.dart';
 import 'package:mobile/services/storage.dart';
+import 'package:mobile/views/offerForm.dart';
 import 'package:mobile/views/personalDataForm.dart';
 import 'package:provider/provider.dart';
 
@@ -133,7 +134,18 @@ class _Product extends State<ProductSilder> {
                 if (canDisplayManagementIcons)
                   GestureDetector(
                       onTap: () {
-                        // Implement edit product logic
+                        Navigator.push(
+                            context, MaterialPageRoute(builder: (context) =>
+                            OfferForm.update(
+                              updatedProductId: pageProduct.id,
+                              updatedProductName: pageProduct.name,
+                              updatedProductDescription: pageProduct.description,
+                              updatedProductPrice: pageProduct.price.toDouble(),
+                              updatedProductCategories:  pageProduct.categories.map((e) => e as num).toList(),
+                              updatedProductQuantity: pageProduct.units.toInt(),
+                              updatedProductState: pageProduct.state,
+                              updatedProductImages: _future,
+                            )));
                       },
                       child: Padding(
                         padding: EdgeInsets.only(right: 10),
