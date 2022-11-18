@@ -38,6 +38,10 @@ class _Product extends State<ProductSilder> {
   final CarouselController _controller = CarouselController();
   late bool localFavorite;
 
+  bool isOwner(userId, productOwnerUserId) {
+    return (userId == productOwnerUserId);
+  }
+
   @override
   void initState() {
     _future = storage.listImages(widget.productId);
@@ -50,10 +54,12 @@ class _Product extends State<ProductSilder> {
     final auth = Provider.of<AppUser>(context);
     final DatabaseService database = DatabaseService(uid: auth.uid);
     final products = Provider.of<List<Product>>(context);
+    final pageProduct = products.firstWhere((element) => element.id == widget.productId);
     final users = Provider.of<List<OurUser>>(context);
     final favorites = Provider.of<List<Map<String, dynamic>>>(context);
 
     var favoriteArray = [];
+    bool canDisplayManagementIcons = isOwner(auth.uid, pageProduct.seller);
 
     if(favorites.where((element) => element.values.toList()[0] == auth.uid).isNotEmpty) {
       if (favorites
@@ -111,41 +117,44 @@ class _Product extends State<ProductSilder> {
               child: Column(
             children: [
               Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-                GestureDetector(
-                    onTap: () {
-                      // Implement sale product logic
-                    },
-                    child: Padding(
-                      padding: EdgeInsets.only(right: 10),
-                      child: Icon(
-                        FontAwesomeIcons.tags,
-                        size: 30,
-                      ),
-                    )),
+                if (canDisplayManagementIcons)
+                  GestureDetector(
+                      onTap: () {
+                        // Implement sale product logic
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.only(right: 10),
+                        child: Icon(
+                          FontAwesomeIcons.tags,
+                          size: 30,
+                        ),
+                      )),
                 SizedBox(width: 10),
-                GestureDetector(
-                    onTap: () {
-                      // Implement edit product logic
-                    },
-                    child: Padding(
-                      padding: EdgeInsets.only(right: 10),
-                      child: Icon(
-                        FontAwesomeIcons.edit,
-                        size: 30,
-                      ),
-                    )),
+                if (canDisplayManagementIcons)
+                  GestureDetector(
+                      onTap: () {
+                        // Implement edit product logic
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.only(right: 10),
+                        child: Icon(
+                          FontAwesomeIcons.edit,
+                          size: 30,
+                        ),
+                      )),
                 SizedBox(width: 10),
-                GestureDetector(
-                    onTap: () {
-                      // Implement delete product logic
-                    },
-                    child: Padding(
-                      padding: EdgeInsets.only(right: 10),
-                      child: Icon(
-                        FontAwesomeIcons.ban,
-                        size: 30,
-                      ),
-                    )),
+                if (canDisplayManagementIcons)
+                  GestureDetector(
+                      onTap: () {
+                        // Implement delete product logic
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.only(right: 10),
+                        child: Icon(
+                          FontAwesomeIcons.ban,
+                          size: 30,
+                        ),
+                      )),
                 SizedBox(width: 20),
                 // Favorite Icon
                 if (localFavorite)

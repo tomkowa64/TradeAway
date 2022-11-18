@@ -23,26 +23,28 @@ import 'package:mobile/components/cartProductCard.dart';
 import 'package:searchfield/searchfield.dart';
 
 class OfferForm extends StatefulWidget {
-  late num updatedProductId;
-  late String updatedProductName;
-  late String updatedProductDescription;
-  late double updatedProductPrice;
+  late num? updatedProductId;
+  late String? updatedProductName;
+  late String? updatedProductDescription;
+  late double? updatedProductPrice;
   // Discount is always 0 for edit, discount can be made via discount button only
   // Auth id from form
-  late List<num> updatedProductCategories;
-  late int updatedProductQuantity;
-  late String updatedProductState;
+  late List<num>? updatedProductCategories;
+  late int? updatedProductQuantity;
+  late String? updatedProductState;
 
 
-  OfferForm(
+  OfferForm();
+
+  OfferForm.update({
       this.updatedProductId,
       this.updatedProductName,
       this.updatedProductDescription,
       this.updatedProductPrice,
       this.updatedProductCategories,
       this.updatedProductQuantity,
-      this.updatedProductState);
-
+      this.updatedProductState
+  });
 
   @override
   _OfferFormState createState() => _OfferFormState();
