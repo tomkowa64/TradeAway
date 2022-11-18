@@ -490,7 +490,8 @@ class _OfferFormState extends State<OfferForm> {
                                               EdgeInsets.symmetric(
                                                   vertical: 5, horizontal: 25)),
                                           backgroundColor:
-                                              MaterialStateProperty.all<Color>(
+                                              state == 'New' ? MaterialStateProperty.all<Color>(
+                                                  const Color(0xffcf4e6c)) : MaterialStateProperty.all<Color>(
                                                   const Color(0xff303744)),
                                         ),
                                         onPressed: () {
@@ -518,8 +519,9 @@ class _OfferFormState extends State<OfferForm> {
                                               EdgeInsets.symmetric(
                                                   vertical: 5, horizontal: 25)),
                                           backgroundColor:
-                                              MaterialStateProperty.all<Color>(
-                                                  const Color(0xff303744)),
+                                          state == 'Used' ? MaterialStateProperty.all<Color>(
+                                              const Color(0xffcf4e6c)) : MaterialStateProperty.all<Color>(
+                                              const Color(0xff303744)),
                                         ),
                                         onPressed: () {
                                           setState(() {
@@ -546,8 +548,9 @@ class _OfferFormState extends State<OfferForm> {
                                               EdgeInsets.symmetric(
                                                   vertical: 5, horizontal: 25)),
                                           backgroundColor:
-                                              MaterialStateProperty.all<Color>(
-                                                  const Color(0xff303744)),
+                                          state == 'Dmg' ? MaterialStateProperty.all<Color>(
+                                              const Color(0xffcf4e6c)) : MaterialStateProperty.all<Color>(
+                                              const Color(0xff303744)),
                                         ),
                                         onPressed: () {
                                           setState(() {
