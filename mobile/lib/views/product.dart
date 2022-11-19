@@ -220,7 +220,7 @@ class _Product extends State<ProductSilder> {
                 if (canDisplayManagementIcons)
                   GestureDetector(
                       onTap: () async {
-                        await database.deleteProduct(pageProduct.id.toInt()).then((value) => {
+                        await database.deleteProduct(auth.uid, pageProduct.id.toInt()).then((value) => {
                           Navigator.push(
                           context, MaterialPageRoute(builder: (context) => Home()))
                         });

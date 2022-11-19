@@ -1,3 +1,4 @@
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_cart/flutter_cart.dart';
 import 'package:mobile/models/transaction.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -77,6 +78,32 @@ class DatabaseService {
       }
     });
   }
+
+  // delete product
+  Future<void> deleteProduct(String userId, int productId) async {
+    // delete images
+    final imagesList = await FirebaseStorage.instance.ref('products/$productId/').listAll();
+
+    imagesList.items.forEach((imageRef) {
+      imageRef.delete();
+    });
+
+    // delete from favorites
+    final favoriteProductKeyRef = favoriteCollection.doc(userId);
+    final updateFavoriteProductCollection = <String, dynamic> {
+      'productList': FieldValue.arrayRemove([productId])
+    };
+
+    favoriteProductKeyRef.update(updateFavoriteProductCollection);
+
+    // delete
+    final productDocReference = FirebaseFirestore.instance.collection('products').doc(productId.toString());
+
+    await FirebaseFirestore.instance.runTransaction((Transaction deleteTransaction) async {
+      await deleteTransaction.delete(productDocReference);
+    });
+  }
+
 
   // product list from snapshot
   List<Product> _productListFromSnapshot(QuerySnapshot snapshot) {

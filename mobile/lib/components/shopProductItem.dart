@@ -98,9 +98,6 @@ class _ShopProductItem extends State<ShopProductItem> {
           favoriteArray.add(element.trim());
         });
       }
-      final currId = Provider.of<List<Product>>(context)
-          .firstWhere((element) => element.id == widget.productId)
-          .id;
 
       this._isFavorite = favoriteArray.contains(widget.productId.toString());
     } else {
