@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'dart:ui';
 
@@ -22,6 +23,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mobile/components/cartProductCard.dart';
 import 'package:searchfield/searchfield.dart';
+
+import 'home.dart';
 
 class OfferForm extends StatefulWidget {
   num? updatedProductId;
@@ -587,16 +590,6 @@ class _OfferFormState extends State<OfferForm> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Container(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(error,
-                                        style: const TextStyle(
-                                            color: Colors.red, fontSize: 14.0))
-                                  ],
-                                ),
-                              )
                             ],
                           ),
                           Container(
@@ -666,6 +659,17 @@ class _OfferFormState extends State<OfferForm> {
                                   }
                               ),
                             ),
+                          Container(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(error,
+                                    style: const TextStyle(
+                                        color: Colors.red, fontSize: 15.0, fontWeight: FontWeight.bold))
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 20),
                           TextButton(
                             style: ButtonStyle(
                               minimumSize: MaterialStateProperty.all(
@@ -710,6 +714,10 @@ class _OfferFormState extends State<OfferForm> {
                                           state);
                                       setState(() {
                                         error = 'Successfully added product';
+
+                                        Timer(Duration(seconds: 2), () {
+                                          Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
+                                        });
                                       });
                                     } else {
                                       setState(() {
