@@ -121,24 +121,6 @@ class _ShopState extends State<Shop> {
                                 )
                               ],
                             )),
-                            //Filter Button
-                            Column(
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.only(
-                                      left: 5, right: 5, top: 5, bottom: 5),
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius:
-                                          BorderRadius.circular(20.0)),
-                                  child: IconButton(
-                                    onPressed: () {},
-                                    icon: const Icon(FontAwesomeIcons.cogs),
-                                    iconSize: 25,
-                                  ),
-                                )
-                              ],
-                            )
                           ],
                         ),
                       ),
