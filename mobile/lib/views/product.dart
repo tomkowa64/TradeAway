@@ -16,6 +16,7 @@ import 'package:mobile/views/personalDataForm.dart';
 import 'package:provider/provider.dart';
 
 import 'cart.dart';
+import 'home.dart';
 
 class ProductSilder extends StatefulWidget {
   const ProductSilder(
@@ -34,8 +35,10 @@ class _Product extends State<ProductSilder> {
   var cart = FlutterCart();
   final Storage storage = Storage();
   late Future<List<Image>> _future;
+  num discount = 0;
   int _current = 0;
   int qty = 1;
+
   final CarouselController _controller = CarouselController();
   late bool localFavorite;
 
@@ -47,6 +50,8 @@ class _Product extends State<ProductSilder> {
   void initState() {
     _future = storage.listImages(widget.productId);
     localFavorite = widget.isFavorite;
+    discount = 0;
+
     super.initState();
   }
 
@@ -61,6 +66,10 @@ class _Product extends State<ProductSilder> {
 
     var favoriteArray = [];
     bool canDisplayManagementIcons = isOwner(auth.uid, pageProduct.seller);
+
+    if (pageProduct.discount != 0) {
+      discount = pageProduct.discount;
+    }
 
     if(favorites.where((element) => element.values.toList()[0] == auth.uid).isNotEmpty) {
       if (favorites
@@ -121,13 +130,66 @@ class _Product extends State<ProductSilder> {
                 if (canDisplayManagementIcons)
                   GestureDetector(
                       onTap: () {
-                        // Implement sale product logic
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            num alertDiscountValue = discount;
+                            String alertValidationError = '';
+                            return StatefulBuilder(
+                              builder: (context, setState) {
+                                return AlertDialog(
+                                  title: Text("Zmień przecenę"),
+                                  content: TextField(
+                                    onChanged: (value) {
+                                      if (num.tryParse(value) != null) {
+                                        alertDiscountValue = num.parse(value.trim());
+                                        alertValidationError = "Correct";
+                                      } else {
+                                        alertValidationError = "Error";
+                                      }
+                                    },
+                                    controller: TextEditingController()..text = discount.toString(),
+                                  ),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () => Navigator.pop(context),
+                                      child: Text("Powrót"),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        if (alertValidationError != 'Error') {
+                                          setState(() {
+                                            discount = alertDiscountValue;
+
+                                            // Update DB
+                                            database.updateProductData(
+                                                pageProduct.id.toInt(),
+                                                pageProduct.name,
+                                                pageProduct.description,
+                                                pageProduct.price.toDouble(),
+                                                discount.toDouble(),
+                                                pageProduct.seller,
+                                                pageProduct.categories,
+                                                pageProduct.units.toInt(),
+                                                pageProduct.state);
+                                          });
+                                        }
+                                      },
+                                      child: Text("Zmień"),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          },
+                        );
                       },
                       child: Padding(
                         padding: EdgeInsets.only(right: 10),
                         child: Icon(
                           FontAwesomeIcons.tags,
                           size: 30,
+                          color: discount != 0 ? Colors.red : Colors.black,
                         ),
                       )),
                 SizedBox(width: 10),
@@ -157,8 +219,11 @@ class _Product extends State<ProductSilder> {
                 SizedBox(width: 10),
                 if (canDisplayManagementIcons)
                   GestureDetector(
-                      onTap: () {
-                        // Implement delete product logic
+                      onTap: () async {
+                        await database.deleteProduct(pageProduct.id.toInt()).then((value) => {
+                          Navigator.push(
+                          context, MaterialPageRoute(builder: (context) => Home()))
+                        });
                       },
                       child: Padding(
                         padding: EdgeInsets.only(right: 10),
