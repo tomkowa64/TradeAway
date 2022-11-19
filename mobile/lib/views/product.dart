@@ -372,7 +372,7 @@ class _Product extends State<ProductSilder> {
                               padding: const EdgeInsets.only(
                                   top: 5, right: 15, bottom: 5, left: 15),
                               decoration: BoxDecoration(
-                                  color: Colors.black,
+                                  color: pageProduct.state == "New" ? Colors.blueAccent : pageProduct.state == "Used" ? Colors.orangeAccent : Colors.red,
                                   borderRadius: BorderRadius.circular(30)),
                               child: Text(
                                   products
