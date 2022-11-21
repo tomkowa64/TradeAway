@@ -1,5 +1,7 @@
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_cart/flutter_cart.dart';
+import 'package:mobile/models/conversation.dart';
+import 'package:mobile/models/message.dart';
 import 'package:mobile/models/transaction.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mobile/models/product.dart';
@@ -23,6 +25,38 @@ class DatabaseService {
       FirebaseFirestore.instance.collection('favorites');
   final CollectionReference categoriesCollection =
       FirebaseFirestore.instance.collection('categories');
+  final CollectionReference conversationCollection =
+      FirebaseFirestore.instance.collection('conversations');
+  final CollectionReference messageCollection =
+      FirebaseFirestore.instance.collection('messages');
+
+  // update conversation data
+  Future updateConversationData(
+      int id,
+      String ownerId,
+      String clientId,
+      int transactionId
+      ) async {
+    return await conversationCollection.doc(id.toString()).set({
+      'ownerId': ownerId,
+      'clientId': clientId,
+      'transactionId': transactionId
+    });
+  }
+
+  // update message data
+  Future updateMessageData(
+      int id,
+      int conversationId,
+      String description,
+      String ownerId
+      ) async {
+    return await messageCollection.doc(id.toString()).set({
+      'conversationId': conversationId,
+      'description': description,
+      'ownerId': ownerId
+    });
+  }
 
   // update product data
   Future updateProductData(
@@ -104,6 +138,39 @@ class DatabaseService {
     });
   }
 
+  // conversation list from snapshot
+  List<Conversation> _conversationListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.docs.map((doc) {
+      Map<String, dynamic> data = doc.data()! as Map<String, dynamic>;
+      return Conversation(
+          id: int.parse(doc.id.toString()),
+          owner: data['ownerId'],
+          client: data['clientId'],
+          transaction: data['transactionId']);
+    }).toList();
+  }
+
+  // get conversation stream
+  Stream<List<Conversation>> get conversations {
+    return conversationCollection.snapshots().map(_conversationListFromSnapshot);
+  }
+
+  // message list from snapshot
+  List<Message> _messageListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.docs.map((doc) {
+      Map<String, dynamic> data = doc.data()! as Map<String, dynamic>;
+      return Message(
+          id: int.parse(doc.id.toString()),
+          conversationId: data['conversationId'],
+          messageDescription: data['description'],
+          messageOwner: data['ownerId']);
+    }).toList();
+  }
+
+  // get conversation stream
+  Stream<List<Message>> get messages {
+    return messageCollection.snapshots().map(_messageListFromSnapshot);
+  }
 
   // product list from snapshot
   List<Product> _productListFromSnapshot(QuerySnapshot snapshot) {

@@ -3,9 +3,15 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:mobile/components/conversation.dart';
+import 'package:provider/provider.dart';
 
 import '../inc/nav.dart';
 import '../inc/navigationDrawer.dart';
+import '../models/appUser.dart';
+import '../models/conversation.dart' as conversation_model;
+import '../models/message.dart';
+import '../models/user.dart';
+import '../services/storage.dart';
 
 
 class ConversationList extends StatefulWidget {
@@ -19,6 +25,10 @@ class _ConversationListState extends State<ConversationList> {
 
   @override
   Widget build(BuildContext context) {
+    final auth = Provider.of<AppUser?>(context);
+    final conversations = Provider.of<List<conversation_model.Conversation>>(context).where((element) => element.owner == auth!.uid || element.client == auth.uid);
+    final messages = Provider.of<List<Message>>(context);
+    final users = Provider.of<List<OurUser>>(context);
 
     return Scaffold(
         appBar: const PreferredSize(
@@ -35,28 +45,26 @@ class _ConversationListState extends State<ConversationList> {
                   Expanded(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Conversation(1, "assets/images/graduation-hat.png", "Banana shirt guy", "Wanna buy some bananasaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-                              "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa?"),
-                          Conversation(1, "assets/images/graduation-hat.png", "Banana shirt guy", "Wanna buy some bananasaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-                              "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa?"),
-                          Conversation(1, "assets/images/graduation-hat.png", "Banana shirt guy", "Wanna buy some bananasaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-                              "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa?"),
-                          Conversation(1, "assets/images/graduation-hat.png", "Banana shirt guy", "Wanna buy some bananasaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-                              "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa?"),
-                          Conversation(1, "assets/images/graduation-hat.png", "Banana shirt guy", "Wanna buy some bananasaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-                              "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa?"),
-                          Conversation(1, "assets/images/graduation-hat.png", "Banana shirt guy", "Wanna buy some bananasaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-                              "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa?"),
-                          Conversation(1, "assets/images/graduation-hat.png", "Banana shirt guy", "Wanna buy some bananasaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-                              "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa?"),
-                          Conversation(1, "assets/images/graduation-hat.png", "Banana shirt guy", "Wanna buy some bananasaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-                              "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa?"),
-                          Conversation(1, "assets/images/graduation-hat.png", "Banana shirt guy", "Wanna buy some bananasaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-                              "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa?"),
-                          Conversation(1, "assets/images/graduation-hat.png", "Banana shirt guy", "Wanna buy some bananasaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-                              "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa?")
-                        ],
+                        children: List.generate(
+                            conversations.length,
+                            (index) {
+                              String userId;
+
+                              messages.sort((a, b) => b.id.compareTo(a.id));
+
+                              if (conversations.toList()[index].owner == auth!.uid) {
+                                userId = conversations.toList()[index].client;
+                              } else {
+                                userId = conversations.toList()[index].owner;
+                              }
+
+                              return Conversation(
+                                  conversations.toList()[index].id,
+                                  userId,
+                                  users.firstWhere((element) => element.uid == userId).name + " " + users.firstWhere((element) => element.uid == userId).surname,
+                                  messages.firstWhere((element) => element.conversationId == conversations.toList()[index].id).messageDescription
+                              );
+                            }),
                       ))
                 ],
               )),

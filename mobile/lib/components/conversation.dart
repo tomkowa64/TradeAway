@@ -3,19 +3,22 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:mobile/views/chat.dart';
+import 'package:provider/provider.dart';
 
 import '../inc/nav.dart';
 import '../inc/navigationDrawer.dart';
+import '../models/user.dart';
+import '../services/storage.dart';
 
 
 class Conversation extends StatelessWidget {
   late int _conversationId;
-  late String _avatarUrl;
+  late String _userId;
   late String _userName;
   late String _message;
 
   Conversation(
-      this._conversationId, this._avatarUrl, this._userName, this._message);
+      this._conversationId, this._userId, this._userName, this._message);
 
   int get conversationId => _conversationId;
 
@@ -23,10 +26,10 @@ class Conversation extends StatelessWidget {
     _conversationId = value;
   }
 
-  String get avatarUrl => _avatarUrl;
+  String get userId => _userId;
 
-  set avatarUrl(String value) {
-    _avatarUrl = value;
+  set userId(String value) {
+    _userId = value;
   }
 
   String get userName => _userName;
@@ -43,6 +46,8 @@ class Conversation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Storage storage = Storage();
+    final users = Provider.of<List<OurUser>>(context);
 
     return GestureDetector(
       onTap: () => Navigator.push(
@@ -60,11 +65,38 @@ class Conversation extends StatelessWidget {
             Flexible(child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-               CircleAvatar(
-              radius: 40,
-              backgroundImage: NetworkImage(avatarUrl),
-              backgroundColor: Colors.blueAccent
-                ),
+                FutureBuilder(
+                    future: storage.getAvatarURL(userId),
+                    builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+                      if(snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
+                        return CircleAvatar(
+                            radius: 40,
+                            backgroundImage: NetworkImage(snapshot.data!),
+                            backgroundColor: const Color(0x00000000)
+                        );
+                      }
+                      if(snapshot.connectionState == ConnectionState.waiting) {
+                        return const SizedBox(
+                          child: CircularProgressIndicator(),
+                          height: 40,
+                          width: 40,
+                        );
+                      }
+                      if(!snapshot.hasData) {
+                        return CircleAvatar(
+                          radius: 40,
+                          backgroundColor: const Color(0xffcf4e6c),
+                          child: Text(
+                              users.firstWhere((element) => element.uid == userId).name.substring(0, 1) + users.firstWhere((element) => element.uid == userId).surname.substring(0, 1),
+                              style: const TextStyle(
+                                  fontSize: 40,
+                                  color: Colors.white,
+                                  fontFamily: 'Times New Roman')),
+                        );
+                      }
+                      return Container();
+                    }
+                )
               ],
             ), flex: 1),
             SizedBox(

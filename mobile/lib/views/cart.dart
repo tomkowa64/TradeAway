@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_cart/flutter_cart.dart';
 import 'package:mobile/components/cartProductCard.dart';
 import 'package:mobile/models/appUser.dart';
+import 'package:mobile/models/conversation.dart';
+import 'package:mobile/models/message.dart';
 import 'package:mobile/models/product.dart';
 import 'package:mobile/models/transaction.dart';
 import 'package:mobile/models/user.dart';
@@ -33,6 +35,8 @@ class _Cart extends State<Cart> {
     final products = Provider.of<List<Product>>(context);
     final users = Provider.of<List<OurUser>>(context);
     final transactions = Provider.of<List<OurTransaction>>(context);
+    final conversations = Provider.of<List<Conversation>>(context);
+    final messages = Provider.of<List<Message>>(context);
     final DatabaseService database = DatabaseService(uid: auth!.uid);
 
     cart.deleteAllCart();
@@ -188,12 +192,17 @@ class _Cart extends State<Cart> {
                           onTap: () {
                             if (cart.cartItem.toList().isNotEmpty) {
                               int id;
-                              if (transactions.isEmpty) {
-                                id = 0;
-                              } else {
-                                id = transactions.last.transactionId + 1;
-                              }
+                              int conversationId;
+                              int messageId;
+
                               for (var item in cart.cartItem.toList()) {
+                                if (transactions.isEmpty) {
+                                  id = 0;
+                                } else {
+                                  transactions.sort((a, b) => a.transactionId.compareTo(b.transactionId));
+                                  id = transactions.last.transactionId + 1;
+                                }
+
                                 database.updateTransactionData(
                                     id,
                                     item.productId.toString(),
@@ -261,7 +270,54 @@ class _Cart extends State<Cart> {
                                             element.id ==
                                             num.parse(
                                                 item.productId.toString()))
-                                        .state);
+                                        .state
+                                );
+
+                                print(conversations.length);
+
+                                if (conversations.isEmpty) {
+                                  conversationId = 0;
+                                } else {
+                                  conversations.sort((a, b) => a.id.compareTo(b.id));
+                                  conversationId = conversations.last.id + 1;
+                                }
+
+                                database.updateConversationData(
+                                    conversationId,
+                                    products
+                                        .firstWhere((element) =>
+                                    element.id ==
+                                        num.parse(
+                                            item.productId.toString()))
+                                        .seller,
+                                    auth.uid,
+                                    id
+                                );
+
+                                if (messages.isEmpty) {
+                                  messageId = 0;
+                                } else {
+                                  messages.sort((a, b) => a.id.compareTo(b.id));
+                                  messageId = messages.last.id + 1;
+                                }
+
+                                database.updateMessageData(
+                                    messageId,
+                                    conversationId,
+                                    "Product " + products
+                                        .firstWhere((element) =>
+                                    element.id ==
+                                        num.parse(
+                                            item.productId.toString()))
+                                        .name + " has been purchased. Use chat to agree on the form of payment and transport.",
+                                    products
+                                        .firstWhere((element) =>
+                                    element.id ==
+                                        num.parse(
+                                            item.productId.toString()))
+                                        .seller
+                                );
+
                                 id++;
                               }
                               database.deleteCartData();
