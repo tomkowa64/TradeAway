@@ -26,7 +26,7 @@ class _ConversationListState extends State<ConversationList> {
   @override
   Widget build(BuildContext context) {
     final auth = Provider.of<AppUser?>(context);
-    final conversations = Provider.of<List<conversation_model.Conversation>>(context).where((element) => element.owner == auth!.uid || element.client == auth.uid);
+    final conversations = Provider.of<List<conversation_model.Conversation>>(context).where((element) => element.owner == auth!.uid || element.client == auth.uid).toList();
     final messages = Provider.of<List<Message>>(context);
     final users = Provider.of<List<OurUser>>(context);
 
@@ -50,6 +50,7 @@ class _ConversationListState extends State<ConversationList> {
                             (index) {
                               String userId;
 
+                              conversations.sort((a, b) => b.id.compareTo(a.id));
                               messages.sort((a, b) => b.id.compareTo(a.id));
 
                               if (conversations.toList()[index].owner == auth!.uid) {
