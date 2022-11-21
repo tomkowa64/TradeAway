@@ -9,8 +9,8 @@ import '../inc/navigationDrawer.dart';
 
 class Message extends StatelessWidget {
   late String _messageDescription;
-  late int _messageOwner;
-  late int _userId;
+  late String _messageOwner;
+  late String _userId;
 
 
   Message(this._messageDescription, this._messageOwner, this._userId);
@@ -22,15 +22,15 @@ class Message extends StatelessWidget {
     _messageDescription = value;
   }
 
-  int get messageOwner => _messageOwner;
+  String get messageOwner => _messageOwner;
 
-  set messageOwner(int value) {
+  set messageOwner(String value) {
     _messageOwner = value;
   }
 
-  int get userId => _userId;
+  String get userId => _userId;
 
-  set userId(int value) {
+  set userId(String value) {
     _userId = value;
   }
 

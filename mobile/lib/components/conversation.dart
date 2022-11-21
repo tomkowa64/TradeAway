@@ -50,8 +50,12 @@ class Conversation extends StatelessWidget {
     final users = Provider.of<List<OurUser>>(context);
 
     return GestureDetector(
-      onTap: () => Navigator.push(
-        context, MaterialPageRoute(builder: (context) => Chat())),
+      onTap: () => Navigator.pushNamed(
+        context, "Chat",
+        arguments: <String, int> {
+          "conversationId": conversationId
+        }
+      ),
       child: Container(
         height: 100,
         width: MediaQuery.of(context).size.width,
