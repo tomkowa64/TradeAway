@@ -152,16 +152,29 @@ class _Profile extends State<Profile> {
                                       );
                                     }
                                     if(!snapshot.hasData) {
-                                      return CircleAvatar(
-                                        radius: 60,
-                                        backgroundColor: const Color(0xffcf4e6c),
-                                        child: Text(
-                                            users.firstWhere((element) => element.uid == auth.uid).name.substring(0, 1) + users.firstWhere((element) => element.uid == auth.uid).surname.substring(0, 1),
-                                            style: const TextStyle(
-                                                fontSize: 40,
-                                                color: Colors.white,
-                                                fontFamily: 'Times New Roman')),
-                                      );
+                                      if(users.firstWhere((element) => element.uid == auth.uid).name.isNotEmpty && users.firstWhere((element) => element.uid == auth.uid).surname.isNotEmpty) {
+                                        return CircleAvatar(
+                                          radius: 60,
+                                          backgroundColor: const Color(0xffcf4e6c),
+                                          child: Text(
+                                              users.firstWhere((element) => element.uid == auth.uid).name.substring(0, 1) + users.firstWhere((element) => element.uid == auth.uid).surname.substring(0, 1),
+                                              style: const TextStyle(
+                                                  fontSize: 40,
+                                                  color: Colors.white,
+                                                  fontFamily: 'Times New Roman')),
+                                        );
+                                      } else {
+                                        return const CircleAvatar(
+                                          radius: 60,
+                                          backgroundColor: Color(0xffcf4e6c),
+                                          child: Text(
+                                              "",
+                                              style: TextStyle(
+                                                  fontSize: 40,
+                                                  color: Colors.white,
+                                                  fontFamily: 'Times New Roman')),
+                                        );
+                                      }
                                     }
                                     return Container();
                                   }

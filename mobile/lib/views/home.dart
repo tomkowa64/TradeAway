@@ -8,6 +8,7 @@ import 'package:mobile/components/yourPicksList.dart';
 import 'package:mobile/inc/navigationDrawer.dart';
 import 'package:mobile/models/product.dart';
 import 'package:mobile/models/appUser.dart';
+import 'package:mobile/models/transaction.dart';
 
 //Included widgets
 import '../inc/nav.dart';
@@ -25,6 +26,8 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     final user = Provider.of<AppUser?>(context);
     final products = Provider.of<List<Product>>(context).where((element) => element.units > 0).toList();
+    final transactions = Provider.of<List<OurTransaction>>(context).where((element) => element.clientId == user!.uid);
+
     return StreamProvider<List<Product>>.value(
       value: DatabaseService().products,
       initialData: const [],
@@ -134,7 +137,7 @@ class Home extends StatelessWidget {
                             color: const Color(0xffffffff),
                             height: 300.0,
                             child: const TrendsList()),
-                        Container(
+                        if (transactions.length > 0) Container(
                           color: Colors.white,
                           margin: const EdgeInsets.only(top: 30),
                           padding: const EdgeInsets.only(
@@ -152,7 +155,7 @@ class Home extends StatelessWidget {
                           ),
                         ),
                         //Your Picks Section
-                        Container(
+                        if (transactions.length > 0) Container(
                             padding: const EdgeInsets.only(
                                 top: 10, bottom: 10, left: 10),
                             color: const Color(0xffffffff),
