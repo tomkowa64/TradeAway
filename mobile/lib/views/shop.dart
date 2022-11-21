@@ -42,6 +42,7 @@ class _ShopState extends State<Shop> {
 
   @override
   Widget build(BuildContext context) {
+    final arguments = (ModalRoute.of(context)?.settings.arguments ?? <String, String>{}) as Map;
     final products = Provider.of<List<Product>>(context, listen: false);
     if (filteredProducts.isEmpty) {
       filteredProducts = List.from(products);
@@ -53,6 +54,15 @@ class _ShopState extends State<Shop> {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => const Shop()));
       });
+    } else {
+      filteredProducts = List.from(products);
+      filteredProducts =
+          filteredProducts.where((element) => element.units > 0).toList();
+      filteredProducts.sort((a, b) => b.id.compareTo(a.id));
+    }
+
+    if (arguments.isNotEmpty) {
+      filteredProducts = filteredProducts.where((element) => element.categories.contains(arguments['category'])).toList();
     }
 
     return Scaffold(

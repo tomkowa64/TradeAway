@@ -24,6 +24,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<AppUser?>(context);
+    final products = Provider.of<List<Product>>(context).where((element) => element.units > 0).toList();
     return StreamProvider<List<Product>>.value(
       value: DatabaseService().products,
       initialData: const [],
@@ -55,35 +56,35 @@ class Home extends StatelessWidget {
                                   FontAwesomeIcons.plug,
                                   color: Color(0xffcfcfcf),
                                 ),
-                                'RTV/AGD'),
+                                'RTV/AGD', 0),
                             HomeCategoryTile(
                                 const FaIcon(
                                   FontAwesomeIcons.tshirt,
                                   color: Color(0xffcfcfcf),
                                 ),
-                                'Clothing'),
+                                'Clothing', 1),
                             HomeCategoryTile(
                                 const FaIcon(
                                   FontAwesomeIcons.couch,
                                   color: Color(0xffcfcfcf),
                                 ),
-                                'Furniture'),
+                                'Furniture', 2),
                             HomeCategoryTile(
                                 const FaIcon(
                                   FontAwesomeIcons.paperclip,
                                   color: Color(0xffcfcfcf),
                                 ),
-                                'Office'),
+                                'Office', 3),
                             HomeCategoryTile(
                                 const FaIcon(
                                   FontAwesomeIcons.basketballBall,
                                   color: Color(0xffcfcfcf),
                                 ),
-                                'Sport'),
+                                'Sport', 4),
                           ], scrollDirection: Axis.horizontal),
                         ),
                         //Section Title
-                        Container(
+                        if (products.where((element) => element.discount > 0).isNotEmpty) Container(
                           color: Colors.white,
                           padding: const EdgeInsets.only(
                               left: 10, top: 10, bottom: 10),
@@ -100,16 +101,18 @@ class Home extends StatelessWidget {
                           ),
                         ),
                         //Sale product list
-                        Container(
+                        if (products.where((element) => element.discount > 0).isNotEmpty) Container(
                             padding: const EdgeInsets.only(
                                 top: 10, bottom: 10, left: 10),
                             color: const Color(0xffffffff),
                             height: 300.0,
                             child: const SaleList()),
                         //Section Title
+                        if (products.where((element) => element.discount > 0).isNotEmpty) Container(
+                          margin: const EdgeInsets.only(top: 30),
+                        ),
                         Container(
                           color: Colors.white,
-                          margin: const EdgeInsets.only(top: 30),
                           padding: const EdgeInsets.only(
                               left: 10, top: 10, bottom: 10),
                           child: Row(
